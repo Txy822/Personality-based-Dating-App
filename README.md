@@ -29,8 +29,8 @@ Personality_based_Dating_App_using_NLP_from_Tweets/PersonalityClassifier/
 4. TFLITE Model Maker
 
 The classifier model uses the current state of the art transformer based language model which is Bidirectional Encoder Representations from Transformers (BERT) as pretrained model and the multi-layer neural network to setup the model architecture. The highlevel view of model architecture and the model layes are shown below.
-<img src="PersonalityClassifier/Images/bert_dense_model2.png" alt ="bert_dense_structure"/>
-<img src="PersonalityClassifier/Images/model_layers.png" alt ="Overall structure of the app "/>
+<img src="img/bert_dense_model2.png" alt ="bert_dense_structure"/>
+<img src="img/model_layers.png" alt ="Overall structure of the app "/>
 
 
 The model performance was evaluated using different methods such as accuracy, f1-score, recall, roc_auc and confussion matrix
@@ -63,4 +63,4 @@ The apllication is developed using Android Studio and java programming language.
 
 Some sample UI of the application
 
-<img src="imgui.png" alt ="Sample Application UI "/>
+<img src="img/ui.png" alt ="Sample Application UI "/>
