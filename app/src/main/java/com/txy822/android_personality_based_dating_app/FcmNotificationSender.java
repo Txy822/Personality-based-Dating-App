@@ -35,7 +35,10 @@ public class FcmNotificationSender  {
     //Select POST . Enter request URL as postUrl
     private final String postUrl = "https://fcm.googleapis.com/fcm/send";
     //Add Headers Authorization: key , key from fcm server key
-    private final String fcmServerKey ="AAAAPPyBl9M:APA91bH8Kqd2HY7nGBahJE5Y4-3ptODo4JzCae5RUwvW_X10P22V5K8a8YO-7G4-zBT3ZP389K1ZqmPtS1o3tqwGydXNt0fLquOVWfVvgLJ0vOt_vTvgpkC7pzZxXWqC4nncePfZr6p9";
+    private final String fcmServerKey  = BuildConfig.fcmServerKey;
+
+
+
 
 
     public FcmNotificationSender(String userFcmToken, String title, String body, Context mContext, Activity mActivity) {

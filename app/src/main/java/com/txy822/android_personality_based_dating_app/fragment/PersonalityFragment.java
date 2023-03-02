@@ -17,6 +17,7 @@ import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 
+import com.txy822.android_personality_based_dating_app.BuildConfig;
 import com.txy822.android_personality_based_dating_app.ChatActivity;
 import com.txy822.android_personality_based_dating_app.R;
 
@@ -47,11 +48,10 @@ public class PersonalityFragment extends Fragment {
 
 
     private static final String TAG = "TAG";
-//  twitter API authentication keys
-    private  String CONSUMER_KEY="WrGHcGFuDNbRZZ8foEEL452Rw";
-    private  String CONSUMER_SECRET="f1jnEOIE06JrXsThFzBQnvmAnE3t9g6alZXNsndl3x0jRgga9i";
-    private  String ACCESS_KEY="1411733567730860032-sYHaXwQssOB3yYRjMO1wzqbKNBlzrW";
-    private  String ACCESS_SECRET="GYQRsaZFkUAkjDjfvVjycgNwqHlQJ8uRe8QTLWKy7BR21";
+    private  String CONSUMER_KEY= BuildConfig.CONSUMER_KEY;
+    private  String CONSUMER_SECRET = BuildConfig.CONSUMER_SECRET;
+    private  String ACCESS_KEY = BuildConfig.ACCESS_KEY;
+    private  String ACCESS_SECRET = BuildConfig.ACCESS_SECRET;
 
     private Button btn_check_personality;
     private Button btn_view_some_tweets;
