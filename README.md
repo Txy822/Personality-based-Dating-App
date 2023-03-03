@@ -5,7 +5,7 @@
 - This project has two parts :Machine learning model development  and dating application software development
 - The over all structure of the application with different component is shown as:
 
-<img src="PersonalityClassifier/Images/Structural_design_dating_app.png" alt ="Overall structure of the app "/>
+<img src="img/Structural_design_dating_app.png" alt ="Overall structure of the app "/>
 
 ## 1. Personality classifier model 
  - It classifiy  and predict personality from tweets. 
