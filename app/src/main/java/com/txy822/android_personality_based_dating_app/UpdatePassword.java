@@ -22,6 +22,7 @@ public class UpdatePassword extends AppCompatActivity {
     private String email;
     private FirebaseAuth mAuth;
     private Button reset;
+    private Button signIn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,7 +68,15 @@ public class UpdatePassword extends AppCompatActivity {
         }
         return true;
     }
+    /**
+     *  Switches to login or sign in activity
+     * @param view view
+     */
+    public void login(View view) {
 
+        Intent intent = new Intent(this, Login.class);
+        startActivity(intent);
+    }
     /**
      *  Reset password
      * @param view
