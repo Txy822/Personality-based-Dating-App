@@ -306,17 +306,15 @@ public class PersonalityFragment extends Fragment {
                     }
                     String s="";
 
-                    for(int i=0; i<probability.size()-13; i++)
+                    for(int i=0; i<probability.size()-10; i++)
                     {
                        Float z=(probability.get(i))*100;
                         int x = (z).intValue();
                         s=s+labels.get(i)+"="+(x)+"%"+"\n";
                     }
-                    result_label.setText("Top 3 Results");
+                    result_label.setText("Top 6 Results");
                     result_label.setTextColor(Color.GREEN);
                     classification_result.setText(s);
-
-
                 });
     }
 
