@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/black"
+    android:background="@color/green_darkest"
     tools:context=".fragment.FinderFragment">
 
     <FrameLayout
@@ -24,17 +24,6 @@
                 android:layout_height="match_parent"
                 app:layout_constraintBottom_toTopOf="@+id/age_range"
                 app:layout_constraintTop_toTopOf="@+id/age_range">
-
-
-                <ImageView
-                    android:id="@+id/background_img"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:scaleType="fitXY"
-                    android:src="@drawable/background_one"
-                    tools:ignore="MissingConstraints"
-                    tools:layout_editor_absoluteX="2dp"
-                    tools:layout_editor_absoluteY="3dp" />
 
                 <ImageView
                     android:id="@+id/imageView"
