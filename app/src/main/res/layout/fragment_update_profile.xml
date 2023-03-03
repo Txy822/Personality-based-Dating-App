@@ -4,180 +4,230 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/black"
+    android:background="@color/green_darkest"
     tools:context=".fragment.UpdateProfileFragment">
 
-  <FrameLayout
-      android:id="@+id/updateProfileFragmentLayout"
-      android:layout_width="match_parent"
-      android:layout_height="match_parent"
-      android:orientation="vertical"
+  <ScrollView
+      android:id="@+id/scrollView2"
+      android:layout_width="0dp"
+      android:layout_height="0dp"
       app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintTop_toTopOf="parent">
-<ScrollView
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
 
-  <androidx.constraintlayout.widget.ConstraintLayout
-      android:layout_width="match_parent"
-      android:layout_height="match_parent"
-      app:layout_constraintBottom_toTopOf="@+id/enter_age_range"
-      app:layout_constraintTop_toTopOf="@+id/enter_age_range">
-
-
-    <ImageView
-        android:id="@+id/background_img"
-        android:layout_width="407dp"
-        android:layout_height="813dp"
-        android:scaleType="fitXY"
-        android:src="@drawable/background_one"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0"
-        tools:ignore="MissingConstraints" />
-
-    <EditText
-        android:id="@+id/enter_personality_type"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="288dp"
-        android:ems="10"
-        android:gravity="center_horizontal|center_vertical"
-        android:hint="Enter Personality Type"
-        android:inputType="textFilter"
-        android:shadowColor="@color/purple_700"
-        android:textColor="@color/white"
-        android:textColorHint="@color/white"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="MissingConstraints" />
-
-    <EditText
-        android:id="@+id/enter_location"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="27dp"
-        android:layout_marginTop="30dp"
-        android:ems="10"
-        android:gravity="center_vertical"
-        android:hint="Enter Location"
-        android:inputType="textAutoComplete"
-        android:shadowColor="@color/purple_700"
-        android:textColor="@color/white"
-        android:textColorHint="@color/white"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/enter_personality_type"
-        tools:ignore="MissingConstraints" />
-
-    <EditText
-        android:id="@+id/enter_date_of_birth"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="27dp"
-        android:layout_marginTop="30dp"
-        android:cursorVisible="false"
-        android:ems="10"
-        android:focusable="false"
-        android:focusableInTouchMode="false"
-        android:hint="Enter Date of Birth"
-        android:inputType="datetime"
-        android:textColor="@color/cardview_light_background"
-        android:textColorHint="@color/white"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/enter_location"
-        tools:ignore="MissingConstraints" />
-
-    <EditText
-        android:id="@+id/enter_age_range"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="27dp"
-        android:layout_marginTop="30dp"
-        android:ems="10"
-        android:hint="Enter Age Range"
-        android:inputType="textAutoComplete"
-        android:textColor="@color/textColorPrimary"
-        android:textColorHint="@color/white"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/enter_date_of_birth"
-        tools:ignore="MissingConstraints" />
-
-    <Button
-        android:id="@+id/save"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginStart="27dp"
-        android:layout_marginBottom="53dp"
-        android:text="@string/save"
-        android:textColor="@color/white"
-        app:backgroundTint="@color/colorPrimary"
+    <FrameLayout
+        android:id="@+id/updateProfileFragmentLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_marginTopPercent="40%"
-        app:layout_widthPercent="50%"
-        tools:ignore="MissingConstraints" />
+        app:layout_constraintTop_toTopOf="parent">
+      <!--<ScrollView-->
+      <!--    android:layout_width="match_parent"-->
+      <!--    android:layout_height="match_parent">-->
 
-    <EditText
-        android:id="@+id/enter_summary"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="27dp"
-        android:layout_marginTop="30dp"
-        android:ems="10"
-        android:hint="Summary"
-        android:inputType="textPersonName"
-        android:textColor="@color/white"
-        android:textColorHint="@color/white"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/enter_age_range"
-        tools:ignore="MissingConstraints" />
+      <androidx.constraintlayout.widget.ConstraintLayout
+          android:layout_width="match_parent"
+          android:layout_height="718dp"
+          app:layout_constraintBottom_toTopOf="@+id/enter_age_range"
+          app:layout_constraintTop_toTopOf="@+id/enter_age_range">
 
-    <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/profile"
-        android:layout_width="112dp"
-        android:layout_height="135dp"
-        android:layout_marginStart="27dp"
-        android:layout_marginTop="16dp"
-        android:src="@drawable/profile"
-        app:civ_border_color="#FF000000"
-        app:civ_border_width="2dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <EditText
+            android:id="@+id/enter_personality_type"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="11dp"
+            android:backgroundTint="@color/white"
+            android:ems="10"
+            android:gravity="center_vertical"
+            android:hint="Enter Personality Type"
+            android:inputType="textFilter"
+            android:shadowColor="@color/purple_700"
+            android:textColor="@color/white"
+            android:textColorHint="@color/white"
+            app:layout_constraintBottom_toTopOf="@+id/enter_location"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/full_name_id"
+            tools:ignore="MissingConstraints" />
 
-    <Button
-        android:id="@+id/cancel_btn_profile"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="108dp"
-        android:layout_marginBottom="53dp"
-        android:text="CANCEL"
-        android:textColor="@color/white"
-        app:backgroundTint="@color/colorPrimary"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        <EditText
+            android:id="@+id/enter_location"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="22dp"
+            android:backgroundTint="@color/white"
+            android:ems="10"
+            android:gravity="center_vertical"
+            android:hint="Enter Location"
+            android:inputType="textAutoComplete"
+            android:shadowColor="@color/purple_700"
+            android:textColor="@color/white"
+            android:textColorHint="@color/white"
+            app:layout_constraintBottom_toTopOf="@+id/enter_date_of_birth"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/enter_personality_type"
+            tools:ignore="MissingConstraints" />
 
-    <EditText
-        android:id="@+id/full_name_id"
-        android:layout_width="208dp"
-        android:layout_height="45dp"
-        android:layout_marginStart="27dp"
-        android:layout_marginBottom="30dp"
-        android:ems="10"
-        android:hint="Enter Full Name"
-        android:inputType="textPersonName"
-        android:textColor="@color/white"
-        android:textColorHint="@color/design_default_color_surface"
-        app:layout_constraintBottom_toTopOf="@+id/enter_personality_type"
-        app:layout_constraintStart_toStartOf="parent" />
+        <EditText
+            android:id="@+id/enter_date_of_birth"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="23dp"
+            android:backgroundTint="@color/white"
+            android:cursorVisible="false"
+            android:ems="10"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            android:hint="Enter Date of Birth"
+            android:inputType="datetime"
+            android:textColor="@color/cardview_light_background"
+            android:textColorHint="@color/white"
+            app:layout_constraintBottom_toTopOf="@+id/enter_age_range"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/enter_location"
+            tools:ignore="MissingConstraints" />
 
-  </androidx.constraintlayout.widget.ConstraintLayout>
+        <EditText
+            android:id="@+id/enter_age_range"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="84dp"
+            android:backgroundTint="@color/white"
+            android:ems="10"
+            android:hint="Enter Age Range"
+            android:inputType="textAutoComplete"
+            android:textColor="@color/textColorPrimary"
+            android:textColorHint="@color/white"
+            app:layout_constraintBottom_toTopOf="@+id/SplitLine_hor2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/enter_date_of_birth"
+            tools:ignore="MissingConstraints" />
 
-</ScrollView></FrameLayout>
+        <Button
+            android:id="@+id/save"
+            android:layout_width="162dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginStart="16dp"
+            android:layout_marginBottom="40dp"
+            android:background="@drawable/button"
+            android:text="@string/save"
+            android:textColor="@color/white"
+            app:backgroundTint="@color/black"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/enter_summary"
+            app:layout_constraintVertical_bias="0.642"
+            app:layout_marginTopPercent="40%"
+            app:layout_widthPercent="50%"
+            tools:ignore="MissingConstraints" />
 
+        <EditText
+            android:id="@+id/enter_summary"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:backgroundTint="@color/white"
+            android:ems="10"
+            android:hint="Summary"
+            android:inputType="textPersonName"
+            android:textColor="@color/white"
+            android:textColorHint="@color/white"
+            app:layout_constraintBottom_toTopOf="@+id/SplitLine_hor2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/enter_age_range"
+            tools:ignore="MissingConstraints" />
+
+        <View
+            android:id="@+id/SplitLine_hor2"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_marginBottom="161dp"
+            android:background="@color/black"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/enter_age_range" />
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/profile"
+            android:layout_width="113dp"
+            android:layout_height="88dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="39dp"
+            android:foregroundGravity="center_horizontal"
+            android:src="@drawable/profile"
+            app:civ_border_color="#FF000000"
+            app:civ_border_width="2dp"
+            app:layout_constraintBottom_toTopOf="@+id/SplitLine_hor1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.053"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <View
+            android:id="@+id/SplitLine_hor1"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_marginBottom="26dp"
+            android:background="@color/black"
+            app:layout_constraintBottom_toTopOf="@+id/full_name_id"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/profile" />
+
+        <Button
+            android:id="@+id/cancel_btn_profile"
+            android:layout_width="179dp"
+            android:layout_height="50dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="40dp"
+            android:background="@drawable/button"
+            android:text="CANCEL"
+            android:textColor="@color/white"
+            app:backgroundTint="@color/black"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.485"
+            app:layout_constraintStart_toEndOf="@+id/save"
+            app:layout_constraintTop_toBottomOf="@+id/SplitLine_hor2" />
+
+        <EditText
+            android:id="@+id/full_name_id"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
+            android:backgroundTint="@color/white"
+            android:ems="10"
+            android:hint="Enter Full Name"
+            android:inputType="textPersonName"
+            android:textColor="@color/white"
+            android:textColorHint="@color/design_default_color_surface"
+            app:layout_constraintBottom_toTopOf="@+id/enter_personality_type"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/SplitLine_hor1" />
+
+      </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </FrameLayout>
+  </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>
