@@ -5,7 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/green_darkest"
-
     tools:context=".SignUp">
 
     <EditText
@@ -14,7 +13,6 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
-
         android:layout_marginBottom="72dp"
         android:backgroundTint="@color/white"
         android:ems="10"
@@ -40,7 +38,6 @@
         android:hint="Enter Full Name"
         android:imeOptions="actionDone"
         android:backgroundTint="@color/white"
-
         android:inputType="textPersonName"
         android:textColor="@color/white"
         android:textColorHint="@color/white"
