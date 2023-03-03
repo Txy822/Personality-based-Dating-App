@@ -29,17 +29,12 @@ public class FcmNotificationSender  {
     Context mContext;
     Activity mActivity;
 
-
     private RequestQueue requestQueue;
     //posting url for postman using HTTP protocol
     //Select POST . Enter request URL as postUrl
     private final String postUrl = "https://fcm.googleapis.com/fcm/send";
     //Add Headers Authorization: key , key from fcm server key
     private final String fcmServerKey  = BuildConfig.fcmServerKey;
-
-
-
-
 
     public FcmNotificationSender(String userFcmToken, String title, String body, Context mContext, Activity mActivity) {
         this.userFcmToken = userFcmToken;
