@@ -55,6 +55,8 @@ dependencies {
     implementation 'com.google.android.things:androidthings:1.0'
     implementation 'androidx.preference:preference:1.2.0'
     implementation 'com.google.firebase:firebase-messaging:23.1.1'
+    implementation platform('com.google.firebase:firebase-bom') // add this
+    implementation 'com.google.firebase:firebase-iid:21.1.0' // add this
 //    junit 4 frame work
     testImplementation 'junit:junit:'
     //  test frame  for   Robolectric environment

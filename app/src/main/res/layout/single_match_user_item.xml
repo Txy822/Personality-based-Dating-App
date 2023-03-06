@@ -31,7 +31,7 @@
             android:layout_marginLeft="10dp"
             android:gravity="bottom|clip_vertical"
             android:text="John"
-            android:textColor="@color/Aqua"
+            android:textColor="@color/white"
             android:textSize="18sp" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

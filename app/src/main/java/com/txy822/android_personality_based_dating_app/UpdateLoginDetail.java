@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.Toolbar;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -19,8 +20,9 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 public class UpdateLoginDetail extends AppCompatActivity {
-    private final String TAG="";
+    private final String TAG = "";
     private EditText mEmail;
+    private Toolbar updateLoginToolBar;
     private String email;
     private EditText mPassword;
     private String password;
@@ -34,62 +36,76 @@ public class UpdateLoginDetail extends AppCompatActivity {
      * for API 27 and lower devices or when using the default
      * {@link AppComponentFactory}.
      */
-    public UpdateLoginDetail(String  mEmail, String  mPassword, FirebaseAuth mAuth) {
+    public UpdateLoginDetail(String mEmail, String mPassword, FirebaseAuth mAuth) {
         this.email = mEmail;
         this.password = mPassword;
         this.mAuth = mAuth;
     }
-    public UpdateLoginDetail(){
+
+    public UpdateLoginDetail() {
 
     }
+
     /**
-     *  Update the user login detail
+     * Update the user login detail
+     *
      * @param savedInstanceState
      */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_update_login_detail);
-        mAuth= FirebaseAuth.getInstance();
-        user=  mAuth.getInstance().getCurrentUser();
-        mPassword=findViewById(R.id.enterPassword);
-        mEmail=findViewById(R.id.enterEmail);
-        text=findViewById(R.id.welcome_text);
-        apply=findViewById(R.id.apply_btn);
+        updateLoginToolBar = findViewById(R.id.update_login_toolbar);
+        mAuth = FirebaseAuth.getInstance();
+        user = mAuth.getInstance().getCurrentUser();
+        mPassword = findViewById(R.id.enterPassword);
+        mEmail = findViewById(R.id.enterEmail);
+        text = findViewById(R.id.welcome_text);
+        apply = findViewById(R.id.apply_btn);
 
         //button to update user password and email from firebase
         apply.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 //                update user detal using email and password
-               boolean b= updateUserDetail();
+                boolean b = updateUserDetail();
 //                start home intent after update
-                if(b==true) {
+                if (b == true) {
                     Intent intent = new Intent(getApplication(), Home.class);
                     startActivity(intent);
                 }
             }
         });
+        updateLoginToolBar.setTitle("Update Login Detail");
+        updateLoginToolBar.setNavigationIcon(R.drawable.ic_arrow_back);
+        updateLoginToolBar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
     }
+
     /**
      * Update the user detail of password and email
      */
-    public boolean  updateUserDetail(){
+    public boolean updateUserDetail() {
 
-        email= mEmail.getText().toString();
-        password= mPassword.getText().toString();
-        if(!email.isEmpty() && !password.isEmpty()){
-            updateEmailPassword(password,email,mAuth);
+        email = mEmail.getText().toString();
+        password = mPassword.getText().toString();
+        if (!email.isEmpty() && !password.isEmpty()) {
+            updateEmailPassword(password, email, mAuth);
             return true;
-        }
-        else{
+        } else {
             text.setText("Please add your email and password!");
             Toast.makeText(UpdateLoginDetail.this, "Please add your email and password!", Toast.LENGTH_SHORT).show();
         }
-        return  false;
+        return false;
     }
+
     /**
      * Updates email and password
+     *
      * @param userPassword
      * @param userEmail
      * @param auth
@@ -98,11 +114,11 @@ public class UpdateLoginDetail extends AppCompatActivity {
     public boolean updateEmailPassword(String userPassword, String userEmail, FirebaseAuth auth) {
 
 
-        if(!userPassword.isEmpty()&& !userEmail.isEmpty()) {
+        if (!userPassword.isEmpty() && !userEmail.isEmpty()) {
             // get current user
             FirebaseUser currentUser = auth.getInstance().getCurrentUser();
             try {
-              // updates the current user password
+                // updates the current user password
                 currentUser.updatePassword(userPassword)
                         .addOnCompleteListener(new OnCompleteListener<Void>() {
                             @Override
@@ -133,8 +149,7 @@ public class UpdateLoginDetail extends AppCompatActivity {
 
             }
 
-        }
-        else {
+        } else {
             Toast.makeText(UpdateLoginDetail.this, "Either email or Password field Empty", Toast.LENGTH_SHORT).show();
 
         }

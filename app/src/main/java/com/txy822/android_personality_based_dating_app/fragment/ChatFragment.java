@@ -84,10 +84,11 @@ public class ChatFragment extends Fragment {
                 if(task.isSuccessful()){
                     for(DocumentSnapshot documentSnapshot:task.getResult()){
                         Match match = documentSnapshot.toObject(Match.class);
-                        mMatchList.add(match);
-                        matchRecyclerAdapter.notifyDataSetChanged();
+                        if(!mMatchList.contains(match)) {
+                            mMatchList.add(match);
+                            matchRecyclerAdapter.notifyDataSetChanged();
+                        }
                     }
-
                 }
             }
         });

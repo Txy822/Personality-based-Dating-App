@@ -85,8 +85,8 @@ public class UpdatePassword extends AppCompatActivity {
         email= mEmail.getText().toString();
         if(!email.isEmpty()) {
             sendPasswordReset(email);
-            Intent intent = new Intent(getApplication(), PostPasswordUpdate.class);
-            intent.putExtra("email", email);
+            Intent intent = new Intent(this, Login.class);
+            startActivity(intent);
             startActivity(intent);
         } else {
             Toast.makeText(UpdatePassword.this, "Email field Empty", Toast.LENGTH_SHORT).show();

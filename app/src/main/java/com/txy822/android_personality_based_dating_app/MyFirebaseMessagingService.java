@@ -78,7 +78,8 @@ public class MyFirebaseMessagingService extends com.google.firebase.messaging.Fi
         }
         //intent and pending intent for view of push notification
         Intent resultIntent = new Intent(this,StartApp.class);
-        PendingIntent pendingIntent = PendingIntent.getActivity(this, 1, resultIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+        PendingIntent pendingIntent = PendingIntent.getActivity(this, 1, resultIntent, PendingIntent.FLAG_UPDATE_CURRENT| PendingIntent.FLAG_IMMUTABLE);
+
         //customize notification builder
         //title
         builder.setContentTitle(remoteMessage.getNotification().getTitle());
