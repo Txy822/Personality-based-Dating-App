@@ -15,6 +15,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
+
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent">
@@ -27,56 +28,62 @@
 
                 <ImageView
                     android:id="@+id/imageView"
-                    android:layout_width="716dp"
-                    android:layout_height="414dp"
+                    android:layout_width="0dp"
+                    android:layout_height="291dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
                     android:src="@drawable/profile"
                     app:civ_border_color="#FF000000"
                     app:civ_border_width="2dp"
+                    app:layout_constraintBottom_toTopOf="@+id/imageButton5"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.504"
                     app:layout_constraintStart_toStartOf="parent"
-                    tools:ignore="MissingConstraints"
-                    tools:layout_editor_absoluteY="16dp" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:ignore="MissingConstraints" />
 
                 <TextView
-                    android:id="@+id/nameAgeLocationX"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="136dp"
+                    android:id="@+id/tv_user_name_id"
+                    android:layout_width="152dp"
+                    android:layout_height="30dp"
                     android:layout_marginTop="12dp"
                     android:ems="10"
-                    android:hint="nameAgeLocation"
+                    tools:text="name"
                     android:shadowColor="@color/purple_700"
                     android:textColor="@color/white"
                     android:textColorHint="@color/white"
-                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/tv_location_label_id"
+                    app:layout_constraintHorizontal_bias="0.507"
+                    app:layout_constraintStart_toEndOf="@+id/imageButton5"
                     app:layout_constraintTop_toBottomOf="@+id/imageView"
                     tools:ignore="MissingConstraints" />
 
                 <TextView
-                    android:id="@+id/personalityTypeAgePreferenceX"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="136dp"
-                    android:layout_marginTop="12dp"
-                    android:text="personalityTypeAgePreference"
+                    android:id="@+id/tv_user_location_id"
+                    android:layout_width="144dp"
+                    android:layout_height="30dp"
+                    android:layout_marginTop="364dp"
+                    android:layout_marginBottom="34dp"
+                    tools:text ="location"
                     android:textColor="@color/colorAccent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/nameAgeLocationX" />
+                    app:layout_constraintBottom_toTopOf="@+id/tv_personality_type_id"
+                    app:layout_constraintEnd_toStartOf="@+id/tv_location_label_id"
+                    app:layout_constraintHorizontal_bias="0.311"
+                    app:layout_constraintStart_toEndOf="@+id/distanceView"
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
                     android:id="@+id/summaryX"
-                    android:layout_width="197dp"
-                    android:layout_height="65dp"
-                    android:layout_marginStart="136dp"
-                    android:layout_marginTop="24dp"
-                    android:layout_marginEnd="100dp"
-                    android:text="summary"
+                    android:layout_width="376dp"
+                    android:layout_height="44dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="28dp"
+                    tools:text="summary"
                     android:textColor="@color/colorAccent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintHorizontal_bias="0.4"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/personalityTypeAgePreferenceX" />
+                    app:layout_constraintTop_toBottomOf="@+id/compatiblity" />
 
                 <ImageButton
                     android:id="@+id/rejectBtn"
@@ -85,12 +92,13 @@
                     android:layout_gravity="center_horizontal"
 
                     android:layout_marginStart="60dp"
-                    android:layout_marginTop="50dp"
+                    android:layout_marginTop="30dp"
                     android:background="@drawable/dislike2"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/acceptBtn"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/summaryX"
+                    app:layout_constraintTop_toBottomOf="@+id/compatiblity"
                     app:layout_marginTopPercent="40%"
                     app:layout_widthPercent="50%"
                     tools:ignore="MissingConstraints" />
@@ -100,64 +108,150 @@
                     android:layout_width="50dp"
                     android:layout_height="50dp"
 
-                    android:layout_marginTop="50dp"
+                    android:layout_marginTop="30dp"
                     android:layout_marginEnd="60dp"
                     android:background="@drawable/like2"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/summaryX" />
+                    app:layout_constraintTop_toBottomOf="@+id/tv_location_label_id" />
 
                 <ImageButton
                     android:id="@+id/chat_btn_id"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
-                    android:layout_marginTop="50dp"
+                    android:layout_marginTop="30dp"
                     android:layout_marginEnd="60dp"
                     android:src="@drawable/chat_7"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/acceptBtn"
                     app:layout_constraintHorizontal_bias="0.864"
                     app:layout_constraintStart_toEndOf="@+id/rejectBtn"
-                    app:layout_constraintTop_toBottomOf="@+id/summaryX"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_personality_type_id"
                     app:layout_constraintVertical_bias="0.0" />
 
                 <TextView
                     android:id="@+id/compatiblity"
-                    android:layout_width="123dp"
-                    android:layout_height="89dp"
+                    android:layout_width="104dp"
+                    android:layout_height="77dp"
                     android:layout_marginStart="32dp"
+                    android:layout_marginEnd="186dp"
+                    android:layout_marginBottom="54dp"
                     android:text="79% Personality match"
                     android:textColor="@color/Lime"
                     android:textSize="20sp"
-                    app:layout_constraintBottom_toBottomOf="@+id/summaryX"
-                    app:layout_constraintEnd_toStartOf="@+id/personalityTypeAgePreferenceX"
-                    app:layout_constraintHorizontal_bias="0.842"
+                    app:layout_constraintBottom_toTopOf="@+id/rejectBtn"
+                    app:layout_constraintEnd_toStartOf="@+id/tv_personality_lable_id"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/nameAgeLocationX"
-                    app:layout_constraintVertical_bias="1.0" />
+                    app:layout_constraintTop_toBottomOf="@+id/distanceView" />
 
                 <TextView
                     android:id="@+id/distanceView"
-                    android:layout_width="100dp"
-                    android:layout_height="24dp"
-                    android:text="_ km"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="23dp"
+                    android:layout_marginBottom="10dp"
+                    tools:text="_ km"
                     android:textColor="@color/quantum_yellow"
                     app:layout_constraintBottom_toTopOf="@+id/compatiblity"
-                    app:layout_constraintEnd_toStartOf="@+id/personalityTypeAgePreferenceX"
-                    app:layout_constraintHorizontal_bias="0.444"
+                    app:layout_constraintEnd_toEndOf="@+id/compatiblity"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/nameAgeLocationX"
-                    app:layout_constraintVertical_bias="1.0" />
+                    app:layout_constraintTop_toBottomOf="@+id/imageButton5" />
 
                 <ImageButton
                     android:id="@+id/imageButton5"
-                    android:layout_width="72dp"
-                    android:layout_height="67dp"
-                    android:layout_marginBottom="24dp"
+                    android:layout_width="78dp"
+                    android:layout_height="0dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="307dp"
+                    android:layout_marginBottom="12dp"
                     android:src="@drawable/location5"
-                    app:layout_constraintBottom_toBottomOf="@+id/distanceView"
-                    app:layout_constraintEnd_toStartOf="@+id/nameAgeLocationX"
-                    app:layout_constraintHorizontal_bias="0.453"
-                    app:layout_constraintStart_toStartOf="parent" />
+                    app:layout_constraintBottom_toTopOf="@+id/distanceView"
+                    app:layout_constraintEnd_toStartOf="@+id/tv_user_location_id"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tv_personality_type_id"
+                    android:layout_width="152dp"
+                    android:layout_height="30dp"
+                    android:layout_marginBottom="142dp"
+                    tools:text = "Personality"
+                    android:textColor="@color/white"
+                    app:layout_constraintBottom_toTopOf="@+id/chat_btn_id"
+                    app:layout_constraintEnd_toStartOf="@+id/tv_personality_lable_id"
+                    app:layout_constraintHorizontal_bias="0.444"
+                    app:layout_constraintStart_toEndOf="@+id/distanceView"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_user_location_id" />
+
+                <TextView
+                    android:id="@+id/iv_age_id"
+                    android:layout_width="156dp"
+                    android:layout_height="30dp"
+                    android:layout_marginStart="4dp"
+                    tools:text = "Age"
+                    android:textColor="@color/white"
+                    app:layout_constraintBottom_toTopOf="@+id/summaryX"
+                    app:layout_constraintStart_toEndOf="@+id/compatiblity"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_personality_type_id"
+                    app:layout_constraintVertical_bias="0.421" />
+
+                <TextView
+                    android:id="@+id/name_id"
+                    android:layout_width="77dp"
+                    android:layout_height="30dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginBottom="15dp"
+                    android:text="Name"
+                    android:textColor="@color/white"
+                    app:layout_constraintBottom_toTopOf="@+id/tv_location_label_id"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.918"
+                    app:layout_constraintStart_toEndOf="@+id/tv_user_name_id"
+                    app:layout_constraintTop_toBottomOf="@+id/imageView"
+                    app:layout_constraintVertical_bias="0.0" />
+
+                <TextView
+                    android:id="@+id/tv_location_label_id"
+                    android:layout_width="80dp"
+                    android:layout_height="30dp"
+                    android:layout_marginTop="364dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginBottom="197dp"
+                    android:text="Location"
+                    android:textColor="@color/white"
+                    app:layout_constraintBottom_toTopOf="@+id/acceptBtn"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/age_range_label_id"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginBottom="48dp"
+                    android:text="@string/age_range"
+                    android:textColor="@color/white"
+                    app:layout_constraintBottom_toTopOf="@+id/summaryX"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toEndOf="@+id/iv_age_id" />
+
+                <TextView
+                    android:id="@+id/tv_personality_lable_id"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:layout_marginEnd="16dp"
+                    android:text="Personality"
+                    android:textColor="@color/white"
+                    app:layout_constraintBottom_toTopOf="@+id/age_range_label_id"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.931"
+                    app:layout_constraintStart_toStartOf="@+id/chat_btn_id"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_location_label_id"
+                    app:layout_constraintVertical_bias="0.449" />
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>

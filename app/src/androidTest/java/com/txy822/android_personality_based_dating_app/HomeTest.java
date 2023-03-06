@@ -20,9 +20,7 @@ import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewParent;
-import android.widget.Button;
 import android.widget.ImageButton;
-import android.widget.TextView;
 
 import androidx.test.espresso.UiController;
 import androidx.test.espresso.ViewAction;
@@ -82,8 +80,8 @@ public class HomeTest {
         ViewInteraction tabView = onView(Matchers.allOf(childAtPosition(childAtPosition(withId(R.id.tab), 0), 0), isDisplayed()));
         tabView.perform(click());
 
-        onView(withId(R.id.personalityTypeAgePreferenceX)).check(matches(isDisplayed()));
-        onView(withId(R.id. nameAgeLocationX)).check(matches(isDisplayed()));
+        onView(withId(R.id.tv_user_location_id)).check(matches(isDisplayed()));
+        onView(withId(R.id.tv_user_name_id)).check(matches(isDisplayed()));
         onView(withId(R.id. summaryX)).check(matches(isDisplayed()));
         onView(withId(R.id. chat_btn_id)).check(matches(isDisplayed()));
         onView(withId(R.id. compatiblity)).check(matches(isDisplayed()));
