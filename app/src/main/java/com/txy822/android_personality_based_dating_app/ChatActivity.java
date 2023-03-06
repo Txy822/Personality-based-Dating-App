@@ -9,6 +9,7 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.messaging.FirebaseMessaging;
 import com.txy822.android_personality_based_dating_app.adapter.ChatRecyclerAdapter;
+
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
@@ -17,6 +18,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
+import android.widget.Toolbar;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -44,31 +46,34 @@ import javax.annotation.Nullable;
  * ChatActivity class for messaging
  */
 public class ChatActivity extends AppCompatActivity {
-    private String TAG="TAG";
-    private int counter=0;
-    private int counter2=1000;
+    private String TAG = "TAG";
+    private int counter = 0;
+    private int counter2 = 1000;
 
     private RecyclerView mChatRecyclerView;
     private FirebaseAuth mAuth;
     private FirebaseFirestore mStore;
     private EditText mChatText;
+
+    private Toolbar toolbar_chat;
     private ImageView mSend;
-    private String userToken2="";
-    private String userToken3="";
-    private String current_username="";
-    private String current_user_id="";
-    private String currentUserToken="";
+    private String userToken2 = "";
+    private String userToken3 = "";
+    private String current_username = "";
+    private String current_user_id = "";
+    private String currentUserToken = "";
 
-    private String receiver_username="";
-    private String receiver_user_id="";
-    private String receiverUserToken="";
+    private String receiver_username = "";
+    private String receiver_user_id = "";
+    private String receiverUserToken = "";
 
-    String toId="";
+    String toId = "";
     private ChatRecyclerAdapter mChatRecyclerAdapter;
-    List<Chat> mChatList ;
+    List<Chat> mChatList;
 
     /**
      * Creates chat  activity
+     *
      * @param savedInstanceState savedInstanceState
      */
     @Override
@@ -76,41 +81,40 @@ public class ChatActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat);
 
-
         mChatRecyclerView = findViewById(R.id.chat_recycler);
         mChatText = findViewById(R.id.chat_msg);
+        toolbar_chat= findViewById(R.id.chat_toolbar);
         mSend = findViewById(R.id.chat_btn);
         mAuth = FirebaseAuth.getInstance();
         mStore = FirebaseFirestore.getInstance();
         mChatList = new ArrayList<>();
         mChatRecyclerView.setHasFixedSize(true);
         mChatRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-        toId=getIntent().getStringExtra("doc_id");
+        toId = getIntent().getStringExtra("doc_id");
 //        to display the previous chats on the view
-        mChatRecyclerAdapter = new ChatRecyclerAdapter(this,mChatList);
+        mChatRecyclerAdapter = new ChatRecyclerAdapter(this, mChatList);
         mChatRecyclerView.setAdapter(mChatRecyclerAdapter);
         //gets the current user or device token from firebase cloud messaging (FCM) for user- sign in device
-        currentUserToken=getTokenInstance();
+        currentUserToken = getTokenInstance();
         //Creates collection to store conversation detail on cloud based firebaseFirestore database
         mStore.collection("Message").orderBy("time_stamp", Query.Direction.ASCENDING).addSnapshotListener(new EventListener<QuerySnapshot>() {
             @Override
             public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
-                for(DocumentChange doc:queryDocumentSnapshots.getDocumentChanges()){
-                    DocumentSnapshot snapshot=doc.getDocument();
+                for (DocumentChange doc : queryDocumentSnapshots.getDocumentChanges()) {
+                    DocumentSnapshot snapshot = doc.getDocument();
                     //for each chat list
                     Chat chat = snapshot.toObject(Chat.class);
-                    if((chat.getFrom().equals(mAuth.getCurrentUser().getUid()) || chat.getFrom().equals(toId))
-                    && (chat.getTo().equals(mAuth.getCurrentUser().getUid()) || chat.getTo().equals(toId))){
-                        if(!mChatList.contains(chat)) {
+                    if ((chat.getFrom().equals(mAuth.getCurrentUser().getUid()) || chat.getFrom().equals(toId))
+                            && (chat.getTo().equals(mAuth.getCurrentUser().getUid()) || chat.getTo().equals(toId))) {
+                        if (!mChatList.contains(chat)) {
                             //add to the chatList to display on the view
                             mChatList.add(chat);
 //                           this updates every time  when message sent
                             mChatRecyclerAdapter.notifyDataSetChanged();
                         }
 
-                    }
-                    else {
-                        Log.d(TAG,"no chat instance ");
+                    } else {
+                        Log.d(TAG, "no chat instance ");
 
                     }
                 }
@@ -121,7 +125,7 @@ public class ChatActivity extends AppCompatActivity {
         mSend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(!mChatText.getText().toString().isEmpty()) {
+                if (!mChatText.getText().toString().isEmpty()) {
                     //Hash map to store the message information
                     Map<String, Object> map = new HashMap<>();
                     map.put("message", mChatText.getText().toString());
@@ -139,20 +143,31 @@ public class ChatActivity extends AppCompatActivity {
                         }
                     });
 
-                    String senderName=current_username;
-                    String message= mChatText.getText().toString();
+                    String senderName = current_username;
+                    String message = mChatText.getText().toString();
                     //get receiver token and send notification
-                    sendPushNotification(toId, senderName,message);
+                    sendPushNotification(toId, senderName, message);
 
                 }
             }
         });
+
+        toolbar_chat.setTitle("Chat");
+        toolbar_chat.setNavigationIcon(R.drawable.ic_arrow_back);
+        toolbar_chat.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
     }
+
     /**
      * Gets token instance from Firebase cloud messaging
+     *
      * @return Token for signed in device-user
      */
-    public  String getTokenInstance(){
+    public String getTokenInstance() {
         final String[] token = {""};
         //gets token
         FirebaseMessaging.getInstance().getToken()
@@ -170,14 +185,16 @@ public class ChatActivity extends AppCompatActivity {
                 });
         return token[0];
     }
+
     /**
      * Send push notification to chat receiver
-     * @param toId receiver user ID
+     *
+     * @param toId       receiver user ID
      * @param senderName current user name
-     * @param message message
-     * @return  receiver token
+     * @param message    message
+     * @return receiver token
      */
-    private  void  sendPushNotification(String toId, String senderName, String message){
+    private void sendPushNotification(String toId, String senderName, String message) {
 
         //get the receiver token from the collection
         mStore.collection("Users").document(toId).collection("TokenCollection").document("TokenDocument").get()
@@ -189,10 +206,10 @@ public class ChatActivity extends AppCompatActivity {
                             if (task.getResult() != null && task.getResult().getData() != null) {
                                 receiver_user_id = mAuth.getCurrentUser().getUid();
                                 receiver_username = task.getResult().getString("fullName");
-                                receiverUserToken=task.getResult().getString("token");
+                                receiverUserToken = task.getResult().getString("token");
                                 //Send notification using FCM and device token
-                                FcmNotificationSender notificationSender= new FcmNotificationSender(receiverUserToken,senderName,message,getApplicationContext(),ChatActivity.this);
-                                 notificationSender.sendNotification();
+                                FcmNotificationSender notificationSender = new FcmNotificationSender(receiverUserToken, senderName, message, getApplicationContext(), ChatActivity.this);
+                                notificationSender.sendNotification();
 
                             }
                         }
@@ -202,9 +219,10 @@ public class ChatActivity extends AppCompatActivity {
 
     /**
      * Stores token to FirebaseFirestore database in the form of document and collection
+     *
      * @param token
      */
-    private void  storeToken( String token) {
+    private void storeToken(String token) {
         //map to collect the token of user
         final Map<String, Object> map = new HashMap<>();
         //get the current user detail
@@ -231,11 +249,11 @@ public class ChatActivity extends AppCompatActivity {
                                             if (document.exists()) {
                                                 Log.d(TAG, "DocumentSnapshot data: " + document.getData());
                                                 mStore.collection("Users").document(mAuth.getCurrentUser().getUid()).collection("TokenCollection").document("TokenDocument").update(map).addOnSuccessListener(new OnSuccessListener<Void>() {
-                                                    @Override
-                                                    public void onSuccess(Void unused) {
+                                                            @Override
+                                                            public void onSuccess(Void unused) {
 //                                                        Toast.makeText(getApplicationContext(), "Token added", Toast.LENGTH_SHORT).show();
-                                                    }
-                                                })
+                                                            }
+                                                        })
                                                         .addOnFailureListener(new OnFailureListener() {
                                                             @Override
                                                             public void onFailure(@NonNull Exception e) {
@@ -246,11 +264,11 @@ public class ChatActivity extends AppCompatActivity {
                                             } else {
                                                 Log.d(TAG, "Document created");
                                                 mStore.collection("Users").document(mAuth.getCurrentUser().getUid()).collection("TokenCollection").document("TokenDocument").set(map).addOnSuccessListener(new OnSuccessListener<Void>() {
-                                                    @Override
-                                                    public void onSuccess(Void unused) {
-                                                        Toast.makeText(getApplicationContext(), "Token added", Toast.LENGTH_SHORT).show();
-                                                    }
-                                                })
+                                                            @Override
+                                                            public void onSuccess(Void unused) {
+                                                                Toast.makeText(getApplicationContext(), "Token added", Toast.LENGTH_SHORT).show();
+                                                            }
+                                                        })
                                                         .addOnFailureListener(new OnFailureListener() {
                                                             @Override
                                                             public void onFailure(@NonNull Exception e) {
@@ -271,7 +289,6 @@ public class ChatActivity extends AppCompatActivity {
                     }
 
                 });
-
 
     }
 

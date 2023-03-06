@@ -4,77 +4,99 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/green_darkest"
     tools:context=".fragment.ChatFragment">
 
-    <FrameLayout
-        android:id="@+id/chat_Lay"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
+    <ScrollView
+        android:id="@+id/scrollView6"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <ScrollView
+        <FrameLayout
+            android:id="@+id/chat_Lay"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="716dp">
 
-
-                <ImageView
-                    android:id="@+id/background_img"
+                <Toolbar
+                    android:id="@+id/chat_toolbar"
                     android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:scaleType="fitXY"
-                    android:src="@drawable/background_one"
-                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/green_darkest"
+                    android:fitsSystemWindows="true"
+                    android:minHeight="?attr/actionBarSize"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    tools:ignore="MissingConstraints" />
+                    app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+                <View
+                    android:id="@+id/SplitLine_hor9"
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="15dp"
+                    android:background="@color/black"
+                    app:layout_constraintBottom_toTopOf="@+id/chat_recycler"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/chat_toolbar"
+                    app:layout_constraintVertical_bias="0.0" />
 
                 <EditText
                     android:id="@+id/chat_msg"
-                    android:layout_width="501dp"
-                    android:layout_height="76dp"
+                    android:layout_width="301dp"
+                    android:layout_height="50dp"
+                    android:layout_marginStart="16dp"
                     android:layout_weight="9"
+                    android:backgroundTint="@color/white"
                     android:hint="Type message.."
+
                     android:textColor="@android:color/white"
                     android:textColorHint="@color/white"
-                    app:layout_constraintBottom_toBottomOf="@+id/background_img"
-                    app:layout_constraintEnd_toStartOf="@+id/chat_btn"
-                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     tools:ignore="MissingConstraints" />
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/chat_recycler"
                     android:layout_width="0dp"
-                    android:layout_height="691dp"
+                    android:layout_height="573dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
                     app:layout_constraintBottom_toTopOf="@+id/chat_msg"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/background_img"
-                    app:layout_constraintVertical_bias="0.0"
                     tools:ignore="MissingConstraints" />
 
                 <ImageView
                     android:id="@+id/chat_btn"
-                    android:layout_width="72dp"
-                    android:layout_height="63dp"
-                    android:layout_marginEnd="12dp"
-                    android:layout_marginBottom="12dp"
+                    android:layout_width="66dp"
+                    android:layout_height="50dp"
+                    android:layout_marginEnd="16dp"
                     android:layout_weight="0.6"
                     android:src="@drawable/ic_send_black_24dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/chat_msg"
                     tools:ignore="MissingConstraints" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-        </ScrollView>
-    </FrameLayout>
+        </FrameLayout>
+    </ScrollView>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

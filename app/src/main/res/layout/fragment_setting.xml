@@ -143,6 +143,7 @@
                     android:layout_marginEnd="16dp"
                     android:text="This app is dating app with personality included on it. It also provides location based match finding. If you like it add your personality, location  with other details and find your love sooner than later!"
                     android:textColor="@color/white"
+                    android:textSize="14sp"
                     app:layout_constraintBottom_toTopOf="@+id/SplitLine_hor5"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
