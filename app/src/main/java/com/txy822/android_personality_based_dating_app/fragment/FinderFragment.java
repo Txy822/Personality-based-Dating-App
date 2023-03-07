@@ -63,7 +63,7 @@ public class FinderFragment extends Fragment {
     private Profile currentUserProfile = null;
 
     //    for compatibility
-    private TypeCompatibility typeCompatibility;
+    private TypeCompatibility typeCompatibility = new  TypeCompatibility();
 
     //list of 16 MBTI personality type indicator for  compatibility match
     private String[] types = {"ESTJ", "ESFJ", "ENFJ", "ENTJ", "ESTP", "ESFP", "ENFP", "ENTP", "ISTP", "ISFP", "INFP", "INTP", "ISTJ", "ISFJ", "INFJ", "INTJ"};

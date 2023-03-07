@@ -70,78 +70,82 @@ public class TypeCompatibility {
 
     public int getCompatibility(String currentUserType, String matchUser){
         int value =0;
-        if(currentUserType.equals("ESTJ")){
-           value= ESTJ_map.get(matchUser);
-            return value;
-        }
-        if(currentUserType.equals("ESFJ")){
-            value= ESFJ_map.get(matchUser);
-            return value;
-        }
-        if(currentUserType.equals("ENFJ")){
-            value= ENFJ_map.get(matchUser);
-            return value;
-        }
-        if(currentUserType.equals("ENTJ")){
-            value= ENTJ_map.get(matchUser);
-            return value;
-        }
+        if(currentUserType != null) {
+            if (currentUserType.equals("ESTJ")) {
+                value = ESTJ_map.get(matchUser);
+                return value;
+            }
+            if (currentUserType.equals("ESFJ")) {
+                value = ESFJ_map.get(matchUser);
+                return value;
+            }
+            if (currentUserType.equals("ENFJ")) {
+                value = ENFJ_map.get(matchUser);
+                return value;
+            }
+            if (currentUserType.equals("ENTJ")) {
+                value = ENTJ_map.get(matchUser);
+                return value;
+            }
 
-        if(currentUserType.equals("ESTP")){
-            value= ESTP_map.get(matchUser);
-            return value;
-        }
+            if (currentUserType.equals("ESTP")) {
+                value = ESTP_map.get(matchUser);
+                return value;
+            }
 
-        if(currentUserType.equals("ESFP")){
-            value= ESFP_map.get(matchUser);
-            return value;
-        }
+            if (currentUserType.equals("ESFP")) {
+                value = ESFP_map.get(matchUser);
+                return value;
+            }
 
-        if(currentUserType.equals("ENFP")){
-            value= ENFP_map.get(matchUser);
-            return value;
-        }
-        if(currentUserType.equals("ENTP")){
-            value= ENTP_map.get(matchUser);
-            return value;
-        }
+            if (currentUserType.equals("ENFP")) {
+                value = ENFP_map.get(matchUser);
+                return value;
+            }
+            if (currentUserType.equals("ENTP")) {
+                value = ENTP_map.get(matchUser);
+                return value;
+            }
 
-        if(currentUserType.equals("ISTP")){
-            value= ISTP_map.get(matchUser);
-            return value;
-        }
-        if(currentUserType.equals("ISFP")){
-            value= ISFP_map.get(matchUser);
-            return value;
-        }
+            if (currentUserType.equals("ISTP")) {
+                value = ISTP_map.get(matchUser);
+                return value;
+            }
+            if (currentUserType.equals("ISFP")) {
+                value = ISFP_map.get(matchUser);
+                return value;
+            }
 
-        if(currentUserType.equals("INFP")){
-            value= INFP_map.get(matchUser);
-            return value;
-        }
-        if(currentUserType.equals("INTP")){
-            value= INTP_map.get(matchUser);
-            return value;
-        }
+            if (currentUserType.equals("INFP")) {
+                value = INFP_map.get(matchUser);
+                return value;
+            }
+            if (currentUserType.equals("INTP")) {
+                value = INTP_map.get(matchUser);
+                return value;
+            }
 
-        if(currentUserType.equals("ISTJ")){
-            value= ISTJ_map.get(matchUser);
-            return value;
-        }
-        if(currentUserType.equals("ISFJ")){
-            value= ISFJ_map.get(matchUser);
-            return value;
-        }
-        if(currentUserType.equals("INFJ")){
-            value= INFJ_map.get(matchUser);
-            return value;
-        }
-        if(currentUserType.equals("INTJ")){
-            value= INTJ_map.get(matchUser);
-            return value;
-        }
+            if (currentUserType.equals("ISTJ")) {
+                value = ISTJ_map.get(matchUser);
+                return value;
+            }
+            if (currentUserType.equals("ISFJ")) {
+                value = ISFJ_map.get(matchUser);
+                return value;
+            }
+            if (currentUserType.equals("INFJ")) {
+                value = INFJ_map.get(matchUser);
+                return value;
+            }
+            if (currentUserType.equals("INTJ")) {
+                value = INTJ_map.get(matchUser);
+                return value;
+            }
+        } else {
 
-
+            value = INTJ_map.get(matchUser);
+            return value;
+        }
         return 0;
     }
     public void setCompatibilityMap(String [] types){
