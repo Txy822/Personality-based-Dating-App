@@ -4,37 +4,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/updateProfileFragmentLayout"
     android:background="@color/green_darkest"
     tools:context=".fragment.UpdateProfileFragment">
 
   <ScrollView
-      android:id="@+id/scrollView2"
-      android:layout_width="0dp"
-      android:layout_height="0dp"
-      app:layout_constraintBottom_toBottomOf="parent"
-      app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toTopOf="parent">
+      android:layout_width="match_parent"
+      android:layout_height="match_parent">
 
-    <FrameLayout
-        android:id="@+id/updateProfileFragmentLayout"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-      <!--<ScrollView-->
-      <!--    android:layout_width="match_parent"-->
-      <!--    android:layout_height="match_parent">-->
+        android:layout_height="match_parent">
 
-      <androidx.constraintlayout.widget.ConstraintLayout
-          android:layout_width="match_parent"
-          android:layout_height="718dp"
-          app:layout_constraintBottom_toTopOf="@+id/enter_age_range"
-          app:layout_constraintTop_toTopOf="@+id/enter_age_range">
-
-        <EditText
+    <EditText
             android:id="@+id/enter_personality_type"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -227,7 +209,5 @@
             app:layout_constraintTop_toBottomOf="@+id/SplitLine_hor1" />
 
       </androidx.constraintlayout.widget.ConstraintLayout>
-
-    </FrameLayout>
   </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

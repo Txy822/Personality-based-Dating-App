@@ -5,7 +5,7 @@
 
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
-    <uses-permission android:name="android.permission.INTERNE" />
+    <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission
@@ -29,24 +29,37 @@
         tools:ignore="HardcodedDebugMode" >
         <activity
             android:name=".UpdateLoginDetail"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".UpdatePassword"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".Main"
+            android:screenOrientation="portrait"
             android:exported="false" />
 
         <meta-data
             android:name="com.google.android.wearable.standalone"
             android:value="true" />
 
-        <activity android:name=".Home" />
-        <activity android:name=".Login" />
-        <activity android:name=".SignUp" />
-        <activity android:name=".ChatActivity" />
+        <activity android:name=".Home"
+            android:screenOrientation="portrait"
+            />
+
+        <activity android:name=".Login"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name=".SignUp"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name=".ChatActivity"
+            android:screenOrientation="portrait"
+            />
         <activity
             android:name=".StartApp"
+            android:screenOrientation="portrait"
             android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

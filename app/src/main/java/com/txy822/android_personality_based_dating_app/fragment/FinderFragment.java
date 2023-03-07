@@ -111,7 +111,7 @@ public class FinderFragment extends Fragment {
         typeCompatibility = new TypeCompatibility();
 
 //        for profile image
-        profile_picture = view.findViewById(R.id.imageView);
+        profile_picture = view.findViewById(R.id.iv_profile_id);
         compatibilityView = view.findViewById(R.id.compatiblity);
 //        to display the user information
         user_location = view.findViewById(R.id.tv_user_location_id);
@@ -225,7 +225,7 @@ public class FinderFragment extends Fragment {
                                 fragmentTransaction.replace(R.id.finderFragmentLayout, new ChatFragment());
                                 fragmentTransaction.addToBackStack(null);
                                 fragmentTransaction.commit();
-                                //do do for checking if both are liked each other and other personality requirements
+                                //do for checking if both are liked each other and other personality requirements
                             }
                         });
                     }
@@ -375,14 +375,14 @@ public class FinderFragment extends Fragment {
         Profile profile = mProfileList.get(pressedCounter);
         Double distance = calculateDistance(currentUserProfile.getLatitude(), currentUserProfile.getLongitude(), profile.getLatitude(), profile.getLongitude());
 
-        if (distance == 0) {
+        if (distance == 0 ) {
             distanceView.setText("? miles");
         } else {
             distanceView.setText(String.format(Locale.UK, "%.2f miles", distance));
 //                        distanceView.setText(String.valueOf(distance));
         }
 
-        Glide.with(mContext).load(profile.getImg_url()).into(profile_picture);
+        Glide.with(mContext).load(profile.getImg_url()).placeholder(R.drawable.profile).into(profile_picture);
         setUserDetail(profile);
         compatiblity = typeCompatibility.getCompatibility(currentUserProfile.getPersonalityType(), profile.getPersonalityType());
         if (compatiblity == 0) {
@@ -395,11 +395,25 @@ public class FinderFragment extends Fragment {
     }
 
     private void setUserDetail(Profile profile) {
-        user_location.setText(profile.getLocation());
-        user_personality.setText(profile.getPersonalityType());
-        user_name.setText(profile.getFullName());
+        if(profile.getLocation() == null){
+            user_location.setText("No Location");
+        } else {
+            user_location.setText(profile.getLocation());
+        }
+        if(profile.getPersonalityType()== null){
+            user_personality.setText("No Type");
+        }
+        else {
+            user_personality.setText(profile.getPersonalityType());
+        }
+        if(profile.getFullName()== null){
+            user_name.setText("No Name");
+        }
+        else {
+            user_name.setText(profile.getFullName());
+        }
+
         user_age_and_age_range.setText( profile.getAge() + " & "+ profile.getAgeRangePreference());
-        user_name.setText(profile.getFullName());
         user_summary.setText("Summary: " + profile.getSummary());
     }
 
@@ -424,19 +438,8 @@ public class FinderFragment extends Fragment {
 //                        distanceView.setText(String.valueOf(distance));
         }
 
-        Glide.with(mContext).load(profile.getImg_url()).into(profile_picture);
+        Glide.with(mContext).load(profile.getImg_url()).placeholder(R.drawable.profile).into(profile_picture);
         setUserDetail(profile);
-//        user_location.setText(profile.getLocation());
-//        user_personality.setText(profile.getPersonalityType());
-//        user_name.setText(profile.getFullName());
-//        user_age_and_age_range.setText( " Age: "+profile.getAge()+"Age Range: "+profile.getAgeRangePreference());
-//        user_name.setText(profile.getFullName());
-//        user_summary.setText("Summary: "+profile.getSummary());
-        /*
-        nameAgeLocation.setText("Name: "+profile.getFullName() +"  Age: "+profile.getAge() + "  Location: " + profile.getLocation());
-        personalityTypeAgePref.setText("Type: "+profile.getPersonalityType() + "  Age Preference: "+ profile.getAgeRangePreference());
-        summary.setText("Summary: "+profile.getSummary());
-*/
         compatiblity = typeCompatibility.getCompatibility(currentUserProfile.getPersonalityType(), profile.getPersonalityType());
         if (compatiblity == 0) {
             compatibilityView.setText("?% Personality match");
@@ -458,6 +461,9 @@ public class FinderFragment extends Fragment {
     public Double calculateDistance(double lat1, double log1, double lat2, double log2) {
         double distance = 0;
         //find the difference between longitudes
+        if(log1==0 || log2==0 || lat1 ==0 || lat2==0){
+            return  0.0;
+        }
         double longitudeDifference = log1 - log2;
 
         //calculate distance in
