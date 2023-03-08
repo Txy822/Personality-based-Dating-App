@@ -1,11 +1,14 @@
 package com.txy822.android_personality_based_dating_app.fragment;
 
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -35,11 +38,6 @@ public class SettingFragment extends Fragment {
     private final String TAG="";
     private Uri url=null;
     private FirebaseAuth mAuth;
-    private FirebaseFirestore mStore;
-    //    private FirebaseStorage mStorage;
-    private StorageReference mStorage;
-    private DatabaseReference dbRef;
-
     private Button mUpdate;
     private Button logout;
     private Button deleteAccount;
@@ -60,18 +58,28 @@ public class SettingFragment extends Fragment {
         View view =inflater.inflate(R.layout.fragment_setting, container, false);
 
         mAuth=FirebaseAuth.getInstance();
-        mStore=FirebaseFirestore.getInstance();
-//        mStorage=FirebaseStorage.getInstance();
-        mStorage= FirebaseStorage.getInstance().getReference();
         deleteAccount=view.findViewById(R.id.delete_account_btn);
+        logout=view.findViewById(R.id.logout);
+
 
 //logout
-        logout=view.findViewById(R.id.logout);
+        return view;
+    }
+    public void showAlertDialog(int buttonId, String title) {
+        FragmentManager fm = getFragmentManager();
+        MyAlertDialogFragment alertDialog = MyAlertDialogFragment.newInstance(title, buttonId);
+        alertDialog.show(fm, "fragment_alert");
+    }
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
         if(mAuth.getCurrentUser()!=null) {
+
             logout.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    logout();
+                    showAlertDialog(1, "Logout?");
+                   // logout();
                 }
             });
         }
@@ -80,9 +88,7 @@ public class SettingFragment extends Fragment {
             deleteAccount.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    deleteUser();
-                    logout();
-//                startActivity(new Intent(getContext(), Main.class));
+                    showAlertDialog(3, "Delete Account?");
                 }
             });
         }
@@ -91,8 +97,7 @@ public class SettingFragment extends Fragment {
         updateLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getContext(), UpdateLoginDetail.class);
-                startActivity(intent);
+                showAlertDialog(2, "Update Login Detail?");
             }
         });
 
@@ -101,31 +106,8 @@ public class SettingFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getContext(), Home.class);
-//                Intent intent = new Intent(getContext(), AppNotification.class);
                 startActivity(intent);
             }
         });
-
-        return view;
-    }
-    public void deleteUser() {
-        // [START delete_user]
-        FirebaseUser user = mAuth.getInstance().getCurrentUser();
-        user.delete()
-                .addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        if (task.isSuccessful()) {
-                            Log.d(TAG, "User account deleted.");
-                        }
-                    }
-                });
-        // [END delete_user]
-    }
-    public void logout(){
-        if(mAuth.getCurrentUser() !=null) {
-            FirebaseAuth.getInstance().signOut();
-            startActivity(new Intent(getContext(), Login.class));
-        }
     }
 }

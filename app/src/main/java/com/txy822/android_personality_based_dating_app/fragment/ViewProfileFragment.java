@@ -36,6 +36,7 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
 import java.util.Calendar;
+import java.util.Objects;
 
 /**
  *  ViewProfileFragment To view full user profile
@@ -174,7 +175,7 @@ public class ViewProfileFragment extends Fragment {
                             summary.setText(summary_set);
                         }
                         if (img_url_set != null) {
-                            Glide.with(getContext()).load(img_url_set).into(profile_img);
+                            Glide.with(requireContext()).load(img_url_set).into(profile_img);
                         }
 
                     } else {
