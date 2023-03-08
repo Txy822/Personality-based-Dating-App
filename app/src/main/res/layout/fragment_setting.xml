@@ -27,7 +27,7 @@
                 android:layout_marginBottom="16dp"
                 android:onClick="logout"
                 android:text="Logout"
-                android:textColor="@color/white"
+                android:textColor="@color/Lime"
                 app:backgroundTint="@color/green_darkest"
                 app:layout_constraintBottom_toTopOf="@id/update_login_btn"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -48,31 +48,17 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <Button
-                android:id="@+id/update"
-                android:layout_width="379dp"
-                android:layout_height="50dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginEnd="16dp"
-                android:layout_marginBottom="50dp"
-                android:text="Update"
-                android:textColor="@color/white"
-                app:backgroundTint="@color/green_darkest"
-                app:layout_constraintBottom_toTopOf="@+id/SplitLine_hor_update_version"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/delete_account_btn" />
-
             <View
-                android:id="@+id/SplitLine_hor_update_version"
-                android:layout_width="411dp"
+                android:id="@+id/SplitLine_hor_delete_account_version"
+                android:layout_width="0dp"
                 android:layout_height="1dp"
-                android:layout_marginBottom="32dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="50dp"
                 android:background="@color/black"
                 app:layout_constraintBottom_toTopOf="@id/version"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/update" />
+                app:layout_constraintTop_toBottomOf="@id/delete_account_btn" />
 
 
             <View
@@ -80,10 +66,10 @@
                 android:layout_width="411dp"
                 android:layout_height="1dp"
                 android:background="@color/black"
-                app:layout_constraintTop_toBottomOf="@id/tv_avout"
                 app:layout_constraintBottom_toTopOf="@id/logout"
-                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_avout"
                 tools:layout_editor_absoluteY="254dp" />
 
             <Button
@@ -95,7 +81,7 @@
                 android:layout_marginBottom="16dp"
                 android:onClick="updateLoginDetain"
                 android:text="update Login"
-                android:textColor="@color/white"
+                android:textColor="@color/Lime"
                 app:backgroundTint="@color/green_darkest"
                 app:layout_constraintBottom_toTopOf="@+id/delete_account_btn"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -109,11 +95,11 @@
                 android:layout_height="50dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginEnd="16dp"
-                android:layout_marginBottom="16dp"
+                android:layout_marginBottom="32dp"
                 android:text="Delete Account"
-                android:textColor="@color/white"
+                android:textColor="@color/Lime"
                 app:backgroundTint="@color/green_darkest"
-                app:layout_constraintBottom_toTopOf="@+id/update"
+                app:layout_constraintBottom_toTopOf="@+id/SplitLine_hor_delete_account_version"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/update_login_btn"
@@ -126,6 +112,7 @@
                 android:layout_marginBottom="16dp"
                 android:text="About"
                 android:textColor="@color/white"
+                android:textSize="16sp"
                 app:layout_constraintBottom_toTopOf="@id/tv_avout"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -135,12 +122,12 @@
                 android:id="@+id/tv_avout"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginEnd="16dp"
+                android:layout_marginStart="32dp"
+                android:layout_marginEnd="32dp"
                 android:layout_marginBottom="8dp"
                 android:text="This app is dating app with personality included on it. It also provides location based match finding. If you like it add your personality, location  with other details and find your love sooner than later!"
                 android:textColor="@color/white"
-                android:textSize="14sp"
+                android:textSize="16sp"
                 app:layout_constraintBottom_toTopOf="@id/SplitLine_hor_about_logout"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
@@ -163,28 +150,27 @@
                 android:id="@+id/version"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
                 android:layout_marginBottom="16dp"
                 android:text="version: 1.0"
                 android:textColor="@color/white"
-                app:layout_constraintBottom_toTopOf="@+id/copy"
+                app:layout_constraintBottom_toTopOf="@id/copy"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.504"
+                app:layout_constraintHorizontal_bias="0.498"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/SplitLine_hor_update_version" />
+                app:layout_constraintTop_toBottomOf="@id/SplitLine_hor_delete_account_version" />
 
             <TextView
                 android:id="@+id/copy"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
                 android:layout_marginBottom="16dp"
                 android:text="copy 2023"
                 android:textColor="@color/white"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.513"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/version" />
+                app:layout_constraintTop_toBottomOf="@id/version" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

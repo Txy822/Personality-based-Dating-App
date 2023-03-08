@@ -93,7 +93,7 @@
                 android:layout_width="104dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:text="79% Personality match"
+                android:text="0% Personality match"
                 android:textColor="@color/Lime"
 
                 android:textSize="20sp"

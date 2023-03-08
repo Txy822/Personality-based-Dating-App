@@ -1,4 +1,5 @@
 package com.txy822.android_personality_based_dating_app.fragment;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
@@ -48,22 +49,22 @@ public class PersonalityFragment extends Fragment {
 
 
     private static final String TAG = "TAG";
-    private  String CONSUMER_KEY= BuildConfig.CONSUMER_KEY;
-    private  String CONSUMER_SECRET = BuildConfig.CONSUMER_SECRET;
-    private  String ACCESS_KEY = BuildConfig.ACCESS_KEY;
-    private  String ACCESS_SECRET = BuildConfig.ACCESS_SECRET;
+    private String CONSUMER_KEY = BuildConfig.CONSUMER_KEY;
+    private String CONSUMER_SECRET = BuildConfig.CONSUMER_SECRET;
+    private String ACCESS_KEY = BuildConfig.ACCESS_KEY;
+    private String ACCESS_SECRET = BuildConfig.ACCESS_SECRET;
 
     private Button btn_check_personality;
     private Button btn_view_some_tweets;
 
     ResponseList<Status> resList = null;
-    private  TextView title;
+    private TextView title;
 
     private TextView classification_result;
     private TextView result_label;
     private EditText user_name_or_screen_name;
-    private int numberOfTweets=100; //  number of tweets
-    private String screenName="";
+    private int numberOfTweets = 100; //  number of tweets
+    private String screenName = "";
 
 
     private BertClassifier client;
@@ -73,8 +74,9 @@ public class PersonalityFragment extends Fragment {
 
     /**
      * Creates PersonalityFragment view
-     * @param inflater LayoutInflater inflater
-     * @param container ViewGroup container
+     *
+     * @param inflater           LayoutInflater inflater
+     * @param container          ViewGroup container
      * @param savedInstanceState ViewGroup container
      * @return View
      */
@@ -82,17 +84,17 @@ public class PersonalityFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view=inflater.inflate(R.layout.fragment_personality, container, false);
-        btn_check_personality=view.findViewById(R.id.check_personality);
-        btn_view_some_tweets=view.findViewById(R.id.view_some_tweets);
+        View view = inflater.inflate(R.layout.fragment_personality, container, false);
+        btn_check_personality = view.findViewById(R.id.check_personality);
+        btn_view_some_tweets = view.findViewById(R.id.view_some_tweets);
 
-        classification_result=view.findViewById(R.id.personality_classification_result_id);
+        classification_result = view.findViewById(R.id.personality_classification_result_id);
         classification_result.setMovementMethod(new ScrollingMovementMethod());
-        result_label=view.findViewById(R.id.result_label_text);
-        fetch_some_tweets=view.findViewById(R.id.fetch_some_tweets_id);
+        result_label = view.findViewById(R.id.result_label_text);
+        fetch_some_tweets = view.findViewById(R.id.fetch_some_tweets_id);
         fetch_some_tweets.setMovementMethod(new ScrollingMovementMethod());
-        title=view.findViewById(R.id.introOfPage);
-        user_name_or_screen_name=view.findViewById(R.id.twitter_screen_name);
+        title = view.findViewById(R.id.introOfPage);
+        user_name_or_screen_name = view.findViewById(R.id.twitter_screen_name);
 
         //initialize the classifier
         client = new BertClassifier(this.getContext());
@@ -103,14 +105,14 @@ public class PersonalityFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
-                if(resList !=null) {
+                if (resList != null) {
                     String processed_tweets = preprocess(fetch_some_tweets.getText().toString());
                     //classify the given input
                     classify(processed_tweets);
-                }else {
+                } else {
                     Toast.makeText(getContext(), "You can't check for this username ", Toast.LENGTH_SHORT).show();
-                    String s="You can't check for this username";
-                    setText(classification_result,s);
+                    String s = "You can't check for this username";
+                    setText(classification_result, s);
                 }
 
             }
@@ -122,39 +124,44 @@ public class PersonalityFragment extends Fragment {
 
 
                 Thread thread = new Thread(new Runnable() {
+                    int num = 0;
 
                     @Override
                     public void run() {
 
                         try {
 
-                            screenName=user_name_or_screen_name.getText().toString();
-                            if(!screenName.isEmpty()) {
+                            screenName = user_name_or_screen_name.getText().toString();
+                            if (!screenName.isEmpty()) {
                                 resList = getUserTimeLine(screenName, numberOfTweets);
+                                String s = "";
+                                for (Status status : resList) {
+                                    s = s + status.getText();
+                                }
+                                setText(fetch_some_tweets, s);
+                            } else {
+                                String s = "Username is incorrect or empty! check your username!";
+                                setText(fetch_some_tweets, s);
+                                Log.i(TAG, " check your username!");
+
+
+                                new Handler(Looper.getMainLooper()).post(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        Toast toast = Toast.makeText(getContext(), "check your username!", Toast.LENGTH_SHORT);
+                                        toast.show();
+                                    }
+                                });
                             }
                         } catch (TwitterException e) {
-                            resList=null;
-                            Log.i(TAG,e.getErrorMessage());
-
-                        }
-                        if(resList !=null) {
-                            String s="";
-                            for (Status status : resList) {
-                                s = s + status.getText();
-                            }
-                            setText(fetch_some_tweets,s);
-                        }else{
-                            String s="Username is incorrect! check your username!";
-//                            Toast.makeText(getContext(), "Username is incorrect! check your username!", Toast.LENGTH_SHORT).show();
-                            setText(fetch_some_tweets,s);
-                            Log.i(TAG, " check your username!");
-
-
+                            resList = null;
                             new Handler(Looper.getMainLooper()).post(new Runnable() {
                                 @Override
                                 public void run() {
-                                    Toast toast = Toast.makeText(getContext(), "check your username!", Toast.LENGTH_SHORT);
+                                    Toast toast = Toast.makeText(getContext(), "check your twitter username or  internet!", Toast.LENGTH_SHORT);
                                     toast.show();
+                                    String s = "Check either your twitter username or your device is connected to internet!";
+                                    setText(fetch_some_tweets, s);
                                 }
                             });
                         }
@@ -172,7 +179,7 @@ public class PersonalityFragment extends Fragment {
         linkTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.truity.com/test/type-finder-personality-test-new"));
+                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.truity.com/test/type-finder-personality-test-new"));
                 startActivity(Intent.createChooser(intent, "Browse with"));
 
             }
@@ -182,18 +189,19 @@ public class PersonalityFragment extends Fragment {
 
     /**
      * Gets user time line by screen name
-     * @param screenName  String username
-     * @param count count number of recent tweets
-     * @return  Response list of status
+     *
+     * @param screenName String username
+     * @param count      count number of recent tweets
+     * @return Response list of status
      * @throws TwitterException
      */
-    public ResponseList<Status> getUserTimeLine(String screenName,int count) throws TwitterException {
+    public ResponseList<Status> getUserTimeLine(String screenName, int count) throws TwitterException {
 
         TwitterFactory twitterFactory = new TwitterFactory(getConfiguration().build());
         Twitter twitter = twitterFactory.getInstance();
         twitter.getAuthorization();
 
-        Long twitterID= twitter.getId();
+        Long twitterID = twitter.getId();
         Paging paging = new Paging(1, count);
 
         return twitter.getUserTimeline(screenName, paging);
@@ -201,7 +209,8 @@ public class PersonalityFragment extends Fragment {
 
     /**
      * Configuration builder setup authentication of twitter4j API
-     * @return  ConfigurationBuilder cb
+     *
+     * @return ConfigurationBuilder cb
      */
     public ConfigurationBuilder getConfiguration() {
         ConfigurationBuilder cb = new ConfigurationBuilder();
@@ -215,10 +224,11 @@ public class PersonalityFragment extends Fragment {
 
     /**
      * Set text value of TextView
-     * @param text  TextView text
-     * @param s  String input s
+     *
+     * @param text TextView text
+     * @param s    String input s
      */
-    private void setText(final TextView text,String s){
+    private void setText(final TextView text, String s) {
         getActivity().runOnUiThread(new Runnable() {
             @Override
             public void run() {
@@ -230,16 +240,17 @@ public class PersonalityFragment extends Fragment {
 
     /**
      * preprocess the given text
+     *
      * @param s String input text
      * @return String processed text
      */
-    public String preprocess( String s){
+    public String preprocess(String s) {
 
-        String preprocessed="";
-            // replace the given string
-            // with empty string
-            // except the pattern "[^a-zA-Z0-9]"
-        preprocessed=s.replaceAll("https?://\\S+\\s?", "");
+        String preprocessed = "";
+        // replace the given string
+        // with empty string
+        // except the pattern "[^a-zA-Z0-9]"
+        preprocessed = s.replaceAll("https?://\\S+\\s?", "");
         preprocessed = preprocessed.replaceAll("[^0-9A-Za-z ]", " ");
 
         preprocessed.toLowerCase();
@@ -250,7 +261,7 @@ public class PersonalityFragment extends Fragment {
      * Loads the classifier
      */
     @Override
-    public void onStart (){
+    public void onStart() {
         super.onStart();
         Log.v(TAG, "onStart");
         handler.post(
@@ -263,14 +274,13 @@ public class PersonalityFragment extends Fragment {
 
     /**
      * Called when the fragment is no longer in use.  This is called
-     *
      */
     @Override
     public void onDestroy() {
         super.onDestroy();
     }
 
-    public void onStop (){
+    public void onStop() {
         super.onStop();
         Log.v(TAG, "onStop");
         handler.post(
@@ -279,7 +289,10 @@ public class PersonalityFragment extends Fragment {
                 });
 
     }
-    /** Send input text to TextClassificationClient and get the classify messages. */
+
+    /**
+     * Send input text to TextClassificationClient and get the classify messages.
+     */
     private void classify(final String text) {
         handler.post(
                 () -> {
@@ -290,7 +303,10 @@ public class PersonalityFragment extends Fragment {
                     showResult(text, results);
                 });
     }
-    /** Show classification result on the screen. */
+
+    /**
+     * Show classification result on the screen.
+     */
     private void showResult(final String inputText, final List<Result> results) {
         // Run on UI thread as we'll updating our app UI
         getActivity().runOnUiThread(
@@ -304,13 +320,12 @@ public class PersonalityFragment extends Fragment {
                         labels.add(result.getTitle());   // Extract labels
                         probability.add(result.getConfidence());  // Extract confidence
                     }
-                    String s="";
+                    String s = "";
 
-                    for(int i=0; i<probability.size()-10; i++)
-                    {
-                       Float z=(probability.get(i))*100;
+                    for (int i = 0; i < probability.size() - 10; i++) {
+                        Float z = (probability.get(i)) * 100;
                         int x = (z).intValue();
-                        s=s+labels.get(i)+"="+(x)+"%"+"\n";
+                        s = s + labels.get(i) + "=" + (x) + "%" + "\n";
                     }
                     result_label.setText("Top 6 Results");
                     result_label.setTextColor(Color.GREEN);

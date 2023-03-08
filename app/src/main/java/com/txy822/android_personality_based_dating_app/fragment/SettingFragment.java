@@ -38,7 +38,6 @@ public class SettingFragment extends Fragment {
     private final String TAG="";
     private Uri url=null;
     private FirebaseAuth mAuth;
-    private Button mUpdate;
     private Button logout;
     private Button deleteAccount;
     private Button updateLogin;
@@ -98,15 +97,6 @@ public class SettingFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 showAlertDialog(2, "Update Login Detail?");
-            }
-        });
-
-        mUpdate=view.findViewById(R.id.update);
-        mUpdate.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getContext(), Home.class);
-                startActivity(intent);
             }
         });
     }
