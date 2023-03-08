@@ -2,7 +2,6 @@ package com.txy822.android_personality_based_dating_app.fragment;
 
 import static android.app.Activity.RESULT_OK;
 
-import android.app.Activity;
 import android.app.DatePickerDialog;
 //import android.app.FragmentManager;
 //import android.app.FragmentTransaction;
@@ -42,7 +41,6 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.txy822.android_personality_based_dating_app.R;
-import com.txy822.android_personality_based_dating_app.utils.TypeCompatibility;
 
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
@@ -252,7 +250,7 @@ public class UpdateProfileFragment extends Fragment {
                 }
             });
         }
-        cancel=view.findViewById(R.id.cancel_btn_profile);
+        cancel=view.findViewById(R.id.cancel_btn_profile_edit);
         cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
