@@ -210,8 +210,8 @@
 
             <ImageButton
                 android:id="@+id/iv_location_icon_id"
-                android:layout_width="70dp"
-                android:layout_height="70dp"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginBottom="7dp"
                 android:src="@drawable/location5"
