@@ -27,7 +27,6 @@
  - ROC-AUC, Confusion Matrix, Training and validation accuracy- Used to test the model
 
 
-<img src="img/marta.png" alt ="Sample Application UI "/>
 <img src="img/get.png" width="400"/>
 <img src="img/marta.png" width="400">
 <img src="img/personality.png" width="400"/>
