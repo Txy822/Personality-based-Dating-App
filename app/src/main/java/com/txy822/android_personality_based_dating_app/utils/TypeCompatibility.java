@@ -70,7 +70,7 @@ public class TypeCompatibility {
 
     public int getCompatibility(String currentUserType, String matchUser){
         int value =0;
-        if(currentUserType != null && matchUser !=null) {
+        if(currentUserType != null && matchUser != null) {
             if (currentUserType.equals("ESTJ")) {
                 value = ESTJ_map.get(matchUser);
                 return value;

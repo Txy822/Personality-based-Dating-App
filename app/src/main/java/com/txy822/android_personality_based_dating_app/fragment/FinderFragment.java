@@ -185,7 +185,9 @@ public class FinderFragment extends Fragment {
                             }
 
 //                      add user and user details on finder fragment view
-                            Glide.with(mContext).load(profile.getImg_url()).into(profile_picture);
+                            Glide.with(mContext).load(profile.getImg_url())
+                                    .placeholder(R.drawable.profile)
+                                    .into(profile_picture);
                             setUserDetail(profile);
                             //add comaptibility
                             compatiblity = typeCompatibility.getCompatibility(currentUserProfile.getPersonalityType(), profile.getPersonalityType());
@@ -441,7 +443,7 @@ public class FinderFragment extends Fragment {
         Glide.with(mContext).load(profile.getImg_url()).placeholder(R.drawable.profile).into(profile_picture);
         setUserDetail(profile);
         compatiblity = typeCompatibility.getCompatibility(currentUserProfile.getPersonalityType(), profile.getPersonalityType());
-        if (compatiblity == 0) {
+        if (compatiblity == 0 ) {
             compatibilityView.setText("?% Personality match");
         } else {
             compatibilityView.setText(compatiblity + "% Personality match");

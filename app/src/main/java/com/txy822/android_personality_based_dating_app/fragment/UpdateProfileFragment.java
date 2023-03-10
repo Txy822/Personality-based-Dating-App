@@ -43,6 +43,7 @@ import com.google.firebase.storage.UploadTask;
 import com.txy822.android_personality_based_dating_app.R;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.HashMap;
@@ -81,6 +82,9 @@ public class UpdateProfileFragment extends Fragment {
     private double currentUserLatitude;
     private double currentUserLongitude;
     private  String   currentUserPlace;
+
+
+    List<String> type = new ArrayList<>(Arrays.asList("ESFJ","ESTJ", "ENFJ", "ENTJ", "ESTP","ESFP","ENFP","ENTP","ISTP","ISFP","ISFP","INFP","INTP","ISTJ","ISFJ","INFJ","INTJ"));
 
     /**
      * Creates View for  fragment of update profile
@@ -162,6 +166,7 @@ public class UpdateProfileFragment extends Fragment {
 
             });
         save_profile=view.findViewById(R.id.save);
+
         if(mAuth.getCurrentUser()!=null) {
             save_profile.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -183,7 +188,13 @@ public class UpdateProfileFragment extends Fragment {
                                         //create hash map to store user profile
                                         Map<String, Object> map = new HashMap<>();
                                         map.put("fullName", full_name.getText().toString());
-                                        map.put("personalityType", personality_type.getText().toString());
+                                        if(type.contains(personality_type.getText().toString())){
+                                            map.put("personalityType", personality_type.getText().toString());
+                                        }
+                                        else {
+                                            Toast.makeText(getContext(), "Personality type must be 16 MBTI", Toast.LENGTH_SHORT).show();
+                                            return;
+                                        }
                                         map.put("location", location.getText().toString());
                                         map.put("dateOfBirth", date_of_birth.getText().toString());
                                         map.put("ageRangePreference", age_range_pref.getText().toString());
@@ -216,8 +227,13 @@ public class UpdateProfileFragment extends Fragment {
                         //if image is not uploaded earlier or if image url id empty create new one
                         Map<String, Object> map = new HashMap<>();
                         map.put("fullName", full_name.getText().toString());
-                        map.put("personalityType", personality_type.getText().toString());
-                        map.put("location", location.getText().toString());
+                        if(type.contains(personality_type.getText().toString())){
+                            map.put("personalityType", personality_type.getText().toString());
+                        }
+                        else {
+                            Toast.makeText(getContext(), "Personality type must be 16 MBTI", Toast.LENGTH_SHORT).show();
+                            return;
+                        }                        map.put("location", location.getText().toString());
                         map.put("dateOfBirth", date_of_birth.getText().toString());
                         map.put("ageRangePreference", age_range_pref.getText().toString());
                         map.put("summary", summary.getText().toString());
@@ -275,6 +291,7 @@ public class UpdateProfileFragment extends Fragment {
         mStore.collection("Users").document(mAuth.getCurrentUser().getUid()).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+
                 if(task.isSuccessful()){
                     String full_name_set=task.getResult().getString(("fullName"));
                     String personality_type_set=task.getResult().getString("personalityType");
@@ -307,7 +324,7 @@ public class UpdateProfileFragment extends Fragment {
                        summary.setText(summary_set);
                    }
                    if(img_url_set !=null){
-                       Glide.with(getContext()).load(img_url_set).into(profile_img);
+                       Glide.with(requireContext()).load(img_url_set).into(profile_img);
                    }
 
                 }else {

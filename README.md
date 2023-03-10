@@ -2,65 +2,40 @@
 
 # Personality based Dating Application using NLP from Twitter Tweets
 
-- This project has two parts :Machine learning model development  and dating application software development
-- The over all structure of the application with different component is shown as:
+- This dating application is simple and smart to predict your personality from tweets which can be used to find matches around you area.
+- The uses trained model using Natural Language Processing(NLP)-Transformers to predict 16 - MBTI personality type.
+- The user can like and dislike or swipe right and  left based of their preference using location, personality type, and other details of other users. 
+- Once the match is found the user be able to chat to facilitate communications. 
 
-<img src="img/Structural_design_dating_app.png" alt ="Overall structure of the app "/>
+# Tech stack
+ ## Android
+ - Java - For programming 
+ - XML - For UI design
+ - Cloud based Firebase Firestore - For creating collections and documents used as database and messaging 
+ - Firebase Storage  - To store user images
+ - Firebase Cloud Messaging - To implement push notification
+ - Firebase Authentication - For user registration and related tasks 
+ - Espresso Testing and Unit Testing - To test the app functionality including end to end test
 
-## 1. Personality classifier model 
- - It classifiy  and predict personality from tweets. 
- - Developed by python using google colab.
-
-### Installation
-
- To install and run the model
-- clone the file from the repositry including the data available at <a href="
-Personality_based_Dating_App_using_NLP_from_Tweets/PersonalityClassifier/
-">Data</a> 
-- git clone https://github.com/Txy822/Personality_based_Dating_App_using_NLP_from_Tweets.git
-- All libraries and packages are available on the file itself.
-- Create google account and import file to google colab 
-- Run each section of the code. 
-
-### Requirements 
-1. TensorFlow and TensorFlow Hub
-2. Transformer
-3. NLPAUG
-4. TFLITE Model Maker
-
-The classifier model uses the current state of the art transformer based language model which is Bidirectional Encoder Representations from Transformers (BERT) as pretrained model and the multi-layer neural network to setup the model architecture. The highlevel view of model architecture and the model layes are shown below.
-<img src="img/bert_dense_model2.png" alt ="bert_dense_structure"/>
-<img src="img/model_layers.png" alt ="Overall structure of the app "/>
+ ## Machine Learning
+ - TensorFlow and TensorFlow Hub - For developing personality classifier using python 
+ - Transformer - BERT - To Train and fine-tune the model
+ - NLPAUG - For augmenting texts to train NLP based model 
+ - TFLITE Model Maker - To train the model
+ - Neural network - To develop the structure of the model before training
+ - NLP Classifier - Java library to run  the .tfl file and execute classification of the trained model
+ - ROC-AUC, Confusion Matrix, Training and validation accuracy- Used to test the model
 
 
-The model performance was evaluated using different methods such as accuracy, f1-score, recall, roc_auc and confussion matrix
+<img src="img/marta.png" alt ="Sample Application UI "/>
+<img src="img/get.png" width="400"/>
+<img src="img/marta.png" width="400">
+<img src="img/personality.png" width="400"/>
+<img src="img/sara.png" width="400"/>
+<img src="img/matchList.png" width="400"/>
+<img src="img/chat1.png" width="400"/>
+<img src="img/profile.png" width="400"/>
+<img src="img/setting_delete_account.png" width="400"/>
 
-- ROC-AUC as one vs rest or comparing one personality type with rest of all types
-<img src="img/roc_auc_ABS_512.png" alt ="Overall structure of the app "/>
-- Confusion matrix is also used to evaluate  the model performance
-<img src="img/cm_ABS_512.png" alt ="Overall structure of the app "/>
-- The training and validation accuracy were used to evaluate performance and to tune hyper-parameters
-<img src="img/OverallComparation.png" alt ="OverallComparation"/>
-
-
-
-## 2. Dating application
-
-The apllication is developed using Android Studio and java programming language. 
-
-### Installation and running 
-
-- Clone the repositry which file is available 
-- git clone https://github.com/Txy822/Personality_based_Dating_App_using_NLP_from_Tweets.git
-- Import it to android  studio.
-- connect it to emulator  or android device
-
-### Requirements 
-
-1. Android API ≥ 29 
-2. Android device ≥ version 10
-3. Android Studio 4.0 or above 
-
-Some sample UI of the application
-
-<img src="img/ui.png" alt ="Sample Application UI "/>
+ - Backstory: This app adds features of predicting personality from users of  large tweets(texts) which integrates android application with machine learning to make apps more smart. The app also has features which are helpful to find love ones and even make friends and be able to communicate.
+ - It can be expanded and more features can be added. So if I feel to add more features or add new personality classifier model with better accuracy I will update it. Please use this resource for learning purpose only. 
