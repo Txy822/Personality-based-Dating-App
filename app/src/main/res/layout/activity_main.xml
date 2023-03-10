@@ -7,16 +7,6 @@
     android:background="@color/green_darkest"
     tools:context=".Main">
 
-    <!--    <ImageView-->
-    <!--        android:id="@+id/background_img"-->
-    <!--        android:layout_width="411dp"-->
-    <!--        android:layout_height="731dp"-->
-    <!--        android:scaleType="fitXY"-->
-
-    <!--        tools:ignore="MissingConstraints" />-->
-    <!--    &lt;!&ndash;        android:src="@drawable/background_one"&ndash;&gt;-->
-
-
     <TextView
         android:id="@+id/app_title"
         android:layout_width="wrap_content"
@@ -40,9 +30,10 @@
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="22dp"
+        android:gravity="center"
         android:text="Welcome to personality based dating app"
         android:textColor="@color/white"
-        android:textSize="34sp"
+        android:textSize="28sp"
         app:layout_constraintBottom_toTopOf="@+id/selector"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -55,9 +46,10 @@
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="55dp"
+        android:gravity="center"
         android:text="Login or create account if you are new please!"
         android:textColor="@color/white"
-        android:textSize="34sp"
+        android:textSize="28sp"
         app:layout_constraintBottom_toTopOf="@+id/to_sign_in_btn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
