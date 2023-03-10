@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/green_darkest"
-    tools:context=".SignUp">
+    tools:context=".view.authentication.signup.SignUp">
 
     <EditText
         android:id="@+id/enter_password2"

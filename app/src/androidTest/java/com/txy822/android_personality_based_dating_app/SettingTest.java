@@ -27,14 +27,14 @@ import androidx.test.rule.ActivityTestRule;
 import androidx.test.runner.AndroidJUnit4;
 
 import com.google.android.material.tabs.TabLayout;
+import com.txy822.android_personality_based_dating_app.view.main.CustomViewPager;
+import com.txy822.android_personality_based_dating_app.view.main.Home;
 
 import org.checkerframework.checker.nullness.qual.NonNull;
 import org.hamcrest.Description;
 import org.hamcrest.Matcher;
 import org.hamcrest.Matchers;
 import org.hamcrest.TypeSafeMatcher;
-import org.junit.After;
-import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -58,12 +58,8 @@ public class SettingTest {
        tabView.perform(click());
 
        onView(withId(R.id.logout)).check(matches(isDisplayed()));
-       onView(withId(R.id.logout_view_id)).check(matches(isDisplayed()));
        onView(withId(R.id.Setting_id)).check(matches(isDisplayed()));
-       onView(withId(R.id.update)).check(matches(isDisplayed()));
-       onView(withId(R.id.update_login)).check(matches(isDisplayed()));
        onView(withId(R.id.update_login_btn)).check(matches(isDisplayed()));
-       onView(withId(R.id.delete_account)).check(matches(isDisplayed()));
        onView(withId(R.id.delete_account_btn)).check(matches(isDisplayed()));
 
    }
@@ -90,9 +86,6 @@ public class SettingTest {
        public void testUpdateButton(){
        ViewInteraction tabView = onView(Matchers.allOf(childAtPosition(childAtPosition(withId(R.id.tab), 0), 3), isDisplayed()));
        tabView.perform(click());
-
-       onView(withId(R.id.update)).check(matches(isDisplayed()));
-       onView(withId(R.id.update)).perform(click());
 
        onView(withId(R.id.home_view_page)).check(matches(isDisplayed()));
        onView(withId(R.id.tab)).check(matches(isDisplayed()));

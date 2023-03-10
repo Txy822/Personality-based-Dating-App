@@ -28,15 +28,15 @@
         android:usesCleartextTraffic="true"
         tools:ignore="HardcodedDebugMode" >
         <activity
-            android:name=".UpdateLoginDetail"
+            android:name=".view.authentication.login.UpdateLoginDetail"
             android:screenOrientation="portrait"
             android:exported="false" />
         <activity
-            android:name=".UpdatePassword"
+            android:name=".view.authentication.login.UpdatePassword"
             android:screenOrientation="portrait"
             android:exported="false" />
         <activity
-            android:name=".Main"
+            android:name=".view.main.Main"
             android:screenOrientation="portrait"
             android:exported="false" />
 
@@ -44,21 +44,21 @@
             android:name="com.google.android.wearable.standalone"
             android:value="true" />
 
-        <activity android:name=".Home"
+        <activity android:name=".view.main.Home"
             android:screenOrientation="portrait"
             />
 
-        <activity android:name=".Login"
+        <activity android:name=".view.authentication.login.Login"
             android:screenOrientation="portrait"
             />
-        <activity android:name=".SignUp"
+        <activity android:name=".view.authentication.signup.SignUp"
             android:screenOrientation="portrait"
             />
-        <activity android:name=".ChatActivity"
+        <activity android:name=".view.chat.ChatActivity"
             android:screenOrientation="portrait"
             />
         <activity
-            android:name=".StartApp"
+            android:name=".view.main.StartApp"
             android:screenOrientation="portrait"
             android:exported="true" >
             <intent-filter>
@@ -68,7 +68,7 @@
             </intent-filter>
         </activity>
         <service
-            android:name=".MyFirebaseMessagingService"
+            android:name=".view.notification.MyFirebaseMessagingService"
             android:exported="false">
             <intent-filter>
                 <action android:name="com.google.firebase.INSTANCE_ID_EVENT"/>

@@ -17,6 +17,8 @@ import androidx.test.platform.app.InstrumentationRegistry;
 import androidx.test.rule.ActivityTestRule;
 import androidx.test.runner.AndroidJUnit4;
 
+import com.txy822.android_personality_based_dating_app.view.authentication.login.Login;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Rule;
@@ -56,7 +58,6 @@ public class LoginTest {
         onView(withId(R.id.create_account_btn)).check(matches(isDisplayed()));
         onView(withId(R.id.forgotPassword_btn)).check(matches(isDisplayed()));
         onView(withId(R.id.login_btn)).check(matches(isDisplayed()));
-        onView(withId(R.id.login_cancel_btn)).check(matches(isDisplayed()));
     }
     @Test
     public void testCreateAccountButton(){
@@ -68,7 +69,6 @@ public class LoginTest {
         onView(withId(R.id.enterEmail)).check(matches(isDisplayed()));
         onView(withId(R.id.enterEmail)).check(matches(instanceOf(EditText.class)));
 
-        onView(withId(R.id.cancel_btn)).perform(click());
     }
     @Test
     public void testForgotPasswordButton(){
@@ -81,8 +81,6 @@ public class LoginTest {
     }
     @Test
     public void testCancelButton(){
-        onView(withId(R.id.login_cancel_btn)).check(matches(isDisplayed()));
-        onView(withId(R.id.login_cancel_btn)).perform(click());
 
         onView(withId(R.id.selector)).check(matches(isDisplayed()));
         onView(withId(R.id.selector)).check(matches(instanceOf(TextView.class)));

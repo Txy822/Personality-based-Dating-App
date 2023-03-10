@@ -10,10 +10,7 @@ import android.widget.TextView;
 
 import androidx.test.espresso.UiController;
 import androidx.test.espresso.ViewAction;
-import androidx.test.espresso.ViewInteraction;
-import androidx.test.espresso.action.ViewActions;
 import androidx.test.filters.LargeTest;
-import androidx.test.internal.runner.junit4.AndroidJUnit4ClassRunner;
 import androidx.test.platform.app.InstrumentationRegistry;
 import androidx.test.rule.ActivityTestRule;
 import androidx.test.runner.AndroidJUnit4;
@@ -22,9 +19,7 @@ import androidx.test.runner.AndroidJUnit4;
 import org.checkerframework.checker.nullness.qual.NonNull;
 import org.hamcrest.Description;
 import org.hamcrest.Matcher;
-import org.hamcrest.Matchers;
 import org.hamcrest.TypeSafeMatcher;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
@@ -39,23 +34,15 @@ import org.junit.Rule;
 
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
-import static androidx.test.espresso.action.ViewActions.closeSoftKeyboard;
-import static androidx.test.espresso.action.ViewActions.replaceText;
-import static androidx.test.espresso.action.ViewActions.scrollTo;
-import static androidx.test.espresso.action.ViewActions.typeText;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
 import static androidx.test.espresso.matcher.ViewMatchers.isAssignableFrom;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
-import static androidx.test.espresso.matcher.ViewMatchers.withClassName;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
-import static androidx.test.espresso.action.ViewActions.clearText;
-import static androidx.test.espresso.matcher.ViewMatchers.isRoot;
 import static org.hamcrest.core.IsNot.not;
 
 import com.google.android.material.tabs.TabLayout;
-
-import twitter4j.auth.AccessToken;
+import com.txy822.android_personality_based_dating_app.view.main.Main;
 
 @RunWith(AndroidJUnit4.class)
 @LargeTest
@@ -106,7 +93,6 @@ public class MainTest {
         onView(withId(R.id.create_account_btn)).check(matches(isDisplayed()));
         onView(withId(R.id.forgotPassword_btn)).check(matches(isDisplayed()));
         onView(withId(R.id.login_btn)).check(matches(isDisplayed()));
-        onView(withId(R.id.login_cancel_btn)).check(matches(isDisplayed()));
     }
     @Test
     public void testForgotPasswordView(){
@@ -139,9 +125,6 @@ public class MainTest {
 
         onView(withId(R.id.sign_in_btn)).check(matches(isDisplayed()));
         onView(withId(R.id.sign_in_btn)).check(matches(instanceOf(Button.class)));
-
-        onView(withId(R.id.cancel_btn)).check(matches(isDisplayed()));
-        onView(withId(R.id.cancel_btn)).check(matches(instanceOf(Button.class)));
 
         onView(withId(R.id.sign_up_btn)).check(matches(isDisplayed()));
         onView(withId(R.id.sign_up_btn)).check(matches(instanceOf(Button.class)));

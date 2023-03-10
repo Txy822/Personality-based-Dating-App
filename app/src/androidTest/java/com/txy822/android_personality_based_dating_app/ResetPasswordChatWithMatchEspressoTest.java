@@ -28,6 +28,8 @@ import androidx.test.platform.app.InstrumentationRegistry;
 import androidx.test.rule.ActivityTestRule;
 import androidx.test.runner.AndroidJUnit4;
 
+import com.txy822.android_personality_based_dating_app.view.main.Main;
+
 import org.hamcrest.Description;
 import org.hamcrest.Matcher;
 import org.hamcrest.TypeSafeMatcher;
@@ -151,20 +153,6 @@ public class ResetPasswordChatWithMatchEspressoTest {
                                         0),
                                 1)));
         materialButton4.perform(scrollTo(), click());
-        try {
-            Thread.sleep(5000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-
-        ViewInteraction materialButton5 = onView(
-                allOf(withId(R.id.continue_btn), withText("Continue"),
-                        childAtPosition(
-                                childAtPosition(
-                                        withClassName(is("android.widget.ScrollView")),
-                                        0),
-                                1)));
-        materialButton5.perform(scrollTo(), click());
         try {
             Thread.sleep(5000);
         } catch (InterruptedException e) {
@@ -333,19 +321,6 @@ public class ResetPasswordChatWithMatchEspressoTest {
             e.printStackTrace();
         }
 
-        ViewInteraction materialButton8 = onView(
-                allOf(withId(R.id.login_cancel_btn), withText("CANCEL"),
-                        childAtPosition(
-                                childAtPosition(
-                                        withClassName(is("android.widget.ScrollView")),
-                                        0),
-                                5)));
-        materialButton8.perform(scrollTo(), click());
-        try {
-            Thread.sleep(5000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
     }
 
     private static Matcher<View> childAtPosition(

@@ -10,21 +10,15 @@ import static junit.framework.TestCase.assertEquals;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-import androidx.core.app.RemoteInput;
-
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.txy822.android_personality_based_dating_app.view.authentication.login.Login;
 
 //import junit.framework.TestCase;
 
-import org.checkerframework.checker.nullness.qual.AssertNonNullIfNonNull;
 import org.junit.After;
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import org.mockito.Mockito.*;
 
 /**
  * Example local unit test, which will execute on the development machine (host).

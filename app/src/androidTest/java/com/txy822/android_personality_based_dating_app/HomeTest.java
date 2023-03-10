@@ -31,6 +31,8 @@ import androidx.test.rule.ActivityTestRule;
 import androidx.test.runner.AndroidJUnit4;
 
 import com.google.android.material.tabs.TabLayout;
+import com.txy822.android_personality_based_dating_app.view.main.CustomViewPager;
+import com.txy822.android_personality_based_dating_app.view.main.Home;
 
 import org.checkerframework.checker.nullness.qual.NonNull;
 import org.hamcrest.Description;
@@ -162,12 +164,8 @@ public class HomeTest {
         tabView.perform(click());
 
         onView(withId(R.id.  logout)).check(matches(isDisplayed()));
-        onView(withId(R.id. logout_view_id)).check(matches(isDisplayed()));
         onView(withId(R.id. Setting_id)).check(matches(isDisplayed()));
-        onView(withId(R.id. update)).check(matches(isDisplayed()));
-        onView(withId(R.id. update_login)).check(matches(isDisplayed()));
         onView(withId(R.id. update_login_btn)).check(matches(isDisplayed()));
-        onView(withId(R.id. delete_account)).check(matches(isDisplayed()));
         onView(withId(R.id. delete_account_btn)).check(matches(isDisplayed()));
     }
 

@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:id="@+id/constraintLayout"
     android:background="@color/green_darkest"
-    tools:context=".Login">
+    tools:context=".view.authentication.login.Login">
         <Button
             android:id="@+id/login_btn"
             android:layout_width="0dp"

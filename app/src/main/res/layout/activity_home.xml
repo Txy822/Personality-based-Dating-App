@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/Gray"
-    tools:context=".Home">
+    tools:context=".view.main.Home">
 
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tab"
@@ -18,7 +18,7 @@
         app:tabBackground="@color/Aqua" />
 
 
-    <com.txy822.android_personality_based_dating_app.CustomViewPager
+    <com.txy822.android_personality_based_dating_app.view.main.CustomViewPager
         android:id="@+id/home_view_page"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

@@ -16,6 +16,8 @@ import android.widget.TextView;
 import androidx.test.platform.app.InstrumentationRegistry;
 import androidx.test.rule.ActivityTestRule;
 
+import com.txy822.android_personality_based_dating_app.view.authentication.signup.SignUp;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Rule;
@@ -57,9 +59,6 @@ public class SignUpTest {
         onView(withId(R.id.sign_in_btn)).check(matches(isDisplayed()));
         onView(withId(R.id.sign_in_btn)).check(matches(instanceOf(Button.class)));
 
-        onView(withId(R.id.cancel_btn)).check(matches(isDisplayed()));
-        onView(withId(R.id.cancel_btn)).check(matches(instanceOf(Button.class)));
-
         onView(withId(R.id.sign_up_btn)).check(matches(isDisplayed()));
         onView(withId(R.id.sign_up_btn)).check(matches(instanceOf(Button.class)));
 
@@ -72,9 +71,6 @@ public class SignUpTest {
     }
     @Test
     public  void testCancelButton(){
-        onView(withId(R.id.cancel_btn)).check(matches(isDisplayed()));
-        onView(withId(R.id.cancel_btn)).perform(click());
-
         onView(withId(R.id.selector)).check(matches(isDisplayed()));
         onView(withId(R.id.selector)).check(matches(instanceOf(TextView.class)));
     }

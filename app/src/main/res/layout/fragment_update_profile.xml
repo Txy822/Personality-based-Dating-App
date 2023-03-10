@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:id="@+id/updateProfileFragmentLayout"
     android:background="@color/green_darkest"
-    tools:context=".fragment.UpdateProfileFragment">
+    tools:context=".view.profile.UpdateProfileFragment">
 
   <ScrollView
       android:layout_width="match_parent"

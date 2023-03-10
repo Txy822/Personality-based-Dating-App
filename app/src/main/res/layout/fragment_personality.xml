@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:id="@+id/personality_fragment_layout"
     android:background="@color/green_darkest"
-    tools:context=".fragment.PersonalityFragment">
+    tools:context=".view.personality.PersonalityFragment">
 
     <ScrollView
         android:id="@+id/scrollView3"

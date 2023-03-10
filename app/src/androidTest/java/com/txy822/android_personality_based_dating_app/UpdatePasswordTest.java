@@ -15,7 +15,8 @@ import android.widget.TextView;
 import androidx.test.platform.app.InstrumentationRegistry;
 import androidx.test.rule.ActivityTestRule;
 
-import org.junit.After;
+import com.txy822.android_personality_based_dating_app.view.authentication.login.UpdatePassword;
+
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;

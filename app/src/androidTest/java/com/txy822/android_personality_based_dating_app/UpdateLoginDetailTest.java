@@ -23,6 +23,7 @@ import androidx.test.rule.ActivityTestRule;
 import androidx.test.runner.AndroidJUnit4;
 
 import com.google.android.material.tabs.TabLayout;
+import com.txy822.android_personality_based_dating_app.view.main.Home;
 
 import org.checkerframework.checker.nullness.qual.NonNull;
 import org.hamcrest.Description;
@@ -30,7 +31,6 @@ import org.hamcrest.Matcher;
 import org.hamcrest.Matchers;
 import org.hamcrest.TypeSafeMatcher;
 import org.junit.After;
-import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -51,7 +51,6 @@ public class UpdateLoginDetailTest {
     public void testUpdateLoginDetailView() {
         ViewInteraction tabView = onView(Matchers.allOf(childAtPosition(childAtPosition(withId(R.id.tab), 0), 3), isDisplayed()));
         tabView.perform(click());
-        onView(withId(R.id.update_login)).check(matches(isDisplayed()));
         onView(withId(R.id.update_login_btn)).check(matches(isDisplayed()));
         onView(withId(R.id.update_login_btn)).perform(click());
         onView(withId(R.id.welcome_text)).check(matches(isDisplayed()));

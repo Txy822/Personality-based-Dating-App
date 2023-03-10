@@ -1,13 +1,13 @@
 package com.txy822.android_personality_based_dating_app;
 
 import static junit.framework.TestCase.assertEquals;
-import static org.junit.Assert.*;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.txy822.android_personality_based_dating_app.view.authentication.signup.SignUp;
 
 import org.junit.After;
 import org.junit.Before;
