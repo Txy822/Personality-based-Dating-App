@@ -7,17 +7,9 @@
     android:background="@color/green_darkest"
     tools:context=".view.chat.ChatFragment">
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-        <Toolbar
+    <Toolbar
         android:id="@+id/toolbar_match_list"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:background="@color/green_darkest"
         android:minHeight="?attr/actionBarSize"
@@ -31,6 +23,7 @@
         android:id="@+id/SplitLine_hor_setting_about"
         android:layout_width="0dp"
         android:layout_height="1dp"
+        android:layout_marginBottom="8dp"
         android:background="@color/black"
         app:layout_constraintBottom_toTopOf="@+id/match_recycler"
         app:layout_constraintEnd_toEndOf="parent"
@@ -39,14 +32,12 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/match_recycler"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_width="389dp"
+        android:layout_height="511dp"
+        android:layout_marginBottom="100dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/SplitLine_hor_setting_about" />
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-    </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

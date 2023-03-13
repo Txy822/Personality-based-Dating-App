@@ -93,11 +93,13 @@
                 android:layout_width="104dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:text="0% Personality match"
-                android:textColor="@color/Lime"
+                android:layout_marginEnd="8dp"
+                android:text="0% Match"
 
+                android:textColor="@color/Lime"
                 android:textSize="20sp"
                 app:layout_constraintBottom_toTopOf="@+id/summaryX"
+                app:layout_constraintEnd_toStartOf="@+id/iv_age_id"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/distanceView"
                 app:layout_constraintVertical_bias="0.5" />
