@@ -305,11 +305,11 @@ public class FinderFragment extends Fragment {
      * @param docId String document ID
      */
     private void storeMatchInDatabase(String docId) {
-        final Map<String, Object> map1 = new HashMap<>();
+        final Map<String, Object> map_match = new HashMap<>();
         //check if the map has got the docID already
-        if (!map1.containsValue(docId)) {
+        if (!map_match.containsValue(docId)) {
             //create hash map to store matches when liked each other
-            map1.put("user_id", docId);
+            map_match.put("user_id", docId);
 
             //fetch the current user data
             fireStoreDatabase.collection("Users").document(mAuth.getCurrentUser().getUid()).get()
@@ -329,19 +329,19 @@ public class FinderFragment extends Fragment {
                                                             //match details
                                                             receiver_name = task.getResult().getString("fullName");
                                                             receiver_image = task.getResult().getString("img_url");
-                                                            map1.put("fullName", receiver_name);
-                                                            map1.put("img_url", receiver_image);
+                                                            map_match.put("fullName", receiver_name);
+                                                            map_match.put("img_url", receiver_image);
                                                             fireStoreDatabase.collection("Users").document(mAuth.getCurrentUser().getUid())
-                                                                    .collection("Match").add(map1).addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
+                                                                    .collection("Match").add(map_match).addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
                                                                         @Override
                                                                         public void onComplete(@NonNull Task<DocumentReference> task) {
                                                                             if (task.isSuccessful()) {
-                                                                                map1.put("user_id", mAuth.getCurrentUser().getUid());
-                                                                                map1.put("fullName", current_username);
-                                                                                map1.put("img_url", current_image);//must br removed
+                                                                                map_match.put("user_id", mAuth.getCurrentUser().getUid());
+                                                                                map_match.put("fullName", current_username);
+                                                                                map_match.put("img_url", current_image);//must br removed
                                                                                 //add  map to match collection
                                                                                 fireStoreDatabase.collection("Users").document(docId)
-                                                                                        .collection("Match").add(map1)
+                                                                                        .collection("Match").add(map_match)
                                                                                         .addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
                                                                                             @Override
                                                                                             public void onComplete(@NonNull Task<DocumentReference> task) {
