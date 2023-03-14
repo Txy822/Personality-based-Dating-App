@@ -93,7 +93,7 @@ public class UpdateLoginDetail extends AppCompatActivity {
      */
     public boolean updateUserDetail() {
 
-        email = mEmail.getText().toString();
+        email = mEmail.getText().toString().trim();
         password = mPassword.getText().toString();
         if (!email.isEmpty() && !password.isEmpty()) {
             updateEmailPassword(password, email, mAuth);

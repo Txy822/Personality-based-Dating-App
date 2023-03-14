@@ -5,6 +5,7 @@ import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -22,9 +23,12 @@ import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.events.Event;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.txy822.android_personality_based_dating_app.R;
 import com.txy822.android_personality_based_dating_app.model.Profile;
@@ -307,61 +311,71 @@ public class FinderFragment extends Fragment {
     private void storeMatchInDatabase(String docId) {
         final Map<String, Object> map_match = new HashMap<>();
         //check if the map has got the docID already
-        if (!map_match.containsValue(docId)) {
-            //create hash map to store matches when liked each other
-            map_match.put("user_id", docId);
+        //create hash map to store matches when liked each other
+        map_match.put("user_id", docId);
 
-            //fetch the current user data
-            fireStoreDatabase.collection("Users").document(mAuth.getCurrentUser().getUid()).get()
-                    .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-                        @Override
-                        public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                            if (task.isSuccessful()) {
-                                if (task.getResult() != null && task.getResult().getData() != null) {
-                                    current_username = task.getResult().getString("fullName");
-                                    current_image = task.getResult().getString("img_url");
-                                    fireStoreDatabase.collection("Users").document(docId).get()
-                                            .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-                                                @Override
-                                                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                                                    if (task.isSuccessful()) {
-                                                        if (task.getResult() != null && task.getResult().getData() != null) {
-                                                            //match details
-                                                            receiver_name = task.getResult().getString("fullName");
-                                                            receiver_image = task.getResult().getString("img_url");
-                                                            map_match.put("fullName", receiver_name);
-                                                            map_match.put("img_url", receiver_image);
-                                                            fireStoreDatabase.collection("Users").document(mAuth.getCurrentUser().getUid())
-                                                                    .collection("Match").add(map_match).addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
-                                                                        @Override
-                                                                        public void onComplete(@NonNull Task<DocumentReference> task) {
-                                                                            if (task.isSuccessful()) {
-                                                                                map_match.put("user_id", mAuth.getCurrentUser().getUid());
-                                                                                map_match.put("fullName", current_username);
-                                                                                map_match.put("img_url", current_image);//must br removed
-                                                                                //add  map to match collection
-                                                                                fireStoreDatabase.collection("Users").document(docId)
-                                                                                        .collection("Match").add(map_match)
-                                                                                        .addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
-                                                                                            @Override
-                                                                                            public void onComplete(@NonNull Task<DocumentReference> task) {
-                                                                                                if (task.isSuccessful()) {
+        //fetch the current user data
+        fireStoreDatabase.collection("Users").document(mAuth.getCurrentUser().getUid()).get()
+                .addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        if (task.getResult() != null && task.getResult().getData() != null) {
+                            current_username = task.getResult().getString("fullName");
+                            current_image = task.getResult().getString("img_url");
+                            fireStoreDatabase.collection("Users").document(docId).get()
+                                    .addOnCompleteListener(task1 -> {
+                                        if (task1.isSuccessful()) {
+                                            if (task1.getResult() != null && task1.getResult().getData() != null) {
+                                                //match details
+                                                receiver_name = task1.getResult().getString("fullName");
+                                                receiver_image = task1.getResult().getString("img_url");
+                                                map_match.put("fullName", receiver_name);
+                                                map_match.put("img_url", receiver_image);
+                                                String val = fireStoreDatabase.collection("Users").document(mAuth.getCurrentUser().getUid())
+                                                        .collection("Match").document().getId();
+                                                String val2 = fireStoreDatabase.collection("Users").document(mAuth.getCurrentUser().getUid())
+                                                        .collection("Match").getId();
+                                                String ID = "WC68Mddx2H7jOrYfC1XO";
+                                                fireStoreDatabase.collection("Users").document(mAuth.getCurrentUser().getUid())
+                                                        .collection("Match").document(ID).addSnapshotListener(new EventListener<DocumentSnapshot>() {
+                                                            @Override
+                                                            public void onEvent(@Nullable DocumentSnapshot value, @Nullable FirebaseFirestoreException error) {
+                                                                if (value.exists()) {
+                                                                    //update
+                                                                     System.out.println("value Id of Id   WC68Mddx2H7jOrYfC1XO is  "+ value.getId());
+
+                                                                } else {
+                                                                    //Insert
+                                                                    System.out.println("Doesn't Exist");
+                                                                }
+                                                            }
+                                                        });
+                                                System.out.println("(Match).document().getId() = "+ val);
+                                                System.out.println("(Match).getId() = "+ val2);
+                                               // System.out.println("(Match).document().get().getResult().getId() = "+ val3);
+
+
+                                                fireStoreDatabase.collection("Users").document(mAuth.getCurrentUser().getUid())
+                                                        .collection("Match").add(map_match).addOnCompleteListener(task11 -> {
+                                                            if (task11.isSuccessful()) {
+                                                                map_match.put("user_id", mAuth.getCurrentUser().getUid());
+                                                                map_match.put("fullName", current_username);
+                                                                map_match.put("img_url", current_image);//must br removed
+                                                                //add  map to match collection
+                                                                fireStoreDatabase.collection("Users").document(docId)
+                                                                        .collection("Match").add(map_match)
+                                                                        .addOnCompleteListener(task111 -> {
+                                                                            if (task111.isSuccessful()) {
 //                                                                                        Toast.makeText(getContext(), "Match Added", Toast.LENGTH_SHORT).show();
-                                                                                                }
-                                                                                            }
-                                                                                        });
                                                                             }
-                                                                        }
-                                                                    });
-                                                        }
-                                                    }
-                                                }
-                                            });
-                                }
-                            }
+                                                                        });
+                                                            }
+                                                        });
+                                            }
+                                        }
+                                    });
                         }
-                    });
-        }
+                    }
+                });
 
     }
 

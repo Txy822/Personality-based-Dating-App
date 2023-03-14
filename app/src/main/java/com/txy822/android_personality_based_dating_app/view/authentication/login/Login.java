@@ -63,7 +63,7 @@ public class Login extends AppCompatActivity {
      * @param view view
      */
     public void login(View view) {
-        String email= mEmail.getText().toString();
+        String email= mEmail.getText().toString().trim();
         String password= mPassword.getText().toString();
         if(!email.isEmpty() && !password.isEmpty()){
             signIn(email, password);

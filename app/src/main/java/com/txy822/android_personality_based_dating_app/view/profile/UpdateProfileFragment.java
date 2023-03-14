@@ -187,26 +187,26 @@ public class UpdateProfileFragment extends Fragment {
                                         //download image uri
                                         String downloadUrl = uri.toString();
                                         //create hash map to store user profile
-                                        Map<String, Object> map = new HashMap<>();
-                                        map.put("fullName", full_name.getText().toString());
+                                        Map<String, Object> map1 = new HashMap<>();
+                                        map1.put("fullName", full_name.getText().toString());
                                         if(type.contains(personality_type.getText().toString())){
-                                            map.put("personalityType", personality_type.getText().toString());
+                                            map1.put("personalityType", personality_type.getText().toString());
                                         }
                                         else {
                                             Toast.makeText(getContext(), "Personality type must be 16 MBTI", Toast.LENGTH_SHORT).show();
                                             return;
                                         }
-                                        map.put("location", location.getText().toString());
-                                        map.put("dateOfBirth", date_of_birth.getText().toString());
-                                        map.put("ageRangePreference", age_range_pref.getText().toString());
-                                        map.put("summary", summary.getText().toString());
-                                        map.put("img_url", downloadUrl);
-                                        map.put("age", age);
-                                        map.put("latitude", currentUserLatitude);
-                                        map.put("longitude", currentUserLongitude);
+                                        map1.put("location", location.getText().toString());
+                                        map1.put("dateOfBirth", date_of_birth.getText().toString());
+                                        map1.put("ageRangePreference", age_range_pref.getText().toString());
+                                        map1.put("summary", summary.getText().toString());
+                                        map1.put("img_url", downloadUrl);
+                                        map1.put("age", age);
+                                        map1.put("latitude", currentUserLatitude);
+                                        map1.put("longitude", currentUserLongitude);
 
                                         //update the existing user data or profile under users collection with document id of each user UID
-                                        mStore.collection("Users").document(mAuth.getCurrentUser().getUid()).update(map).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                        mStore.collection("Users").document(mAuth.getCurrentUser().getUid()).set(map1).addOnCompleteListener(new OnCompleteListener<Void>() {
                                             @Override
                                             public void onComplete(@NonNull Task<Void> task) {
                                                 if (task.isSuccessful()) {
@@ -228,6 +228,8 @@ public class UpdateProfileFragment extends Fragment {
                         //if image is not uploaded earlier or if image url id empty create new one
                         Map<String, Object> map = new HashMap<>();
                         map.put("fullName", full_name.getText().toString());
+                        String placeHolder_image = "https://firebasestorage.googleapis.com/v0/b/datingapp-5b017.appspot.com/o/1678810263?alt=media&token=dd14e47e-fb89-4700-9bb2-8e1686e6bf17";
+                        map.put("img_url", placeHolder_image);
                         if(type.contains(personality_type.getText().toString())){
                             map.put("personalityType", personality_type.getText().toString());
                         }
@@ -256,14 +258,7 @@ public class UpdateProfileFragment extends Fragment {
                         });
                     }
 
-                    //switch fragment after update
-                    FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-                    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                    fragmentTransaction.replace(R.id.updateProfileFragmentLayout, new ViewProfileFragment());
-                    fragmentTransaction.addToBackStack(null);
-                    fragmentTransaction.commit();
-
-
+                    switchFragment();
                 }
             });
         }
@@ -271,8 +266,6 @@ public class UpdateProfileFragment extends Fragment {
         cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                Intent intent = new Intent(getContext(), Home.class);
-//                startActivity(intent);
                 FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                 fragmentTransaction.replace(R.id.updateProfileFragmentLayout, new ViewProfileFragment());
@@ -283,6 +276,14 @@ public class UpdateProfileFragment extends Fragment {
             }
         });
         return  view;
+    }
+
+    private void switchFragment(){
+        FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.updateProfileFragmentLayout, new ViewProfileFragment());
+       // fragmentTransaction.addToBackStack(null);
+        fragmentTransaction.commit();
     }
 
     /**
@@ -324,8 +325,13 @@ public class UpdateProfileFragment extends Fragment {
                    if(summary_set !=null){
                        summary.setText(summary_set);
                    }
-                   if(img_url_set !=null){
-                       Glide.with(requireContext()).load(img_url_set).into(profile_img);
+
+                    if(img_url_set !=null){
+                       Glide.with(requireContext()).load(img_url_set).placeholder(R.drawable.profile).into(profile_img);
+                      // profile_img.setImageURI(Uri.parse(img_url_set));
+                   }
+                   else {
+                       Toast.makeText(requireContext(), "Profile photo not shown", Toast.LENGTH_SHORT).show();
                    }
 
                 }else {
@@ -379,7 +385,9 @@ public class UpdateProfileFragment extends Fragment {
 //                final InputStream imageStream = getContentResolver().openInputStream(imageUri);
 //                final Bitmap selectedImage = BitmapFactory.decodeStream(imageStream);
                        //display image
-                       Glide.with(getContext()).load(imageUri).into(profile_img);
+                       Glide.with(requireContext()).load(imageUri).placeholder(R.drawable.profile).into(profile_img);
+                    // Picasso.with(this).load(url).into(profile_img);
+                       //profile_img.setImageURI(url);
 
                    } else {
                        Toast.makeText(getContext(), "You haven't picked Image", Toast.LENGTH_LONG).show();

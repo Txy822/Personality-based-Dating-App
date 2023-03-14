@@ -75,8 +75,8 @@ public class SignUp extends AppCompatActivity {
      */
     public void signup(View view) {
         //create  a user in FirebaseFirestore  by password and email
-        String full_name_=full_name.getText().toString();
-        String email_= email.getText().toString();
+        String full_name_=full_name.getText().toString().trim();
+        String email_= email.getText().toString().trim();
         String password_= password.getText().toString();
         String confirm_password_ = confirm_password.getText().toString();
         if(!email_.isEmpty() && !password_.isEmpty()&&!full_name_.isEmpty() && password_.equals(confirm_password_)){
@@ -89,7 +89,7 @@ public class SignUp extends AppCompatActivity {
             Toast.makeText(getApplicationContext(),"Password  do not match!",Toast.LENGTH_SHORT).show();
         }
         else {
-            Toast.makeText(getApplicationContext()," Check your email format or if it is used!",Toast.LENGTH_SHORT).show();
+            //Toast.makeText(getApplicationContext()," Check your email format or if it is used!",Toast.LENGTH_SHORT).show();
         }
     }
 
