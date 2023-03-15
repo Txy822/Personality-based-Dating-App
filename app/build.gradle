@@ -18,6 +18,8 @@ android {
         buildConfigField("String", "CONSUMER_SECRET", CONSUMER_SECRET)
         buildConfigField("String", "ACCESS_KEY", ACCESS_KEY)
         buildConfigField("String", "ACCESS_SECRET", ACCESS_SECRET)
+        buildConfigField("String", "PLACE_API_KEY", PLACE_API_KEY)
+
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
