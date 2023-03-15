@@ -29,15 +29,15 @@
         tools:ignore="HardcodedDebugMode" >
         <activity
             android:name=".view.authentication.login.UpdateLoginDetail"
-            android:screenOrientation="portrait"
+            android:screenOrientation="fullSensor"
             android:exported="false" />
         <activity
             android:name=".view.authentication.login.UpdatePassword"
-            android:screenOrientation="portrait"
+            android:screenOrientation="fullSensor"
             android:exported="false" />
         <activity
             android:name=".view.main.Main"
-            android:screenOrientation="portrait"
+            android:screenOrientation="fullSensor"
             android:exported="false" />
 
         <meta-data
@@ -45,21 +45,21 @@
             android:value="true" />
 
         <activity android:name=".view.main.Home"
-            android:screenOrientation="portrait"
+            android:screenOrientation="fullSensor"
             />
 
         <activity android:name=".view.authentication.login.Login"
-            android:screenOrientation="portrait"
+            android:screenOrientation="fullSensor"
             />
         <activity android:name=".view.authentication.signup.SignUp"
-            android:screenOrientation="portrait"
+            android:screenOrientation="fullSensor"
             />
         <activity android:name=".view.chat.ChatActivity"
-            android:screenOrientation="portrait"
+            android:screenOrientation="fullSensor"
             />
         <activity
             android:name=".view.main.StartApp"
-            android:screenOrientation="portrait"
+            android:screenOrientation="fullSensor"
             android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
