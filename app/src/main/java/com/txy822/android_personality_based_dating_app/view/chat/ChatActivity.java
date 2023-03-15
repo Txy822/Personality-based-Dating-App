@@ -104,19 +104,25 @@ public class ChatActivity extends AppCompatActivity {
                 for (DocumentChange doc : queryDocumentSnapshots.getDocumentChanges()) {
                     DocumentSnapshot snapshot = doc.getDocument();
                     //for each chat list
-                    Chat chat = snapshot.toObject(Chat.class);
-                    if ((chat.getFrom().equals(mAuth.getCurrentUser().getUid()) || chat.getFrom().equals(toId))
-                            && (chat.getTo().equals(mAuth.getCurrentUser().getUid()) || chat.getTo().equals(toId))) {
-                        if (!mChatList.contains(chat)) {
-                            //add to the chatList to display on the view
-                            mChatList.add(chat);
+                    if (e!=null){
+                        Log.d(TAG,"Error:"+e.getMessage());
+                    }
+                    else {
+
+                        Chat chat = snapshot.toObject(Chat.class);
+                        if ((chat.getFrom().equals(mAuth.getCurrentUser().getUid()) || chat.getFrom().equals(toId))
+                                && (chat.getTo().equals(mAuth.getCurrentUser().getUid()) || chat.getTo().equals(toId))) {
+                            if (!mChatList.contains(chat)) {
+                                //add to the chatList to display on the view
+                                mChatList.add(chat);
 //                           this updates every time  when message sent
-                            mChatRecyclerAdapter.notifyDataSetChanged();
+                                mChatRecyclerAdapter.notifyDataSetChanged();
+                            }
+
+                        } else {
+                            Log.d(TAG, "no chat instance ");
+
                         }
-
-                    } else {
-                        Log.d(TAG, "no chat instance ");
-
                     }
                 }
             }

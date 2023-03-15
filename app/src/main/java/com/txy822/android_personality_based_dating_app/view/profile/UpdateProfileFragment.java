@@ -331,7 +331,7 @@ public class UpdateProfileFragment extends Fragment {
                       // profile_img.setImageURI(Uri.parse(img_url_set));
                    }
                    else {
-                       Toast.makeText(requireContext(), "Profile photo not shown", Toast.LENGTH_SHORT).show();
+                       Toast.makeText(requireContext(), "Please upload profile photo", Toast.LENGTH_SHORT).show();
                    }
 
                 }else {

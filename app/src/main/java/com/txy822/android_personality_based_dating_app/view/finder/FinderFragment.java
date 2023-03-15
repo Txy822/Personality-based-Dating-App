@@ -323,6 +323,7 @@ public class FinderFragment extends Fragment {
                             current_image = task.getResult().getString("img_url");
                             fireStoreDatabase.collection("Users").document(docId).get()
                                     .addOnCompleteListener(task1 -> {
+                                        // if (task1.isSuccessful() && !docId.equals(mAuth.getCurrentUser().getUid())) {
                                         if (task1.isSuccessful()) {
                                             if (task1.getResult() != null && task1.getResult().getData() != null) {
                                                 //match details
@@ -330,40 +331,17 @@ public class FinderFragment extends Fragment {
                                                 receiver_image = task1.getResult().getString("img_url");
                                                 map_match.put("fullName", receiver_name);
                                                 map_match.put("img_url", receiver_image);
-                                                String val = fireStoreDatabase.collection("Users").document(mAuth.getCurrentUser().getUid())
-                                                        .collection("Match").document().getId();
-                                                String val2 = fireStoreDatabase.collection("Users").document(mAuth.getCurrentUser().getUid())
-                                                        .collection("Match").getId();
-                                                String ID = "WC68Mddx2H7jOrYfC1XO";
                                                 fireStoreDatabase.collection("Users").document(mAuth.getCurrentUser().getUid())
-                                                        .collection("Match").document(ID).addSnapshotListener(new EventListener<DocumentSnapshot>() {
-                                                            @Override
-                                                            public void onEvent(@Nullable DocumentSnapshot value, @Nullable FirebaseFirestoreException error) {
-                                                                if (value.exists()) {
-                                                                    //update
-                                                                     System.out.println("value Id of Id   WC68Mddx2H7jOrYfC1XO is  "+ value.getId());
-
-                                                                } else {
-                                                                    //Insert
-                                                                    System.out.println("Doesn't Exist");
-                                                                }
-                                                            }
-                                                        });
-                                                System.out.println("(Match).document().getId() = "+ val);
-                                                System.out.println("(Match).getId() = "+ val2);
-                                               // System.out.println("(Match).document().get().getResult().getId() = "+ val3);
-
-
-                                                fireStoreDatabase.collection("Users").document(mAuth.getCurrentUser().getUid())
-                                                        .collection("Match").add(map_match).addOnCompleteListener(task11 -> {
+                                                        .collection("Match").document(docId).set(map_match).addOnCompleteListener(task11 -> {
+                                                        //.collection("Match").add(map_match).addOnCompleteListener(task11 -> {
                                                             if (task11.isSuccessful()) {
                                                                 map_match.put("user_id", mAuth.getCurrentUser().getUid());
                                                                 map_match.put("fullName", current_username);
                                                                 map_match.put("img_url", current_image);//must br removed
                                                                 //add  map to match collection
                                                                 fireStoreDatabase.collection("Users").document(docId)
-                                                                        .collection("Match").add(map_match)
-                                                                        .addOnCompleteListener(task111 -> {
+                                                                        .collection("Match").document(mAuth.getCurrentUser().getUid()).set(map_match).addOnCompleteListener(task111 -> {
+                                                                        //.collection("Match").add(map_match).addOnCompleteListener(task111 -> {
                                                                             if (task111.isSuccessful()) {
 //                                                                                        Toast.makeText(getContext(), "Match Added", Toast.LENGTH_SHORT).show();
                                                                             }
