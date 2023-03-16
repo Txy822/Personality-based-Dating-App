@@ -25,7 +25,6 @@ public class Main extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         mAuth=FirebaseAuth.getInstance();
-
     }
 
     /**
@@ -39,7 +38,6 @@ public class Main extends AppCompatActivity {
             startActivity(intent);
             finish();
         }
-
     }
 
     /**
@@ -48,8 +46,6 @@ public class Main extends AppCompatActivity {
      */
     public void login(View view) {
         Intent intent = new Intent(this, Login.class);
-//        Intent intent = new Intent(this, linear_model.class);
-
         startActivity(intent);
     }
 
@@ -59,8 +55,6 @@ public class Main extends AppCompatActivity {
      */
     public void SignUp(View view) {
         Intent intent = new Intent(this, SignUp.class);
-//        Intent intent = new Intent(this, LocationTracker.class);
-
         startActivity(intent);
     }
 

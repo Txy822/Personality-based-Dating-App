@@ -50,7 +50,6 @@ public class Home extends AppCompatActivity {
         homeTab.getTabAt(0).setIcon(R.drawable.discover);
         homeTab.getTabAt(1).setIcon(R.drawable.pfile2);
         homeTab.getTabAt(2).setIcon(R.drawable.icon_personality);
-//      homeTab.getTabAt(3).setIcon(R.drawable.chat);
         homeTab.getTabAt(3).setIcon(R.drawable.setting);
 //      default home tap  as finder
         homeTab.selectTab(homeTab.getTabAt(0));
