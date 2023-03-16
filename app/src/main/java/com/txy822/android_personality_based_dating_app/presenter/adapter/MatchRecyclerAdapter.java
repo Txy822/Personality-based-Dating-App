@@ -25,6 +25,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class MatchRecyclerAdapter extends RecyclerView.Adapter<MatchRecyclerAdapter.ViewHolder> {
     Context context;
     List<Match> mMatchList;
+
     public MatchRecyclerAdapter(Context context, List<Match> mMatchList) {
         this.context = context;
         this.mMatchList = mMatchList;
@@ -32,6 +33,7 @@ public class MatchRecyclerAdapter extends RecyclerView.Adapter<MatchRecyclerAdap
 
     /**
      * Create single match view holder
+     *
      * @param parent
      * @param viewType
      * @return
@@ -39,11 +41,12 @@ public class MatchRecyclerAdapter extends RecyclerView.Adapter<MatchRecyclerAdap
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.single_match_user_item,parent,false);
+        View view = LayoutInflater.from(context).inflate(R.layout.single_match_user_item, parent, false);
         return new ViewHolder(view);
     }
 
-    /**Called by match RecyclerView to display the match at the specified position
+    /**
+     * Called by match RecyclerView to display the match at the specified position
      *
      * @param holder
      * @param position
@@ -55,8 +58,8 @@ public class MatchRecyclerAdapter extends RecyclerView.Adapter<MatchRecyclerAdap
         holder.view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(context, ChatActivity.class);
-                intent.putExtra("doc_id",mMatchList.get(position).getUser_id());
+                Intent intent = new Intent(context, ChatActivity.class);
+                intent.putExtra("doc_id", mMatchList.get(position).getUser_id());
                 context.startActivity(intent);
             }
         });
@@ -70,10 +73,11 @@ public class MatchRecyclerAdapter extends RecyclerView.Adapter<MatchRecyclerAdap
     /**
      * ViewHolder to hold the match name and image on the match list
      */
-    public class ViewHolder extends RecyclerView.ViewHolder{
+    public class ViewHolder extends RecyclerView.ViewHolder {
         TextView mName;
         CircleImageView mImg;
         View view;
+
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             view = itemView;

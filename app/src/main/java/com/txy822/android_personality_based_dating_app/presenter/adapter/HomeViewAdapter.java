@@ -13,7 +13,6 @@ public class HomeViewAdapter extends FragmentStatePagerAdapter {
 List<Fragment> fragmentList=new ArrayList<>();
 List<String>titleList=new ArrayList<>();
 
-
     public HomeViewAdapter(@NonNull FragmentManager fm) {
         super(fm);
     }
