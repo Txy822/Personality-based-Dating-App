@@ -137,7 +137,6 @@ public class ViewProfileFragment extends Fragment {
     private void getProfileData() {
         //get the user detail fro the Users collection
 
-
         if(mAuth.getCurrentUser()!=null) {
             mStore.collection("Users").document(mAuth.getCurrentUser().getUid()).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                 @Override

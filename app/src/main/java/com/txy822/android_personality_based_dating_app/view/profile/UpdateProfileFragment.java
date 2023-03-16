@@ -67,14 +67,14 @@ public class UpdateProfileFragment extends Fragment {
     private EditText date_of_birth;
     private EditText age_range_pref;
     private EditText summary;
-    private int  age;
-    final Calendar myCalendar= Calendar.getInstance();
+    private int age;
+    final Calendar myCalendar = Calendar.getInstance();
 
     private Button save_profile;
-    private  Button cancel;
+    private Button cancel;
     private Button signIn;
 
-    private Uri url=null;
+    private Uri url = null;
 
     private FirebaseAuth mAuth;
     private FirebaseFirestore mStore;
@@ -83,15 +83,16 @@ public class UpdateProfileFragment extends Fragment {
 
     private double currentUserLatitude;
     private double currentUserLongitude;
-    private  String   currentUserPlace;
+    private String currentUserPlace;
 
 
-    List<String> type = new ArrayList<>(Arrays.asList("ESFJ","ESTJ", "ENFJ", "ENTJ", "ESTP","ESFP","ENFP","ENTP","ISTP","ISFP","ISFP","INFP","INTP","ISTJ","ISFJ","INFJ","INTJ"));
+    List<String> type = new ArrayList<>(Arrays.asList("ESFJ", "ESTJ", "ENFJ", "ENTJ", "ESTP", "ESFP", "ENFP", "ENTP", "ISTP", "ISFP", "ISFP", "INFP", "INTP", "ISTJ", "ISFJ", "INFJ", "INTJ"));
 
     /**
      * Creates View for  fragment of update profile
-     * @param inflater  LayoutInflater inflater
-     * @param container ViewGroup container
+     *
+     * @param inflater           LayoutInflater inflater
+     * @param container          ViewGroup container
      * @param savedInstanceState Bundle saved instances state
      * @return View
      */
@@ -99,31 +100,28 @@ public class UpdateProfileFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         // Inflate the layout for this fragment
-        View view=inflater.inflate(R.layout.fragment_update_profile, container, false);
-        profile_img=(ImageView)view.findViewById(R.id.profile);
-        full_name=view.findViewById(R.id.full_name_id);
-        personality_type=(EditText)view.findViewById(R.id.enter_personality_type);
-        location=(EditText)view.findViewById(R.id.enter_location);
+        View view = inflater.inflate(R.layout.fragment_update_profile, container, false);
+        profile_img = (ImageView) view.findViewById(R.id.profile);
+        full_name = view.findViewById(R.id.full_name_id);
+        personality_type = (EditText) view.findViewById(R.id.enter_personality_type);
+        location = (EditText) view.findViewById(R.id.enter_location);
 
         //google places api access key
-       // Places.initialize(getActivity().getApplicationContext(), "AIzaSyDZJLLLAz2-H3C57IYT9fdAIWrrvkHaiOU");
-
         Places.initialize(getActivity().getApplicationContext(), BuildConfig.PLACE_API_KEY);
 
-        date_of_birth=(EditText)view.findViewById(R.id.enter_date_of_birth);
-//        age=(EditText)view.findViewById(R.id.age);
-        DatePickerDialog.OnDateSetListener date =new DatePickerDialog.OnDateSetListener() {
+        date_of_birth = (EditText) view.findViewById(R.id.enter_date_of_birth);
+        DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {
             @Override
             //calendar calculator
             public void onDateSet(DatePicker view, int year, int month, int day) {
                 myCalendar.set(Calendar.YEAR, year);
-                myCalendar.set(Calendar.MONTH,month);
-                myCalendar.set(Calendar.DAY_OF_MONTH,day);
-                String myFormat="MM/dd/yy";
-                SimpleDateFormat dateFormat=new SimpleDateFormat(myFormat, Locale.UK);
+                myCalendar.set(Calendar.MONTH, month);
+                myCalendar.set(Calendar.DAY_OF_MONTH, day);
+                String myFormat = "MM/dd/yy";
+                SimpleDateFormat dateFormat = new SimpleDateFormat(myFormat, Locale.UK);
                 date_of_birth.setText(dateFormat.format(myCalendar.getTime()));
-                Calendar today= Calendar.getInstance();
-                age=(today.get(Calendar.YEAR)-(myCalendar.get(Calendar.YEAR)));
+                Calendar today = Calendar.getInstance();
+                age = (today.get(Calendar.YEAR) - (myCalendar.get(Calendar.YEAR)));
 
             }
         };
@@ -131,19 +129,19 @@ public class UpdateProfileFragment extends Fragment {
         date_of_birth.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                new DatePickerDialog(getContext(),date,myCalendar.get(Calendar.YEAR),myCalendar.get(Calendar.MONTH),myCalendar.get(Calendar.DAY_OF_MONTH)).show();
+                new DatePickerDialog(getContext(), date, myCalendar.get(Calendar.YEAR), myCalendar.get(Calendar.MONTH), myCalendar.get(Calendar.DAY_OF_MONTH)).show();
             }
         });
 
-        age_range_pref=(EditText)view.findViewById(R.id.enter_age_range);
-        summary=(EditText)view.findViewById(R.id.enter_summary);
+        age_range_pref = (EditText) view.findViewById(R.id.enter_age_range);
+        summary = (EditText) view.findViewById(R.id.enter_summary);
 
-        mAuth=FirebaseAuth.getInstance();
-        mStore=FirebaseFirestore.getInstance();
+        mAuth = FirebaseAuth.getInstance();
+        mStore = FirebaseFirestore.getInstance();
 //        mStorage=FirebaseStorage.getInstance();
-        mStorage=FirebaseStorage.getInstance().getReference();
+        mStorage = FirebaseStorage.getInstance().getReference();
         //displays the existing data
-        if(mAuth.getCurrentUser()!=null) {
+        if (mAuth.getCurrentUser() != null) {
             getProfileData();
         }
 //upload image for profile
@@ -161,17 +159,17 @@ public class UpdateProfileFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
-                    //initialize place  field list
-                    List<Place.Field> fields = Arrays.asList(Place.Field.ADDRESS, Place.Field.LAT_LNG);
-                    //create intent for place selector
-                    Intent intent = new Autocomplete.IntentBuilder(AutocompleteActivityMode.OVERLAY, fields).build(getActivity().getApplicationContext());
-                    startActivityForResult(intent, RESULT_LOAD_PLACE);
-                }
+                //initialize place  field list
+                List<Place.Field> fields = Arrays.asList(Place.Field.ADDRESS, Place.Field.LAT_LNG);
+                //create intent for place selector
+                Intent intent = new Autocomplete.IntentBuilder(AutocompleteActivityMode.OVERLAY, fields).build(getActivity().getApplicationContext());
+                startActivityForResult(intent, RESULT_LOAD_PLACE);
+            }
 
-            });
-        save_profile=view.findViewById(R.id.save);
+        });
+        save_profile = view.findViewById(R.id.save);
 
-        if(mAuth.getCurrentUser()!=null) {
+        if (mAuth.getCurrentUser() != null) {
             save_profile.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -192,10 +190,9 @@ public class UpdateProfileFragment extends Fragment {
                                         //create hash map to store user profile
                                         Map<String, Object> map1 = new HashMap<>();
                                         map1.put("fullName", full_name.getText().toString());
-                                        if(type.contains(personality_type.getText().toString())){
+                                        if (type.contains(personality_type.getText().toString())) {
                                             map1.put("personalityType", personality_type.getText().toString());
-                                        }
-                                        else {
+                                        } else {
                                             Toast.makeText(getContext(), "Personality type must be 16 MBTI", Toast.LENGTH_SHORT).show();
                                             return;
                                         }
@@ -233,13 +230,13 @@ public class UpdateProfileFragment extends Fragment {
                         map.put("fullName", full_name.getText().toString());
                         String placeHolder_image = "https://firebasestorage.googleapis.com/v0/b/datingapp-5b017.appspot.com/o/1678810263?alt=media&token=dd14e47e-fb89-4700-9bb2-8e1686e6bf17";
                         map.put("img_url", placeHolder_image);
-                        if(type.contains(personality_type.getText().toString())){
+                        if (type.contains(personality_type.getText().toString())) {
                             map.put("personalityType", personality_type.getText().toString());
-                        }
-                        else {
+                        } else {
                             Toast.makeText(getContext(), "Personality type must be 16 MBTI", Toast.LENGTH_SHORT).show();
                             return;
-                        }                        map.put("location", location.getText().toString());
+                        }
+                        map.put("location", location.getText().toString());
                         map.put("dateOfBirth", date_of_birth.getText().toString());
                         map.put("ageRangePreference", age_range_pref.getText().toString());
                         map.put("summary", summary.getText().toString());
@@ -265,7 +262,7 @@ public class UpdateProfileFragment extends Fragment {
                 }
             });
         }
-        cancel=view.findViewById(R.id.cancel_btn_profile_edit);
+        cancel = view.findViewById(R.id.cancel_btn_profile_edit);
         cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -278,14 +275,14 @@ public class UpdateProfileFragment extends Fragment {
 
             }
         });
-        return  view;
+        return view;
     }
 
-    private void switchFragment(){
+    private void switchFragment() {
         FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.updateProfileFragmentLayout, new ViewProfileFragment());
-       // fragmentTransaction.addToBackStack(null);
+        // fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
     }
 
@@ -297,48 +294,47 @@ public class UpdateProfileFragment extends Fragment {
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
 
-                if(task.isSuccessful()){
-                    String full_name_set=task.getResult().getString(("fullName"));
-                    String personality_type_set=task.getResult().getString("personalityType");
-                    String date_of_birth_set=task.getResult().getString("dateOfBirth");
+                if (task.isSuccessful()) {
+                    String full_name_set = task.getResult().getString(("fullName"));
+                    String personality_type_set = task.getResult().getString("personalityType");
+                    String date_of_birth_set = task.getResult().getString("dateOfBirth");
 
-                    String location_set=task.getResult().getString("location");
+                    String location_set = task.getResult().getString("location");
 
-                    String summary_set =task.getResult().getString("summary");
+                    String summary_set = task.getResult().getString("summary");
 
-                    String age_preference_set=task.getResult().getString("ageRangePreference");
+                    String age_preference_set = task.getResult().getString("ageRangePreference");
 
-                    String img_url_set=task.getResult().getString("img_url");
+                    String img_url_set = task.getResult().getString("img_url");
 
-                    if(full_name_set!=null){
+                    if (full_name_set != null) {
                         full_name.setText(full_name_set);
                     }
-                    if(personality_type_set !=null){
+                    if (personality_type_set != null) {
                         personality_type.setText(personality_type_set);
                     }
-                   if(age_preference_set !=null){
-                       location.setText(location_set);
-                   }
-                   if(age_preference_set !=null){
-                       age_range_pref.setText(age_preference_set);
-                   }
-                   if(date_of_birth_set !=null){
-                       date_of_birth.setText(date_of_birth_set);
-                   }
-                   if(summary_set !=null){
-                       summary.setText(summary_set);
-                   }
+                    if (age_preference_set != null) {
+                        location.setText(location_set);
+                    }
+                    if (age_preference_set != null) {
+                        age_range_pref.setText(age_preference_set);
+                    }
+                    if (date_of_birth_set != null) {
+                        date_of_birth.setText(date_of_birth_set);
+                    }
+                    if (summary_set != null) {
+                        summary.setText(summary_set);
+                    }
 
-                    if(img_url_set !=null){
-                       Glide.with(requireContext()).load(img_url_set).placeholder(R.drawable.profile).into(profile_img);
-                      // profile_img.setImageURI(Uri.parse(img_url_set));
-                   }
-                   else {
-                       Toast.makeText(requireContext(), "Please upload profile photo", Toast.LENGTH_SHORT).show();
-                   }
+                    if (img_url_set != null) {
+                        Glide.with(requireContext()).load(img_url_set).placeholder(R.drawable.profile).into(profile_img);
+                        // profile_img.setImageURI(Uri.parse(img_url_set));
+                    } else {
+                        Toast.makeText(requireContext(), "Please upload profile photo", Toast.LENGTH_SHORT).show();
+                    }
 
-                }else {
-                    Log.i("TAG","onComplete Error: profile data not fetched");
+                } else {
+                    Log.i("TAG", "onComplete Error: profile data not fetched");
                 }
 
             }
@@ -352,53 +348,53 @@ public class UpdateProfileFragment extends Fragment {
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
 
         super.onActivityResult(requestCode, resultCode, data);
-       try {
-           //switch to identify the place selector and image updater onActivityResult based on request code
-           switch (requestCode) {
-               //for place selector or update
-               case RESULT_LOAD_PLACE:
-                   if (resultCode == RESULT_OK) {
-                       //create place with autocomplete from the data
-                       Place place =Autocomplete.getPlaceFromIntent(data);
+        try {
+            //switch to identify the place selector and image updater onActivityResult based on request code
+            switch (requestCode) {
+                //for place selector or update
+                case RESULT_LOAD_PLACE:
+                    if (resultCode == RESULT_OK) {
+                        //create place with autocomplete from the data
+                        Place place = Autocomplete.getPlaceFromIntent(data);
 //                     currentUserLocation.setText(place.getAddress());
-                       //current user place like London,UK
-                       currentUserPlace= place.getAddress();
-                       //extract latitude and longitude value of places
-                       String sSource=String.valueOf(place.getLatLng());
-                       sSource=sSource.replaceAll("lat/lng:","");
-                       sSource=sSource.replace("(","");
-                       sSource=sSource.replace(")","");
-                       String [] split =sSource.split(",");
-                       //extract latitude vale
-                       currentUserLatitude=Double.parseDouble(split[0]);
-                       //extract longitude value
-                       currentUserLongitude=Double.parseDouble(split[1]);
-                       //set location view by current user place
-                       location.setText(currentUserPlace);
+                        //current user place like London,UK
+                        currentUserPlace = place.getAddress();
+                        //extract latitude and longitude value of places
+                        String sSource = String.valueOf(place.getLatLng());
+                        sSource = sSource.replaceAll("lat/lng:", "");
+                        sSource = sSource.replace("(", "");
+                        sSource = sSource.replace(")", "");
+                        String[] split = sSource.split(",");
+                        //extract latitude vale
+                        currentUserLatitude = Double.parseDouble(split[0]);
+                        //extract longitude value
+                        currentUserLongitude = Double.parseDouble(split[1]);
+                        //set location view by current user place
+                        location.setText(currentUserPlace);
 
-                   }
-                   break;
-                   //case of uploading profile
-               case RESULT_LOAD_IMG:
-                   if (resultCode == RESULT_OK) {
-                       //get daata
-                       final Uri imageUri = data.getData();
-                       // assign image url value
-                       url = imageUri;
+                    }
+                    break;
+                //case of uploading profile
+                case RESULT_LOAD_IMG:
+                    if (resultCode == RESULT_OK) {
+                        //get daata
+                        final Uri imageUri = data.getData();
+                        // assign image url value
+                        url = imageUri;
 //                final InputStream imageStream = getContentResolver().openInputStream(imageUri);
 //                final Bitmap selectedImage = BitmapFactory.decodeStream(imageStream);
-                       //display image
-                       Glide.with(requireContext()).load(imageUri).placeholder(R.drawable.profile).into(profile_img);
-                    // Picasso.with(this).load(url).into(profile_img);
-                       //profile_img.setImageURI(url);
+                        //display image
+                        Glide.with(requireContext()).load(imageUri).placeholder(R.drawable.profile).into(profile_img);
+                        // Picasso.with(this).load(url).into(profile_img);
+                        //profile_img.setImageURI(url);
 
-                   } else {
-                       Toast.makeText(getContext(), "You haven't picked Image", Toast.LENGTH_LONG).show();
-                   }
-                   break;
-           }
-       }catch (Exception e){
-           Log.i("Tag", e.getMessage());
-       }
+                    } else {
+                        Toast.makeText(getContext(), "You haven't picked Image", Toast.LENGTH_LONG).show();
+                    }
+                    break;
+            }
+        } catch (Exception e) {
+            Log.i("Tag", e.getMessage());
+        }
     }
 }
