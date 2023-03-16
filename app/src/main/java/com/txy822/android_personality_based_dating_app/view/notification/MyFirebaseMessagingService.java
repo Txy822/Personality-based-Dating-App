@@ -11,7 +11,6 @@ import androidx.core.app.NotificationCompat;
 
 import com.google.firebase.messaging.RemoteMessage;
 
-
 import android.app.Notification;
 import android.media.Ringtone;
 import android.media.RingtoneManager;

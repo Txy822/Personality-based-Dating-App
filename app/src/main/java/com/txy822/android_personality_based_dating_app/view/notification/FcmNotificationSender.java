@@ -1,4 +1,5 @@
 package com.txy822.android_personality_based_dating_app.view.notification;
+
 import android.app.Activity;
 import android.content.Context;
 import android.util.Log;
@@ -10,8 +11,6 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
-import com.google.firebase.messaging.FirebaseMessaging;
-import com.google.firebase.messaging.RemoteMessage;
 import com.txy822.android_personality_based_dating_app.BuildConfig;
 import com.txy822.android_personality_based_dating_app.R;
 
@@ -20,7 +19,6 @@ import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.concurrent.atomic.AtomicInteger;
 
 public class FcmNotificationSender  {
 
@@ -89,18 +87,5 @@ public class FcmNotificationSender  {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-    }
-    //option 2 using FirebaseMessaging class
-    //by build an instance of RemoteMessage.Builder class.
-    public void sendNotification2(){
-        Map<String, String> data = new HashMap<>();
-        data.put("title", title);
-        data.put("description", body);
-        FirebaseMessaging fm = FirebaseMessaging.getInstance();
-        AtomicInteger msgId = new AtomicInteger();
-        fm.send(new RemoteMessage.Builder(userFcmToken)
-                .setMessageId(String.valueOf(msgId))
-                .setData(data)
-                .build());
     }
 }
