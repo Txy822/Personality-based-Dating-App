@@ -70,9 +70,7 @@ public class Login extends AppCompatActivity {
         }
         if(email.isEmpty() || password.isEmpty()){
             Toast.makeText(getApplicationContext(),"Email or Password empty!",Toast.LENGTH_SHORT).show();
-
         }
-
     }
 
     /**

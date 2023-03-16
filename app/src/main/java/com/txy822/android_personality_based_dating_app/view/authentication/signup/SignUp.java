@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -39,18 +40,22 @@ public class SignUp extends AppCompatActivity {
     private EditText confirm_password;
     private EditText email;
     private EditText mDob;
-    private int age=0;
+    private int age = 0;
     private ProgressDialog progressDialog;
 
-    public SignUp(FirebaseFirestore store, FirebaseAuth auth){
-        this.mStore=store.getInstance();;
-        this.mAuth=auth.getInstance();
+    public SignUp(FirebaseFirestore store, FirebaseAuth auth) {
+        this.mStore = store.getInstance();
+        ;
+        this.mAuth = auth.getInstance();
     }
-    public SignUp(){
+
+    public SignUp() {
 
     }
+
     /**
-     *  Creates sign up activity
+     * Creates sign up activity
+     *
      * @param savedInstanceState
      */
     @Override
@@ -58,43 +63,44 @@ public class SignUp extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
 
-        mAuth= FirebaseAuth.getInstance();
-        full_name= findViewById(R.id.enter_full_name);
-        password=findViewById(R.id.enter_password);
+        mAuth = FirebaseAuth.getInstance();
+        full_name = findViewById(R.id.enter_full_name);
+        password = findViewById(R.id.enter_password);
         confirm_password = findViewById(R.id.enter_password2);
-        email=findViewById(R.id.enterEmail);
+        email = findViewById(R.id.enterEmail);
 
-        progressDialog=new ProgressDialog(getApplicationContext());
+        progressDialog = new ProgressDialog(getApplicationContext());
         progressDialog.setTitle("Logging in ...");
         progressDialog.setMessage("Please wait!");
-        mStore=FirebaseFirestore.getInstance();
+        mStore = FirebaseFirestore.getInstance();
     }
+
     /**
      * Registers new users using full name, email and password
+     *
      * @param view view
      */
     public void signup(View view) {
         //create  a user in FirebaseFirestore  by password and email
-        String full_name_=full_name.getText().toString().trim();
-        String email_= email.getText().toString().trim();
-        String password_= password.getText().toString();
+        String full_name_ = full_name.getText().toString().trim();
+        String email_ = email.getText().toString().trim();
+        String password_ = password.getText().toString();
         String confirm_password_ = confirm_password.getText().toString();
-        if(!email_.isEmpty() && !password_.isEmpty()&&!full_name_.isEmpty() && password_.equals(confirm_password_)){
-            createAccount(mAuth, mStore,full_name_, email_, password_);
+        if (!email_.isEmpty() && !password_.isEmpty() && !full_name_.isEmpty() && password_.equals(confirm_password_)) {
+            createAccount(mAuth, mStore, full_name_, email_, password_);
         }
-        if(full_name_.isEmpty()|| email_.isEmpty() || password_.isEmpty()){
-            Toast.makeText(getApplicationContext(),"Your Full Name or Email or Password Field  is empty!",Toast.LENGTH_SHORT).show();
-        }
-        else if(!password_.equals(confirm_password_)){
-            Toast.makeText(getApplicationContext(),"Password  do not match!",Toast.LENGTH_SHORT).show();
-        }
-        else {
-            //Toast.makeText(getApplicationContext()," Check your email format or if it is used!",Toast.LENGTH_SHORT).show();
+        if (full_name_.isEmpty() || email_.isEmpty() || password_.isEmpty()) {
+            Toast.makeText(getApplicationContext(), "Your Full Name or Email or Password Field  is empty!", Toast.LENGTH_SHORT).show();
+        } else if (!password_.equals(confirm_password_)) {
+            Toast.makeText(getApplicationContext(), "Password  do not match!", Toast.LENGTH_SHORT).show();
+        } else {
+            Log.i("TAG", "Check your  Internet");
         }
     }
 
     /**
      * Cancels the registration and go back to main class
+     *
      * @param view view
      */
     public void cancel(View view) {
@@ -103,7 +109,8 @@ public class SignUp extends AppCompatActivity {
     }
 
     /**
-     *  Switches to login or sign in activity
+     * Switches to login or sign in activity
+     *
      * @param view view
      */
     public void login(View view) {
@@ -111,45 +118,42 @@ public class SignUp extends AppCompatActivity {
         Intent intent = new Intent(this, Login.class);
         startActivity(intent);
     }
-    public FirebaseUser createAccount(FirebaseAuth mAuth_,FirebaseFirestore mStore_,String fullName_, String email, String password){
+
+    public FirebaseUser createAccount(FirebaseAuth mAuth_, FirebaseFirestore mStore_, String fullName_, String email, String password) {
 
         mAuth_.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
-                if(task.isSuccessful()){
+                if (task.isSuccessful()) {
                     //Hash map to track of user detail
-                    Map<String, Object> map=new HashMap<>();
-                    map.put("fullName",fullName_);
+                    Map<String, Object> map = new HashMap<>();
+                    map.put("fullName", fullName_);
                     //set up User collection with current user UID as document Id to store user detail in the field of document
 //                    storeAccount(mAuth_,mStore_,full_name_,map).
                     mStore_.collection("Users").document(mAuth_.getCurrentUser().getUid()).set(map).addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
-                            if(task.isSuccessful()){
+                            if (task.isSuccessful()) {
                                 progressDialog.dismiss();
                                 //once creation of document is successful it switches to login activity
-                                Toast.makeText(getBaseContext(),"Account Created",Toast.LENGTH_SHORT).show();
-                                Intent intent= new Intent(SignUp.this,Login.class);
-                                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                Toast.makeText(getBaseContext(), "Account Created", Toast.LENGTH_SHORT).show();
+                                Intent intent = new Intent(SignUp.this, Login.class);
+                                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                                 startActivity(intent);
                                 finish();
-                            }
-                            else{
-                                Toast.makeText(getBaseContext(),""+task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                            } else {
+                                Toast.makeText(getBaseContext(), "" + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                             }
                         }
                     });
 
-                }else {
+                } else {
                     progressDialog.dismiss();
-                    Toast.makeText(getBaseContext(),""+task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getBaseContext(), "" + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                 }
             }
         });
-      FirebaseUser user= mAuth.getCurrentUser();
+        FirebaseUser user = mAuth.getCurrentUser();
         return user;
     }
-    public void storeAccount(FirebaseAuth auth, FirebaseFirestore store, String fullName, HashMap map){
-        store.collection("Users").document(auth.getCurrentUser().getUid()).set(map);
-        }
 }

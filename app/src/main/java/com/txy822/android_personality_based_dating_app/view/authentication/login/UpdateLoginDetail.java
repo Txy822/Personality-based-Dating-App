@@ -69,10 +69,10 @@ public class UpdateLoginDetail extends AppCompatActivity {
         apply.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                update user detal using email and password
-                boolean b = updateUserDetail();
+//                update user detail using email and password
+                boolean isUpdated = updateUserDetail();
 //                start home intent after update
-                if (b == true) {
+                if (isUpdated == true) {
                     Intent intent = new Intent(getApplication(), Home.class);
                     startActivity(intent);
                 }
