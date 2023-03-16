@@ -6,14 +6,13 @@ import android.util.Log;
 import org.tensorflow.lite.support.label.Category;
 import org.tensorflow.lite.task.core.BaseOptions;
 
-
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+//Bert classifier library to use NLP pretrained model
 import org.tensorflow.lite.task.text.nlclassifier.BertNLClassifier;
-
 
 public class BertClassifier {
     private static final String TAG = "TaskApi";
@@ -24,7 +23,6 @@ public class BertClassifier {
     private final Context context;
     BertNLClassifier.BertNLClassifierOptions options;
     BertNLClassifier classifier;
-
 
     /**
      * Constructor
@@ -47,7 +45,6 @@ public class BertClassifier {
             classifier = BertNLClassifier.createFromFile(context, MODEL_PATH);
         } catch (IOException e) {
             Log.d(TAG, e.getMessage());
-
         }
     }
     public void unload() {
