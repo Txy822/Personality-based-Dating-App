@@ -27,14 +27,26 @@
  - ROC-AUC, Confusion Matrix, Training and validation accuracy- Used to test the model
 
 
-<img src="img/get2.png" width="400"/>
+<!-- <img src="img/get2.png" width="400"/>
 <img src="img/marta.png" width="400">
 <img src="img/personality.png" width="400"/>
 <img src="img/sara.png" width="400"/>
 <img src="img/matchList.png" width="400"/>
 <img src="img/chat1.png" width="400"/>
 <img src="img/profile.png" width="400"/>
-<img src="img/setting_delete_account.png" width="400"/>
+<img src="img/setting_delete_account.png" width="400"/> -->
+
+
+<div style="display: flex; justify-content: center;">
+  <img src="img/get2.png" alt="Screenshot 1" style="width: 33%;" />
+  <img src="img/marta.png" alt="Screenshot 2" style="width: 33%;" />
+  <img src="img/personality.png" alt="Screenshot 3" style="width: 33%;" />
+  <img src="img/sara.png" alt="Screenshot 4" style="width: 33%;" />
+  <img src="img/matchList.png" alt="Screenshot 5" style="width: 33%;" />
+  <img src="img/chat1.png" alt="Screenshot 6" style="width: 33%;" />
+  <img src="img/profile.png" alt="Screenshot 6" style="width: 33%;" />
+  <img src="img/setting_delete_account.png" alt="Screenshot 6" style="width: 33%;" />
+</div>
 
  - Backstory: This app adds features of predicting personality from users of  large tweets(texts) which integrates android application with machine learning to make apps more smart. The app also has features which are helpful to find love ones and even make friends and be able to communicate.
  - It can be expanded and more features can be added. So if I feel to add more features or add new personality classifier model with better accuracy I will update it. Please use this resource for learning purpose only. 
