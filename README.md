@@ -9,12 +9,12 @@
 
 # UI
 
-<!-- <img src="img/get2.png" width="400"/>
+<!-- <img src="img/get_screen.png" width="400"/>
 <img src="img/marta.png" width="400">
 <img src="img/personality.png" width="400"/>
 <img src="img/sara.png" width="400"/>
 <img src="img/matchList.png" width="400"/>
-<img src="img/chat1.png" width="400"/>
+<img src="img/chat.png" width="400"/>
 <img src="img/profile.png" width="400"/>
 <img src="img/setting_delete_account.png" width="400"/> -->
 
