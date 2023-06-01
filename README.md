@@ -7,7 +7,7 @@
 - The user can like and dislike or swipe right and  left based of their preference using location, personality type, and other details of other users. 
 - Once the match is found the user be able to chat to facilitate communications. 
 
-#UI
+# UI
 
 <!-- <img src="img/get2.png" width="400"/>
 <img src="img/marta.png" width="400">
