@@ -1,4 +1,4 @@
-package com.txy822.android_personality_based_dating_app.model;
+package com.txy822.android_personality_based_dating_app.utils;
 import java.util.ArrayList;
 import java.util.HashMap;
 

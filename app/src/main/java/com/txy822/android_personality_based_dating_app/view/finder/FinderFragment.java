@@ -26,7 +26,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.txy822.android_personality_based_dating_app.R;
 import com.txy822.android_personality_based_dating_app.model.Profile;
-import com.txy822.android_personality_based_dating_app.model.TypeCompatibility;
+import com.txy822.android_personality_based_dating_app.utils.TypeCompatibility;
 import com.txy822.android_personality_based_dating_app.view.chat.ChatFragment;
 
 import java.util.ArrayList;
