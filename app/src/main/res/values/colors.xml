@@ -34,4 +34,12 @@
     <color name="green_blue">#03353C</color>
 
 
+    <color name="primaryColor">#FF4081</color>
+    <color name="buttonBackground">#FF4081</color>
+    <color name="buttonText">#FFFFFF</color>
+    <color name="background">#F5F5F5</color>
+
+    <color name="compatibilityBackground">#ECECEC</color>
+
+
 </resources>

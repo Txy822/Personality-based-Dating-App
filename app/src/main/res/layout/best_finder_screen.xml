@@ -24,6 +24,7 @@
                 android:layout_marginEnd="16dp"
                 android:shadowColor="@color/purple_700"
                 android:textColor="@color/white"
+                android:background="@drawable/backgrounds"
                 android:textColorHint="@color/white"
                 app:layout_constraintBottom_toTopOf="@+id/tv_user_location_id"
                 app:layout_constraintEnd_toStartOf="@+id/name_id"
@@ -37,7 +38,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/colorAccent"
-
+                android:background="@drawable/backgrounds"
                 app:layout_constraintBottom_toTopOf="@id/tv_personality_type_id"
                 app:layout_constraintEnd_toEndOf="@+id/tv_location_label_id"
                 app:layout_constraintEnd_toStartOf="@+id/tv_location_label_id"
@@ -53,6 +54,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginEnd="16dp"
+                android:background="@drawable/backgrounds"
                 android:textColor="@color/colorAccent"
                 app:layout_constraintBottom_toTopOf="@id/chat_btn_id"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -95,7 +97,7 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginEnd="8dp"
                 android:text="0% Match"
-
+                android:background="@drawable/backgrounds"
                 android:textColor="@color/Lime"
                 android:textSize="20sp"
                 app:layout_constraintBottom_toTopOf="@+id/summaryX"
@@ -109,7 +111,7 @@
                 android:layout_width="112dp"
                 android:layout_height="51dp"
                 android:layout_marginStart="16dp"
-
+                android:background="@drawable/backgrounds"
                 android:textColor="@color/quantum_yellow"
                 app:layout_constraintBottom_toTopOf="@+id/compatiblity"
                 app:layout_constraintStart_toStartOf="parent"
@@ -122,7 +124,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/white"
-
+                android:background="@drawable/backgrounds"
                 app:layout_constraintBottom_toTopOf="@id/iv_age_id"
                 app:layout_constraintEnd_toStartOf="@id/tv_personality_lable_id"
                 app:layout_constraintStart_toEndOf="@id/distanceView"
@@ -134,7 +136,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/white"
-
+                android:background="@drawable/backgrounds"
                 app:layout_constraintBottom_toTopOf="@id/summaryX"
                 app:layout_constraintEnd_toStartOf="@id/age_range_label_id"
                 app:layout_constraintStart_toEndOf="@id/compatiblity"
@@ -148,6 +150,7 @@
                 android:layout_marginEnd="16dp"
                 android:gravity="right"
                 android:text="Name"
+                android:background="@drawable/backgrounds"
                 android:textColor="@color/white"
                 app:layout_constraintBottom_toTopOf="@id/tv_location_label_id"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -160,7 +163,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="16dp"
                 android:gravity="right"
-
+                android:background="@drawable/backgrounds"
                 android:text="Location"
                 android:textColor="@color/white"
                 app:layout_constraintBottom_toTopOf="@id/tv_personality_lable_id"
@@ -175,7 +178,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="16dp"
                 android:gravity="end"
-
+                android:background="@drawable/backgrounds"
                 android:text="@string/age_range"
                 android:textColor="@color/white"
                 app:layout_constraintBottom_toTopOf="@id/summaryX"
@@ -189,7 +192,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="16dp"
                 android:gravity="right"
-
+                android:background="@drawable/backgrounds"
                 android:text="Personality"
                 android:textColor="@color/white"
                 app:layout_constraintBottom_toTopOf="@id/age_range_label_id"
@@ -204,6 +207,7 @@
                 android:src="@drawable/profile"
                 app:civ_border_color="#FF000000"
                 app:civ_border_width="2dp"
+
                 app:layout_constraintBottom_toTopOf="@+id/tv_user_name_id"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -216,6 +220,7 @@
                 android:layout_height="60dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginBottom="7dp"
+                android:background="@drawable/backgrounds"
                 android:contentDescription="location icon"
                 android:src="@drawable/location5"
                 app:layout_constraintBottom_toTopOf="@+id/distanceView"
@@ -232,6 +237,7 @@
                 android:layout_gravity="right|center_horizontal"
                 android:layout_marginStart="32dp"
                 android:layout_marginEnd="60dp"
+
                 android:layout_marginBottom="70dp"
                 android:background="@drawable/dislike2"
                 android:contentDescription="reject butn"
