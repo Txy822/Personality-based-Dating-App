@@ -18,104 +18,74 @@
 
 
             <TextView
-                android:id="@+id/tv_user_name_id"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="27dp"
-                android:shadowColor="@color/purple_700"
-                android:textColor="@color/white"
-                android:textColorHint="@color/white"
-                app:layout_constraintBottom_toTopOf="@+id/summaryX"
-                app:layout_constraintEnd_toStartOf="@+id/iv_age_id"
-                app:layout_constraintHorizontal_bias="0.19"
-                app:layout_constraintStart_toEndOf="@+id/compatiblity"
-                app:layout_constraintTop_toBottomOf="@+id/distanceView"
-                tools:ignore="MissingConstraints"
-                tools:text="name" />
-
-
-            <TextView
                 android:id="@+id/summaryX"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginEnd="16dp"
+                android:layout_marginBottom="72dp"
+                android:shadowColor="#000000"
+                android:shadowDx="1"
+                android:shadowDy="1"
+                android:shadowRadius="3"
                 android:textColor="@color/colorAccent"
+                android:textStyle="bold"
                 app:layout_constraintBottom_toTopOf="@+id/chat_btn_id"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_user_name_id"
                 tools:text="summary" />
 
             <ImageButton
                 android:id="@+id/acceptBtn"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
+                android:layout_width="60dp"
+                android:layout_height="71dp"
 
                 android:layout_marginEnd="69dp"
                 android:background="@drawable/like2"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/chat_btn_id"
-                app:layout_constraintTop_toBottomOf="@+id/iv_age_id" />
+                app:layout_constraintStart_toEndOf="@+id/chat_btn_id" />
 
             <ImageButton
                 android:id="@+id/chat_btn_id"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
+                android:layout_width="30dp"
+                android:layout_height="46dp"
 
                 android:layout_marginStart="183dp"
                 android:layout_marginEnd="69dp"
                 android:src="@drawable/chat_7"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/acceptBtn"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/summaryX" />
-
-            <TextView
-                android:id="@+id/compatiblity"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginEnd="187dp"
-                android:text="0% Match"
-                android:textColor="@color/Lime"
-                android:textSize="20sp"
-                app:layout_constraintBottom_toTopOf="@+id/summaryX"
-                app:layout_constraintEnd_toStartOf="@+id/iv_age_id"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/distanceView" />
-
+                app:layout_constraintStart_toStartOf="parent" />
 
 
             <TextView
                 android:id="@+id/iv_age_id"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="444dp"
+                android:layout_marginTop="584dp"
 
-                android:layout_marginEnd="79dp"
-                android:layout_marginBottom="46dp"
+                android:layout_marginEnd="44dp"
                 android:textColor="@color/white"
-                app:layout_constraintBottom_toTopOf="@+id/acceptBtn"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/compatiblity"
+                app:layout_constraintStart_toStartOf="@id/compatiblity"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:text="Age" />
 
             <ImageView
                 android:id="@+id/iv_profile_id"
-                android:layout_width="407dp"
-                android:layout_height="401dp"
-                android:layout_marginBottom="20dp"
+                android:layout_width="390dp"
+                android:layout_height="442dp"
+
+                android:layout_marginBottom="4dp"
                 android:background="@color/green_darkest"
                 android:src="@drawable/icon_profile"
                 app:civ_border_color="#FF000000"
                 app:civ_border_width="2dp"
-                app:layout_constraintBottom_toTopOf="@+id/compatiblity"
+                app:layout_constraintBottom_toTopOf="@+id/rejectBtn"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.444"
+                app:layout_constraintHorizontal_bias="0.238"
                 app:layout_constraintStart_toStartOf="parent"
                 tools:ignore="MissingConstraints" />
 
@@ -124,10 +94,9 @@
                 android:layout_width="48dp"
                 android:layout_height="48dp"
                 android:layout_marginStart="16dp"
-                android:src="@drawable/location5"
+                android:src="@drawable/ic_location_on_24"
                 app:layout_constraintBottom_toBottomOf="@id/iv_profile_id"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="1.0" />
 
             <ImageButton
@@ -141,7 +110,6 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/chat_btn_id"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/summaryX"
                 app:layout_marginTopPercent="40%"
                 app:layout_widthPercent="50%"
                 tools:ignore="MissingConstraints" />
@@ -151,43 +119,90 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="39dp"
-                android:layout_marginBottom="274dp"
+                android:shadowColor="#000000"
+                android:shadowDx="0"
+                android:shadowDy="2"
+                android:shadowRadius="3"
                 android:textColor="@color/white"
-                app:layout_constraintBottom_toTopOf="@+id/tv_user_location_id"
+                android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.046"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="1.0"
                 tools:text="Personality" />
 
             <TextView
                 android:id="@+id/tv_user_location_id"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="12dp"
+                android:layout_marginBottom="8dp"
+                android:shadowColor="#000000"
+                android:shadowDx="1"
+                android:shadowDy="1"
+                android:shadowRadius="3"
                 android:textColor="@color/colorAccent"
+                android:textStyle="bold"
                 app:layout_constraintBottom_toTopOf="@+id/iv_location_icon_id"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.052"
+                app:layout_constraintHorizontal_bias="0.05"
                 app:layout_constraintStart_toStartOf="parent"
                 tools:text="location" />
 
             <TextView
                 android:id="@+id/distanceView"
-                android:layout_width="109dp"
-                android:layout_height="38dp"
+                android:layout_width="118dp"
+                android:layout_height="30dp"
 
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="358dp"
-                android:layout_marginBottom="35dp"
+                android:shadowColor="#000000"
+                android:shadowDx="1"
+                android:shadowDy="1"
+                android:shadowRadius="3"
                 android:textColor="@color/quantum_yellow"
-                app:layout_constraintBottom_toTopOf="@+id/tv_user_name_id"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/iv_profile_id"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintHorizontal_bias="0.021"
                 app:layout_constraintStart_toEndOf="@id/iv_location_icon_id"
                 app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.977"
                 tools:text="_ km" />
+            <TextView
+                android:id="@+id/compatiblity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:shadowColor="#000000"
+                android:shadowDx="1"
+                android:shadowDy="1"
+                android:shadowRadius="3"
+                android:text="0% Match"
+                android:textColor="@color/Lime"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@+id/tv_user_location_id"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.049"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_personality_type_id"
+                app:layout_constraintVertical_bias="0.072" />
+
+            <TextView
+                android:id="@+id/tv_user_name_id"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:shadowColor="#000000"
+                android:shadowDx="1"
+                android:shadowDy="1"
+                android:shadowRadius="3"
+                android:text="name"
+                android:textColor="@color/white"
+                android:textColorHint="@color/white"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/iv_profile_id"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.763"
+                app:layout_constraintStart_toEndOf="@+id/distanceView"
+                app:layout_constraintTop_toTopOf="@+id/iv_profile_id"
+                app:layout_constraintVertical_bias="0.978" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
