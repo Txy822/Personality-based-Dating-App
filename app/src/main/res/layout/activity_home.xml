@@ -16,7 +16,11 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:tabBackground="@color/Aqua" />
+        app:tabMode="fixed"
+        app:tabGravity="fill"
+        app:tabIconTint="@color/green_darkest"
+        app:tabIndicatorColor="@color/Green"
+        app:tabBackground="@color/white" />
 
 
     <com.txy822.android_personality_based_dating_app.view.main.CustomViewPager

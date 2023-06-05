@@ -15,8 +15,6 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-
-
             <TextView
                 android:id="@+id/summaryX"
                 android:layout_width="0dp"
@@ -38,10 +36,12 @@
 
             <ImageButton
                 android:id="@+id/acceptBtn"
-                android:layout_width="60dp"
-                android:layout_height="71dp"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
 
                 android:layout_marginEnd="69dp"
+                android:layout_marginTop="30dp"
+
                 android:background="@drawable/like2"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -49,11 +49,13 @@
 
             <ImageButton
                 android:id="@+id/chat_btn_id"
-                android:layout_width="30dp"
-                android:layout_height="46dp"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
 
                 android:layout_marginStart="183dp"
                 android:layout_marginEnd="69dp"
+                android:layout_marginTop="30dp"
+
                 android:src="@drawable/chat_7"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/acceptBtn"
@@ -75,17 +77,17 @@
 
             <ImageView
                 android:id="@+id/iv_profile_id"
-                android:layout_width="390dp"
-                android:layout_height="442dp"
-
-                android:layout_marginBottom="4dp"
+                android:layout_width="413dp"
+                android:layout_height="600dp"
+                android:layout_marginBottom="40dp"
                 android:background="@color/green_darkest"
+                android:scaleType="fitXY"
                 android:src="@drawable/icon_profile"
                 app:civ_border_color="#FF000000"
                 app:civ_border_width="2dp"
                 app:layout_constraintBottom_toTopOf="@+id/rejectBtn"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.238"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 tools:ignore="MissingConstraints" />
 
@@ -106,7 +108,7 @@
                 android:layout_gravity="right|center_horizontal"
 
                 android:background="@drawable/dislike2"
-
+                android:layout_marginTop="30dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/chat_btn_id"
                 app:layout_constraintStart_toStartOf="parent"
@@ -120,6 +122,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="39dp"
                 android:shadowColor="#000000"
+                android:textSize="24sp"
+
                 android:shadowDx="0"
                 android:shadowDy="2"
                 android:shadowRadius="3"
@@ -166,6 +170,7 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.977"
                 tools:text="_ km" />
+
             <TextView
                 android:id="@+id/compatiblity"
                 android:layout_width="wrap_content"
@@ -176,14 +181,14 @@
                 android:shadowRadius="3"
                 android:text="0% Match"
                 android:textColor="@color/Lime"
-                android:textSize="20sp"
+                android:textSize="24sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toTopOf="@+id/tv_user_location_id"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.049"
+                app:layout_constraintHorizontal_bias="0.042"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tv_personality_type_id"
-                app:layout_constraintVertical_bias="0.072" />
+                app:layout_constraintVertical_bias="0.037" />
 
             <TextView
                 android:id="@+id/tv_user_name_id"
@@ -194,6 +199,7 @@
                 android:shadowDy="1"
                 android:shadowRadius="3"
                 android:text="name"
+                android:textSize="24sp"
                 android:textColor="@color/white"
                 android:textColorHint="@color/white"
                 android:textStyle="bold"
