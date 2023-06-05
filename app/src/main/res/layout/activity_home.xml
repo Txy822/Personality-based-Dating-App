@@ -18,11 +18,13 @@
         app:layout_constraintTop_toTopOf="parent"
         app:tabMode="fixed"
         app:tabGravity="fill"
-        app:tabIconTint="@color/green_darkest"
-        app:tabIndicatorColor="@color/Green"
-        app:tabBackground="@color/white" />
-
-
+        android:background="@android:color/white"
+        app:tabIconTint="@color/white"
+        app:tabTextColor="@color/white"
+        app:tabTextAppearance="@android:style/TextAppearance.DeviceDefault.Widget"
+        app:tabSelectedTextColor="@color/white"
+        app:tabIndicatorColor="@color/white"
+        app:tabBackground="@color/green_darkest" />
     <com.txy822.android_personality_based_dating_app.view.main.CustomViewPager
         android:id="@+id/home_view_page"
         android:layout_width="match_parent"
@@ -34,6 +36,4 @@
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tab" />
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>

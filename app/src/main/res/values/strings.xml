@@ -41,5 +41,9 @@
     </string>
     <string name="attachment_summary_off">Only download attachments when manually requested</string>
     <string name="age_range"><![CDATA[Age & Range]]></string>
+    <string name="finder">Finder</string>
+    <string name="profile">Profile</string>
+    <string name="type">Type</string>
+    <string name="setting">Settings</string>
 
 </resources>

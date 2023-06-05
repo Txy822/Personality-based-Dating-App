@@ -48,10 +48,10 @@ public class Home extends AppCompatActivity {
         homeView.setAdapter(adapter);
         homeTab.setupWithViewPager(homeView);
 //      access fragments for each tap layout
-        homeTab.getTabAt(0).setIcon(R.drawable.discover);
-        homeTab.getTabAt(1).setIcon(R.drawable.pfile2);
-        homeTab.getTabAt(2).setIcon(R.drawable.icon_personality);
-        homeTab.getTabAt(3).setIcon(R.drawable.setting);
+        homeTab.getTabAt(0).setIcon(R.drawable.discover).setText(R.string.finder);
+        homeTab.getTabAt(1).setIcon(R.drawable.pfile2).setText(R.string.profile);
+        homeTab.getTabAt(2).setIcon(R.drawable.icon_personality).setText(R.string.type);
+        homeTab.getTabAt(3).setIcon(R.drawable.setting).setText(R.string.setting);
 //      default home tap  as finder
         homeTab.selectTab(homeTab.getTabAt(0));
 
