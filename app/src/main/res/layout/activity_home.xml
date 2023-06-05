@@ -20,7 +20,7 @@
         app:tabGravity="fill"
         android:background="@android:color/white"
         app:tabIconTint="@color/white"
-        app:tabTextColor="@color/white"
+        app:tabTextColor="@color/Silver"
         app:tabTextAppearance="@android:style/TextAppearance.DeviceDefault.Widget"
         app:tabSelectedTextColor="@color/white"
         app:tabIndicatorColor="@color/white"
