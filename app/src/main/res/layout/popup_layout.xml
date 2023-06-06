@@ -1,19 +1,37 @@
 <!-- popup_layout.xml -->
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/green_darkest"
     android:layout_height="match_parent">
 
     <!-- Content of the pop-up screen -->
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="User Detail"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            android:layout_marginTop="16dp"
+            android:layout_centerHorizontal="true" />
     <TextView
         android:id="@+id/tvSummary"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Title"
+        android:text="Summary"
+        android:textSize="18sp"
+        android:textStyle="bold"
         android:textColor="@color/white"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="32sp"
+        android:layout_below="@+id/title"
         android:layout_centerHorizontal="true" />
 
     <TextView
@@ -21,20 +39,62 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@color/white"
-        android:text="Description"
+        android:text="Age"
+        android:textSize="18sp"
+        android:textStyle="bold"
+
         android:layout_below="@id/tvSummary"
         android:layout_marginTop="8dp"
         android:layout_centerHorizontal="true" />
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginStart="8dp"
+
+            android:layout_below="@+id/tvAge"
+            app:cardCornerRadius="50dp">
+
+            <ImageView
+                android:id="@+id/imageView1"
+                android:layout_width="413dp"
+                android:layout_height="500dp"
+                android:src="@drawable/place_holder_profile"
+                android:scaleType="centerCrop" />
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/card1"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+
+            app:cardCornerRadius="50dp">
+
+            <ImageView
+                android:id="@+id/imageView2"
+                android:layout_width="413dp"
+                android:layout_height="500dp"
+                android:src="@drawable/place_holder_profile"
+                android:scaleType="centerCrop" />
+
+        </androidx.cardview.widget.CardView>
     <!-- GridView for Images -->
     <GridView
         android:id="@+id/gridView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/tvAge"
+        android:layout_below="@id/card2"
         android:numColumns="3"
         android:horizontalSpacing="8dp"
-        android:verticalSpacing="8dp"
-        android:padding="8dp" />
+        android:verticalSpacing="8dp" />
 
 
     <ImageView
@@ -42,8 +102,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/ic_close"
+        android:scaleType="fitCenter"
         android:layout_alignParentEnd="true"
         android:layout_alignParentTop="true"
         android:layout_margin="16dp"/>
 
-</RelativeLayout>
+    </RelativeLayout>
+
+</ScrollView>

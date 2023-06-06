@@ -10,6 +10,7 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.GridView;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.PopupWindow;
@@ -66,6 +67,7 @@ public class FinderFragment extends Fragment {
     private Map<Profile, String> docIdMap;
     private int compatiblity = 0;
     private Profile currentUserProfile = null;
+    private Profile profile = null;
 
     //    for compatibility
     private TypeCompatibility typeCompatibility = new TypeCompatibility();
@@ -169,7 +171,7 @@ public class FinderFragment extends Fragment {
 //                        check if they are not equal and add to profile list and map
                             if (!docId.equals(userUID)) {
                                 //creates user profile  from the stored collection and adds to the profile list
-                                Profile profile = documentSnapshot.toObject(Profile.class).withId(docId);
+                                 profile = documentSnapshot.toObject(Profile.class).withId(docId);
                                 if (profile != null) {
                                     mProfileList.add(profile);
                                     docIdMap.put(profile, docId);
@@ -184,7 +186,7 @@ public class FinderFragment extends Fragment {
                         if (mProfileList.size() != 0) {
                             numberOfUser = mProfileList.size();
                             Log.i("Number of Users", Integer.toString(numberOfUser));
-                            Profile profile = mProfileList.get(pressedCounter);
+                             profile = mProfileList.get(pressedCounter);
                             //calculate  distance from longitude and lattitude
                             Double distance = calculateDistance(currentUserProfile.getLatitude(), currentUserProfile.getLongitude(), profile.getLatitude(), profile.getLongitude());
                             if (distance == 0) {
@@ -244,7 +246,7 @@ public class FinderFragment extends Fragment {
                         btnMore.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
-                                showPopupScreen();
+                                showPopupScreen(profile.getSummary(), profile.getAge().toString(), profile.getImg_url());
                             }
                         });
                     }
@@ -257,11 +259,26 @@ public class FinderFragment extends Fragment {
         return view;
     }
 
-    private void showPopupScreen() {
+    private void showPopupScreen(String summary, String age, String img_url) {
         View popUpView = getLayoutInflater().inflate(R.layout.popup_layout, null);
 
         // Get the "Close" button
         ImageView btnClose = popUpView.findViewById(R.id.btnClose);
+        TextView tvSummary = popUpView.findViewById(R.id.tvSummary);
+        TextView tvTitle = popUpView.findViewById(R.id.title);
+        TextView tvDescription = popUpView.findViewById(R.id.tvAge);
+        ImageView image1 = popUpView.findViewById(R.id.imageView1);
+        ImageView image2 = popUpView.findViewById(R.id.imageView2);
+        GridView gridView = popUpView.findViewById(R.id.gridView);
+        // Set the content for the additional TextViews
+
+        Glide.with(mContext).load(profile.getImg_url()).placeholder(R.drawable.place_holder_profile).into(image1);
+        Glide.with(mContext).load(profile.getImg_url()).placeholder(R.drawable.place_holder_profile).into(image2);
+
+        tvSummary.setText(summary);
+        tvTitle.setText(profile.getFullName()+" Details");
+        tvDescription.setText(age+" years old and interested in "+profile.getAgeRangePreference());
+
 
         // Create a PopupWindow
         popupWindow = new PopupWindow(popUpView, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT, true);
@@ -410,7 +427,7 @@ public class FinderFragment extends Fragment {
             pressedCounter = 0;
         }
 
-        Profile profile = mProfileList.get(pressedCounter);
+         profile = mProfileList.get(pressedCounter);
         Double distance = calculateDistance(currentUserProfile.getLatitude(), currentUserProfile.getLongitude(), profile.getLatitude(), profile.getLongitude());
 
         if (distance == 0) {
@@ -461,7 +478,7 @@ public class FinderFragment extends Fragment {
         if (pressedCounter >= numberOfUser) {
             pressedCounter = 0;
         }
-        Profile profile = mProfileList.get(pressedCounter);
+         profile = mProfileList.get(pressedCounter);
 
 
         Double distance = 0.0;
