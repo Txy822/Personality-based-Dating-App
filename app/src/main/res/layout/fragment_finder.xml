@@ -34,24 +34,6 @@
                 app:layout_constraintStart_toStartOf="parent"
                 tools:text="summary" />
 
-            <TextView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_marginTop="39dp"
-                android:shadowColor="#000000"
-                android:textSize="24sp"
-
-                android:shadowDx="0"
-                android:shadowDy="2"
-                android:shadowRadius="3"
-                android:textStyle="bold"
-                android:background="@color/Red"
-                android:text="Kkk"
-                android:textColor="@color/white"
-                tools:ignore="MissingConstraints"
-                tools:layout_editor_absoluteX="263dp"
-                tools:layout_editor_absoluteY="37dp" />
-
             <ImageButton
                 android:id="@+id/rejectBtn"
                 android:layout_width="50dp"
