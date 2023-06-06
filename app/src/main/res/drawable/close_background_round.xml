@@ -1,0 +1,35 @@
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <solid android:color="#F11909" /> <!-- Set the desired background color -->
+    <corners android:radius="50dp" /> <!-- Set the desired radius for a circle shape -->
+</shape>
+
+
+
+    <!--<?xml version="1.0" encoding="utf-8"?>-->
+<!--<shape xmlns:android="http://schemas.android.com/apk/res/android"-->
+<!--    android:shape="rectangle">-->
+<!--    <corners android:radius="1000dp" />-->
+<!--    <solid android:color="#41ba7a" />-->
+<!--    <stroke-->
+<!--        android:width="2dip"-->
+<!--        android:color="#03ae3c" />-->
+<!--    <padding-->
+<!--        android:bottom="4dp"-->
+<!--        android:left="4dp"-->
+<!--        android:right="4dp"-->
+<!--        android:top="4dp" />-->
+<!--</shape>-->
+
+<!--<?xml version="1.0" encoding="utf-8"?>-->
+<!--<vector xmlns:android="http://schemas.android.com/apk/res/android"-->
+<!--    android:width="200dp"-->
+<!--    android:height="200dp"-->
+<!--    android:viewportHeight="64"-->
+<!--    android:viewportWidth="64">-->
+
+<!--    <path-->
+<!--        android:fillColor="#ff00ff"-->
+<!--        android:pathData="M22,32-->
+<!--        A10,10 0 1,1 42,32-->
+<!--        A10,10 0 1,1 22,32 Z" />-->
+<!--</vector>-->

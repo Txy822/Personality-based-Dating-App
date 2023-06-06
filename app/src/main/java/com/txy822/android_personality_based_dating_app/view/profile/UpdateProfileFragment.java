@@ -42,7 +42,6 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.txy822.android_personality_based_dating_app.BuildConfig;
 import com.txy822.android_personality_based_dating_app.R;
-import com.txy822.android_personality_based_dating_app.view.profile.ViewProfileFragment;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -326,7 +325,7 @@ public class UpdateProfileFragment extends Fragment {
                     }
 
                     if (img_url_set != null) {
-                        Glide.with(requireContext()).load(img_url_set).placeholder(R.drawable.profile).into(profile_img);
+                        Glide.with(requireContext()).load(img_url_set).placeholder(R.drawable.place_holder_profile).into(profile_img);
                         // profile_img.setImageURI(Uri.parse(img_url_set));
                     } else {
                         Toast.makeText(requireContext(), "Please upload profile photo", Toast.LENGTH_SHORT).show();
@@ -383,7 +382,7 @@ public class UpdateProfileFragment extends Fragment {
 //                final InputStream imageStream = getContentResolver().openInputStream(imageUri);
 //                final Bitmap selectedImage = BitmapFactory.decodeStream(imageStream);
                         //display image
-                        Glide.with(requireContext()).load(imageUri).placeholder(R.drawable.profile).into(profile_img);
+                        Glide.with(requireContext()).load(imageUri).placeholder(R.drawable.place_holder_profile).into(profile_img);
                         // Picasso.with(this).load(url).into(profile_img);
                         //profile_img.setImageURI(url);
 

@@ -21,7 +21,7 @@
             android:id="@+id/match_img"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:src="@drawable/icon_app" />
+            android:src="@drawable/ic_app" />
 
         <TextView
             android:id="@+id/match_name"

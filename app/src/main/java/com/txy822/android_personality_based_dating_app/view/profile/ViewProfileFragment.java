@@ -172,7 +172,7 @@ public class ViewProfileFragment extends Fragment {
                             summary.setText(summary_set);
                         }
                         if (img_url_set != null) {
-                            Glide.with(requireContext()).load(img_url_set).placeholder(R.drawable.profile).into(profile_img);
+                            Glide.with(requireContext()).load(img_url_set).placeholder(R.drawable.place_holder_profile).into(profile_img);
                             //profile_img.setImageURI(Uri.parse(img_url_set));
                         }
 

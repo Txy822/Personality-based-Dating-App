@@ -62,7 +62,7 @@ public class FcmNotificationSender  {
             JSONObject notiObject = new JSONObject();
             notiObject.put("title", title);
             notiObject.put("body", body);
-            notiObject.put("icon", R.drawable.icon_app);
+            notiObject.put("icon", R.drawable.ic_app);
 
             mainObj.put("notification", notiObject);
             JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, postUrl, mainObj, new Response.Listener<JSONObject>() {

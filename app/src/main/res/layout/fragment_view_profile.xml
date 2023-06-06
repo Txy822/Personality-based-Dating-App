@@ -218,7 +218,7 @@
                 android:layout_marginEnd="24dp"
                 android:layout_marginBottom="16dp"
                 android:foregroundGravity="clip_horizontal|center"
-                android:src="@drawable/profile"
+                android:src="@drawable/place_holder_profile"
                 app:civ_border_color="#FF000000"
                 app:civ_border_width="2dp"
                 app:layout_constraintBottom_toTopOf="@id/tv_full_name_label"

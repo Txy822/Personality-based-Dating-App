@@ -3,7 +3,6 @@ package com.txy822.android_personality_based_dating_app.view.main;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
-import android.graphics.Color;
 import android.os.Bundle;
 
 import com.google.android.material.tabs.TabLayout;
@@ -49,9 +48,9 @@ public class Home extends AppCompatActivity {
         homeTab.setupWithViewPager(homeView);
 //      access fragments for each tap layout
         homeTab.getTabAt(0).setIcon(R.drawable.discover).setText(R.string.finder);
-        homeTab.getTabAt(1).setIcon(R.drawable.pfile2).setText(R.string.profile);
+        homeTab.getTabAt(1).setIcon(R.drawable.ic_profile).setText(R.string.profile);
         homeTab.getTabAt(2).setIcon(R.drawable.icon_personality).setText(R.string.type);
-        homeTab.getTabAt(3).setIcon(R.drawable.setting).setText(R.string.setting);
+        homeTab.getTabAt(3).setIcon(R.drawable.ic_setting).setText(R.string.setting);
 //      default home tap  as finder
         homeTab.selectTab(homeTab.getTabAt(0));
 

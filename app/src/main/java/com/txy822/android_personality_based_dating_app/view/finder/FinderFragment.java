@@ -185,7 +185,7 @@ public class FinderFragment extends Fragment {
 
 //                      add user and user details on finder fragment view
                             Glide.with(mContext).load(profile.getImg_url())
-                                    .placeholder(R.drawable.profile)
+                                    .placeholder(R.drawable.place_holder_profile)
                                     .into(profile_picture);
                             setUserDetail(profile);
                             //add comaptibility
@@ -371,7 +371,7 @@ public class FinderFragment extends Fragment {
 //                        distanceView.setText(String.valueOf(distance));
         }
 
-        Glide.with(mContext).load(profile.getImg_url()).placeholder(R.drawable.profile).into(profile_picture);
+        Glide.with(mContext).load(profile.getImg_url()).placeholder(R.drawable.place_holder_profile).into(profile_picture);
         setUserDetail(profile);
         compatiblity = typeCompatibility.getCompatibility(currentUserProfile.getPersonalityType(), profile.getPersonalityType());
         if (compatiblity == 0) {
@@ -425,7 +425,7 @@ public class FinderFragment extends Fragment {
 //                        distanceView.setText(String.valueOf(distance));
         }
 
-        Glide.with(mContext).load(profile.getImg_url()).placeholder(R.drawable.profile).into(profile_picture);
+        Glide.with(mContext).load(profile.getImg_url()).placeholder(R.drawable.place_holder_profile).into(profile_picture);
         setUserDetail(profile);
         compatiblity = typeCompatibility.getCompatibility(currentUserProfile.getPersonalityType(), profile.getPersonalityType());
         if (compatiblity == 0) {

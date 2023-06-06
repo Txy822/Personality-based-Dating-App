@@ -19,7 +19,6 @@ import android.os.Vibrator;
 
 
 import com.txy822.android_personality_based_dating_app.R;
-import com.txy822.android_personality_based_dating_app.view.chat.ChatActivity;
 import com.txy822.android_personality_based_dating_app.view.main.StartApp;
 
 /**
@@ -74,7 +73,7 @@ public class MyFirebaseMessagingService extends com.google.firebase.messaging.Fi
         builder.setContentIntent(pendingIntent);
         builder.setStyle(new NotificationCompat.BigTextStyle().bigText(remoteMessage.getNotification().getBody()));
         builder.setAutoCancel(true);
-        builder.setSmallIcon(R.drawable.icon_app);
+        builder.setSmallIcon(R.drawable.ic_app);
         //priority of the notification
         builder.setPriority(Notification.PRIORITY_MAX);
 

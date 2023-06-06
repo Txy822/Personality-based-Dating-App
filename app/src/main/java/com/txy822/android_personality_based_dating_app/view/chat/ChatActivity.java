@@ -159,7 +159,7 @@ public class ChatActivity extends AppCompatActivity {
             }
         });
         toolbar_chat.setTitle(" chat with " +current_username );
-        toolbar_chat.setLogo(R.drawable.icon_app);
+        toolbar_chat.setLogo(R.drawable.ic_app);
         toolbar_chat.setNavigationIcon(R.drawable.ic_arrow_back);
         toolbar_chat.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
