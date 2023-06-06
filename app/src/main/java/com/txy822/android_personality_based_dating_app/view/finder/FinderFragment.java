@@ -1,14 +1,18 @@
 package com.txy822.android_personality_based_dating_app.view.finder;
 
 import android.content.Context;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -41,6 +45,8 @@ import java.util.Map;
  */
 public class FinderFragment extends Fragment {
 
+
+    private PopupWindow popupWindow;
     private ImageView profile_picture;
 
     private TextView user_name;
@@ -105,7 +111,13 @@ public class FinderFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_finder, container, false);
+        View view = inflater.inflate(R.layout.fragment_finder2, container, false);
+        // Inflate the pop-up layout
+        View popUpView = inflater.inflate(R.layout.popup_layout, container, false);
+
+        // Get the "X" button
+        ImageView btnMore = view.findViewById(R.id.more);
+
 //        View view = inflater.inflate(R.layout.fragment_finder, container, false);
         typeCompatibility = new TypeCompatibility();
 
@@ -115,10 +127,10 @@ public class FinderFragment extends Fragment {
 //        to display the user information
         user_location = view.findViewById(R.id.tv_user_location_id);
         user_personality = view.findViewById(R.id.tv_personality_type_id);
-        user_summary = view.findViewById(R.id.summaryX);
+       // user_summary = view.findViewById(R.id.summaryX);
         distanceView = view.findViewById(R.id.distanceView);
         user_name = view.findViewById(R.id.tv_user_name_id);
-        user_age_and_age_range = view.findViewById(R.id.iv_age_id);
+      //  user_age_and_age_range = view.findViewById(R.id.iv_age_id);
 
         //sets compatibility map
         typeCompatibility.setCompatibilityMap(types);
@@ -229,12 +241,49 @@ public class FinderFragment extends Fragment {
                                 //do for checking if both are liked each other and other personality requirements
                             }
                         });
+                        btnMore.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                showPopupScreen();
+                            }
+                        });
                     }
                 }
             });
         }
+        else {
+            Log.e("Tag", "No data");
+        }
         return view;
     }
+
+    private void showPopupScreen() {
+        View popUpView = getLayoutInflater().inflate(R.layout.popup_layout, null);
+
+        // Get the "Close" button
+        ImageView btnClose = popUpView.findViewById(R.id.btnClose);
+
+        // Create a PopupWindow
+        popupWindow = new PopupWindow(popUpView, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT, true);
+
+        // Set background and animation for the PopupWindow
+        popupWindow.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        popupWindow.setAnimationStyle(android.R.style.Animation_Dialog);
+
+        // Set click listener for the "Close" button
+        btnClose.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Dismiss the pop-up window
+                popupWindow.dismiss();
+            }
+        });
+
+        // Show the pop-up window
+        popupWindow.showAtLocation(getView(), Gravity.CENTER, 0, 0);
+    }
+
+
 
     /**
      * Stores liked lists to users collection and deleted once both liked each other
@@ -400,8 +449,8 @@ public class FinderFragment extends Fragment {
             user_name.setText(profile.getFullName());
         }
 
-        user_age_and_age_range.setText(profile.getAge() + " & " + profile.getAgeRangePreference());
-        user_summary.setText("Summary: " + profile.getSummary());
+      //  user_age_and_age_range.setText(profile.getAge() + " & " + profile.getAgeRangePreference());
+        //user_summary.setText("Summary: " + profile.getSummary());
     }
 
     /**
@@ -477,6 +526,14 @@ public class FinderFragment extends Fragment {
 
     private double deg2rad(double lat1) {
         return (lat1 * Math.PI / 180.0);
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        if (popupWindow != null && popupWindow.isShowing()) {
+            popupWindow.dismiss();
+        }
     }
 
 
