@@ -2,7 +2,6 @@
     <solid android:color="#000000" /> <!-- Set the desired background color -->
     <stroke
         android:width="2dp"
-        android:color="#009688"/>
+        android:color="#03A9F4"/>
     <corners android:radius="50dp" /> <!-- Set the desired radius for a circle shape -->
 </shape>
-

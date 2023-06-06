@@ -36,8 +36,8 @@
 
             <ImageButton
                 android:id="@+id/rejectBtn"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
                 android:layout_gravity="right|center_horizontal"
 
                 android:background="@drawable/close_background_round"
@@ -46,23 +46,29 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/chat_btn_id"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_marginTopPercent="40%"
-                app:layout_widthPercent="50%"
                 tools:ignore="MissingConstraints" />
 
             <ImageButton
                 android:id="@+id/acceptBtn"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-
-                android:layout_marginEnd="69dp"
-                android:layout_marginTop="30dp"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
 
                 android:background="@drawable/check_background_round"
                 android:src="@drawable/ic_check"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/chat_btn_id" />
+
+            <ImageButton
+                android:id="@+id/chat_btn_id"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:background="@drawable/chat_background_round"
+                android:src="@drawable/ic_chat"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/acceptBtn"
+                app:layout_constraintStart_toEndOf="@id/rejectBtn" />
+
             <ImageView
                 android:id="@+id/iv_location_icon_id"
                 android:layout_width="50dp"
@@ -73,22 +79,6 @@
                 app:layout_constraintBottom_toBottomOf="@id/iv_profile_id"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintVertical_bias="1.0" />
-
-
-
-            <ImageButton
-                android:id="@+id/chat_btn_id"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-
-                android:layout_marginStart="183dp"
-                android:layout_marginEnd="69dp"
-                android:layout_marginTop="30dp"
-
-                android:src="@drawable/chat_icon"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/acceptBtn"
-                app:layout_constraintStart_toStartOf="parent" />
 
 
             <TextView
