@@ -15,24 +15,22 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-            <TextView
-                android:id="@+id/summaryX"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginEnd="16dp"
-                android:layout_marginBottom="72dp"
-                android:shadowColor="#000000"
-                android:shadowDx="1"
-                android:shadowDy="1"
-                android:shadowRadius="3"
-                android:textColor="@color/colorAccent"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toTopOf="@+id/chat_btn_id"
+
+            <ImageView
+                android:id="@+id/iv_profile_id"
+                android:layout_width="413dp"
+                android:layout_height="600dp"
+                android:layout_marginBottom="30dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/place_holder_profile"
+                android:foreground="@drawable/gradient_bg"
+                app:civ_border_color="#FF000000"
+                app:civ_border_width="2dp"
+                app:layout_constraintBottom_toTopOf="@+id/rejectBtn"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                tools:text="summary" />
+                tools:ignore="MissingConstraints" />
 
             <ImageButton
                 android:id="@+id/rejectBtn"
@@ -69,48 +67,34 @@
                 app:layout_constraintEnd_toStartOf="@+id/acceptBtn"
                 app:layout_constraintStart_toEndOf="@id/rejectBtn" />
 
+            .
+
+            <ImageButton
+                android:id="@+id/more"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:background="@android:color/transparent"
+                android:src="@drawable/ic_more_horizontal"
+                app:layout_constraintBottom_toTopOf="@+id/tv_user_name_id"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toEndOf="@+id/tv_personality_type_id"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.0" />
+
             <ImageView
                 android:id="@+id/iv_location_icon_id"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_marginStart="16dp"
-                android:background="@color/white"
+                android:layout_marginBottom="16dp"
+
+                android:background="@android:color/transparent"
                 android:src="@drawable/ic_location"
+
                 app:layout_constraintBottom_toBottomOf="@id/iv_profile_id"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintVertical_bias="1.0" />
-
-
-            <TextView
-                android:id="@+id/iv_age_id"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="584dp"
-
-                android:layout_marginEnd="44dp"
-                android:textColor="@color/white"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="@id/compatiblity"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:text="Age" />
-
-            <ImageView
-                android:id="@+id/iv_profile_id"
-                android:layout_width="413dp"
-                android:layout_height="600dp"
-                android:layout_marginBottom="30dp"
-                android:scaleType="fitXY"
-                android:src="@drawable/place_holder_profile"
-                android:foreground="@drawable/gradient_bg"
-                app:civ_border_color="#FF000000"
-                app:civ_border_width="2dp"
-                app:layout_constraintBottom_toTopOf="@+id/rejectBtn"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                tools:ignore="MissingConstraints" />
-
-
 
             <TextView
                 android:id="@+id/tv_personality_type_id"
@@ -206,255 +190,7 @@
                 app:layout_constraintTop_toTopOf="@+id/iv_profile_id"
                 app:layout_constraintVertical_bias="0.978" />
 
+
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>
-<!--<?xml version="1.0" encoding="utf-8"?>-->
-<!--<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
-<!--    xmlns:app="http://schemas.android.com/apk/res-auto"-->
-<!--    xmlns:tools="http://schemas.android.com/tools"-->
-<!--    android:id="@+id/finderFragmentLayout"-->
-<!--    android:layout_width="match_parent"-->
-<!--    android:layout_height="match_parent"-->
-<!--    android:background="@color/green_darkest"-->
-<!--    tools:context=".view.finder.FinderFragment">-->
-
-<!--    <ScrollView-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="match_parent">-->
-
-<!--        <androidx.constraintlayout.widget.ConstraintLayout-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="match_parent">-->
-
-
-<!--            <TextView-->
-<!--                android:id="@+id/tv_user_name_id"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_marginEnd="16dp"-->
-<!--                android:shadowColor="@color/purple_700"-->
-<!--                android:textColor="@color/white"-->
-<!--                android:textColorHint="@color/white"-->
-<!--                app:layout_constraintBottom_toTopOf="@+id/tv_user_location_id"-->
-<!--                app:layout_constraintEnd_toStartOf="@+id/name_id"-->
-<!--                app:layout_constraintStart_toEndOf="@id/distanceView"-->
-<!--                app:layout_constraintTop_toBottomOf="@id/iv_profile_id"-->
-<!--                tools:ignore="MissingConstraints"-->
-<!--                tools:text="name" />-->
-
-<!--            <TextView-->
-<!--                android:id="@+id/tv_user_location_id"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:textColor="@color/colorAccent"-->
-
-<!--                app:layout_constraintBottom_toTopOf="@id/tv_personality_type_id"-->
-<!--                app:layout_constraintEnd_toEndOf="@+id/tv_location_label_id"-->
-<!--                app:layout_constraintEnd_toStartOf="@+id/tv_location_label_id"-->
-<!--                app:layout_constraintHorizontal_bias="0.5"-->
-<!--                app:layout_constraintHorizontal_chainStyle="spread"-->
-<!--                app:layout_constraintStart_toEndOf="@id/distanceView"-->
-<!--                app:layout_constraintTop_toBottomOf="@id/tv_user_name_id"-->
-<!--                tools:text="location" />-->
-
-<!--            <TextView-->
-<!--                android:id="@+id/summaryX"-->
-<!--                android:layout_width="0dp"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_marginStart="16dp"-->
-<!--                android:layout_marginEnd="16dp"-->
-<!--                android:textColor="@color/colorAccent"-->
-<!--                app:layout_constraintBottom_toTopOf="@id/chat_btn_id"-->
-<!--                app:layout_constraintEnd_toEndOf="parent"-->
-<!--                app:layout_constraintStart_toStartOf="parent"-->
-<!--                app:layout_constraintTop_toBottomOf="@id/iv_age_id"-->
-<!--                tools:text="summary" />-->
-
-<!--            <ImageButton-->
-<!--                android:id="@+id/acceptBtn"-->
-<!--                android:layout_width="45dp"-->
-<!--                android:layout_height="45dp"-->
-
-<!--                android:layout_marginEnd="32dp"-->
-<!--                android:layout_marginBottom="70dp"-->
-<!--                android:background="@drawable/like2"-->
-<!--                app:layout_constraintBottom_toBottomOf="parent"-->
-<!--                app:layout_constraintEnd_toEndOf="parent"-->
-<!--                app:layout_constraintHorizontal_bias="0.5"-->
-<!--                app:layout_constraintStart_toEndOf="@+id/chat_btn_id"-->
-<!--                app:layout_constraintTop_toBottomOf="@id/summaryX" />-->
-
-<!--            <ImageButton-->
-<!--                android:id="@+id/chat_btn_id"-->
-<!--                android:layout_width="45dp"-->
-<!--                android:layout_height="45dp"-->
-<!--                android:layout_marginEnd="60dp"-->
-
-<!--                android:layout_marginBottom="70dp"-->
-<!--                android:src="@drawable/chat_7"-->
-<!--                app:layout_constraintBottom_toBottomOf="parent"-->
-<!--                app:layout_constraintEnd_toStartOf="@+id/acceptBtn"-->
-<!--                app:layout_constraintHorizontal_bias="0.5"-->
-<!--                app:layout_constraintStart_toEndOf="@+id/rejectBtn"-->
-<!--                app:layout_constraintTop_toBottomOf="@id/summaryX" />-->
-
-<!--            <TextView-->
-<!--                android:id="@+id/compatiblity"-->
-<!--                android:layout_width="104dp"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_marginStart="16dp"-->
-<!--                android:layout_marginEnd="8dp"-->
-<!--                android:text="0% Match"-->
-
-<!--                android:textColor="@color/Lime"-->
-<!--                android:textSize="20sp"-->
-<!--                app:layout_constraintBottom_toTopOf="@+id/summaryX"-->
-<!--                app:layout_constraintEnd_toStartOf="@+id/iv_age_id"-->
-<!--                app:layout_constraintStart_toStartOf="parent"-->
-<!--                app:layout_constraintTop_toBottomOf="@+id/distanceView"-->
-<!--                app:layout_constraintVertical_bias="0.5" />-->
-
-<!--            <TextView-->
-<!--                android:id="@+id/distanceView"-->
-<!--                android:layout_width="112dp"-->
-<!--                android:layout_height="51dp"-->
-<!--                android:layout_marginStart="16dp"-->
-
-<!--                android:textColor="@color/quantum_yellow"-->
-<!--                app:layout_constraintBottom_toTopOf="@+id/compatiblity"-->
-<!--                app:layout_constraintStart_toStartOf="parent"-->
-<!--                app:layout_constraintTop_toBottomOf="@+id/tv_user_name_id"-->
-<!--                app:layout_constraintVertical_bias="0.5"-->
-<!--                tools:text="_ km" />-->
-
-<!--            <TextView-->
-<!--                android:id="@+id/tv_personality_type_id"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:textColor="@color/white"-->
-
-<!--                app:layout_constraintBottom_toTopOf="@id/iv_age_id"-->
-<!--                app:layout_constraintEnd_toStartOf="@id/tv_personality_lable_id"-->
-<!--                app:layout_constraintStart_toEndOf="@id/distanceView"-->
-<!--                app:layout_constraintTop_toBottomOf="@id/tv_user_location_id"-->
-<!--                tools:text="Personality" />-->
-
-<!--            <TextView-->
-<!--                android:id="@+id/iv_age_id"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:textColor="@color/white"-->
-
-<!--                app:layout_constraintBottom_toTopOf="@id/summaryX"-->
-<!--                app:layout_constraintEnd_toStartOf="@id/age_range_label_id"-->
-<!--                app:layout_constraintStart_toEndOf="@id/compatiblity"-->
-<!--                app:layout_constraintTop_toBottomOf="@id/tv_personality_type_id"-->
-<!--                tools:text="Age" />-->
-
-<!--            <TextView-->
-<!--                android:id="@+id/name_id"-->
-<!--                android:layout_width="0dp"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_marginEnd="16dp"-->
-<!--                android:gravity="right"-->
-<!--                android:text="Name"-->
-<!--                android:textColor="@color/white"-->
-<!--                app:layout_constraintBottom_toTopOf="@id/tv_location_label_id"-->
-<!--                app:layout_constraintEnd_toEndOf="parent"-->
-<!--                app:layout_constraintStart_toEndOf="@id/tv_user_name_id"-->
-<!--                app:layout_constraintTop_toBottomOf="@id/iv_profile_id" />-->
-
-<!--            <TextView-->
-<!--                android:id="@+id/tv_location_label_id"-->
-<!--                android:layout_width="0dp"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_marginEnd="16dp"-->
-<!--                android:gravity="right"-->
-
-<!--                android:text="Location"-->
-<!--                android:textColor="@color/white"-->
-<!--                app:layout_constraintBottom_toTopOf="@id/tv_personality_lable_id"-->
-<!--                app:layout_constraintEnd_toEndOf="parent"-->
-<!--                app:layout_constraintHorizontal_bias="0.5"-->
-<!--                app:layout_constraintStart_toEndOf="@+id/tv_user_location_id"-->
-<!--                app:layout_constraintTop_toBottomOf="@id/name_id" />-->
-
-<!--            <TextView-->
-<!--                android:id="@+id/age_range_label_id"-->
-<!--                android:layout_width="0dp"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_marginEnd="16dp"-->
-<!--                android:gravity="end"-->
-
-<!--                android:text="@string/age_range"-->
-<!--                android:textColor="@color/white"-->
-<!--                app:layout_constraintBottom_toTopOf="@id/summaryX"-->
-<!--                app:layout_constraintEnd_toEndOf="parent"-->
-<!--                app:layout_constraintStart_toEndOf="@id/iv_age_id"-->
-<!--                app:layout_constraintTop_toBottomOf="@id/tv_personality_lable_id" />-->
-
-<!--            <TextView-->
-<!--                android:id="@+id/tv_personality_lable_id"-->
-<!--                android:layout_width="0dp"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_marginEnd="16dp"-->
-<!--                android:gravity="right"-->
-
-<!--                android:text="Personality"-->
-<!--                android:textColor="@color/white"-->
-<!--                app:layout_constraintBottom_toTopOf="@id/age_range_label_id"-->
-<!--                app:layout_constraintEnd_toEndOf="parent"-->
-<!--                app:layout_constraintStart_toEndOf="@id/tv_personality_type_id"-->
-<!--                app:layout_constraintTop_toBottomOf="@id/tv_location_label_id" />-->
-
-<!--            <ImageView-->
-<!--                android:id="@+id/iv_profile_id"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="300dp"-->
-<!--                android:src="@drawable/profile"-->
-<!--                app:civ_border_color="#FF000000"-->
-<!--                app:civ_border_width="2dp"-->
-<!--                app:layout_constraintBottom_toTopOf="@+id/tv_user_name_id"-->
-<!--                app:layout_constraintEnd_toEndOf="parent"-->
-<!--                app:layout_constraintStart_toStartOf="parent"-->
-<!--                app:layout_constraintTop_toTopOf="parent"-->
-<!--                tools:ignore="MissingConstraints" />-->
-
-<!--            <ImageButton-->
-<!--                android:id="@+id/iv_location_icon_id"-->
-<!--                android:layout_width="60dp"-->
-<!--                android:layout_height="60dp"-->
-<!--                android:layout_marginStart="16dp"-->
-<!--                android:layout_marginBottom="7dp"-->
-<!--                android:src="@drawable/location5"-->
-<!--                app:layout_constraintBottom_toTopOf="@+id/distanceView"-->
-<!--                app:layout_constraintEnd_toStartOf="@+id/tv_user_name_id"-->
-<!--                app:layout_constraintHorizontal_bias="0.0"-->
-<!--                app:layout_constraintStart_toStartOf="parent"-->
-<!--                app:layout_constraintTop_toBottomOf="@+id/iv_profile_id"-->
-<!--                app:layout_constraintVertical_bias="1.0" />-->
-
-<!--            <ImageButton-->
-<!--                android:id="@+id/rejectBtn"-->
-<!--                android:layout_width="45dp"-->
-<!--                android:layout_height="40dp"-->
-<!--                android:layout_gravity="right|center_horizontal"-->
-
-<!--                android:layout_marginStart="32dp"-->
-<!--                android:layout_marginEnd="60dp"-->
-<!--                android:layout_marginBottom="70dp"-->
-<!--                android:background="@drawable/dislike2"-->
-
-<!--                app:layout_constraintBottom_toBottomOf="parent"-->
-<!--                app:layout_constraintEnd_toStartOf="@+id/chat_btn_id"-->
-<!--                app:layout_constraintHorizontal_bias="0.5"-->
-<!--                app:layout_constraintStart_toStartOf="parent"-->
-<!--                app:layout_constraintTop_toBottomOf="@id/summaryX"-->
-<!--                app:layout_marginTopPercent="40%"-->
-<!--                app:layout_widthPercent="50%"-->
-<!--                tools:ignore="MissingConstraints" />-->
-
-<!--        </androidx.constraintlayout.widget.ConstraintLayout>-->
-<!--    </ScrollView>-->
-<!--</androidx.constraintlayout.widget.ConstraintLayout>-->

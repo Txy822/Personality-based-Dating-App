@@ -1,19 +1,6 @@
 package com.txy822.android_personality_based_dating_app.view.chat;
 
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.messaging.FirebaseMessaging;
-import com.txy822.android_personality_based_dating_app.view.notification.FcmNotificationSender;
-import com.txy822.android_personality_based_dating_app.R;
-import com.txy822.android_personality_based_dating_app.presenter.adapter.ChatRecyclerAdapter;
-
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -22,7 +9,14 @@ import android.widget.ImageView;
 import android.widget.Toast;
 import android.widget.Toolbar;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentChange;
@@ -33,7 +27,11 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firebase.messaging.FirebaseMessaging;
+import com.txy822.android_personality_based_dating_app.R;
 import com.txy822.android_personality_based_dating_app.model.Chat;
+import com.txy822.android_personality_based_dating_app.presenter.adapter.ChatRecyclerAdapter;
+import com.txy822.android_personality_based_dating_app.view.notification.FcmNotificationSender;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -97,6 +95,7 @@ public class ChatActivity extends AppCompatActivity {
         mChatRecyclerView.setAdapter(mChatRecyclerAdapter);
         //gets the current user or device token from firebase cloud messaging (FCM) for user- sign in device
         currentUserToken = getTokenInstance();
+        getUserName();
         //Creates collection to store conversation detail on cloud based firebaseFirestore database
         mStore.collection("Message").orderBy("time_stamp", Query.Direction.ASCENDING).addSnapshotListener(new EventListener<QuerySnapshot>() {
             @Override
@@ -158,15 +157,6 @@ public class ChatActivity extends AppCompatActivity {
                 }
             }
         });
-        toolbar_chat.setTitle(" chat with " +current_username );
-        toolbar_chat.setLogo(R.drawable.ic_app);
-        toolbar_chat.setNavigationIcon(R.drawable.ic_arrow_back);
-        toolbar_chat.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onBackPressed();
-            }
-        });
     }
 
     /**
@@ -223,6 +213,35 @@ public class ChatActivity extends AppCompatActivity {
                         }
                     }
                 });
+    }
+    private void getUserName(){
+        mStore.collection("Users").document(mAuth.getCurrentUser().getUid()).get()
+                .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                                           @Override
+                                           public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                                               if (task.isSuccessful()) {
+                                                   if (task.getResult() != null && task.getResult().getData() != null) {
+                                                       current_user_id = mAuth.getCurrentUser().getUid();
+                                                       current_username = task.getResult().getString("fullName");
+                                                   } else {
+                                                       current_username = "Chat";
+
+                                                   }
+                                               } else {
+                                                   current_username = "Chat";
+                                               }
+                                           }
+                                       });
+
+
+        toolbar_chat.setTitle(current_username);
+        toolbar_chat.setNavigationIcon(R.drawable.ic_arrow_back);
+        toolbar_chat.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
     }
 
     /**

@@ -113,7 +113,7 @@ public class FinderFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_finder2, container, false);
+        View view = inflater.inflate(R.layout.fragment_finder, container, false);
         // Inflate the pop-up layout
         View popUpView = inflater.inflate(R.layout.popup_layout, container, false);
 
@@ -129,10 +129,10 @@ public class FinderFragment extends Fragment {
 //        to display the user information
         user_location = view.findViewById(R.id.tv_user_location_id);
         user_personality = view.findViewById(R.id.tv_personality_type_id);
-       // user_summary = view.findViewById(R.id.summaryX);
+        // user_summary = view.findViewById(R.id.summaryX);
         distanceView = view.findViewById(R.id.distanceView);
         user_name = view.findViewById(R.id.tv_user_name_id);
-      //  user_age_and_age_range = view.findViewById(R.id.iv_age_id);
+        //  user_age_and_age_range = view.findViewById(R.id.iv_age_id);
 
         //sets compatibility map
         typeCompatibility.setCompatibilityMap(types);
@@ -171,7 +171,7 @@ public class FinderFragment extends Fragment {
 //                        check if they are not equal and add to profile list and map
                             if (!docId.equals(userUID)) {
                                 //creates user profile  from the stored collection and adds to the profile list
-                                 profile = documentSnapshot.toObject(Profile.class).withId(docId);
+                                profile = documentSnapshot.toObject(Profile.class).withId(docId);
                                 if (profile != null) {
                                     mProfileList.add(profile);
                                     docIdMap.put(profile, docId);
@@ -186,7 +186,7 @@ public class FinderFragment extends Fragment {
                         if (mProfileList.size() != 0) {
                             numberOfUser = mProfileList.size();
                             Log.i("Number of Users", Integer.toString(numberOfUser));
-                             profile = mProfileList.get(pressedCounter);
+                            profile = mProfileList.get(pressedCounter);
                             //calculate  distance from longitude and lattitude
                             Double distance = calculateDistance(currentUserProfile.getLatitude(), currentUserProfile.getLongitude(), profile.getLatitude(), profile.getLongitude());
                             if (distance == 0) {
@@ -246,14 +246,25 @@ public class FinderFragment extends Fragment {
                         btnMore.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
-                                showPopupScreen(profile.getSummary(), profile.getAge().toString(), profile.getImg_url());
+                                String summary = "No summary";
+                                String imgUrl = "https://fastly.picsum.photos/id/600/200/300.jpg?hmac=Ub3Deb_eQNe0Un7OyE33D79dnextn3M179L0nRkv1eg";
+                                String age = "_";
+                                if (profile.getSummary() != null) {
+                                    summary = profile.getSummary();
+                                }
+                                if (profile.getAge() != null) {
+                                    age = profile.getAge().toString();
+                                }
+                                if (profile.getImg_url() != null) {
+                                    imgUrl = profile.getImg_url();
+                                }
+                                showPopupScreen(summary, age, imgUrl);
                             }
                         });
                     }
                 }
             });
-        }
-        else {
+        } else {
             Log.e("Tag", "No data");
         }
         return view;
@@ -276,8 +287,8 @@ public class FinderFragment extends Fragment {
         Glide.with(mContext).load(profile.getImg_url()).placeholder(R.drawable.place_holder_profile).into(image2);
 
         tvSummary.setText(summary);
-        tvTitle.setText(profile.getFullName()+" Details");
-        tvDescription.setText(age+" years old and interested in "+profile.getAgeRangePreference());
+        tvTitle.setText(profile.getFullName() + " Details");
+        tvDescription.setText(age + " years old and interested in " + profile.getAgeRangePreference());
 
 
         // Create a PopupWindow
@@ -299,7 +310,6 @@ public class FinderFragment extends Fragment {
         // Show the pop-up window
         popupWindow.showAtLocation(getView(), Gravity.CENTER, 0, 0);
     }
-
 
 
     /**
@@ -393,7 +403,7 @@ public class FinderFragment extends Fragment {
                                                 map_match.put("img_url", receiver_image);
                                                 fireStoreDatabase.collection("Users").document(mAuth.getCurrentUser().getUid())
                                                         .collection("Match").document(docId).set(map_match).addOnCompleteListener(task11 -> {
-                                                        //.collection("Match").add(map_match).addOnCompleteListener(task11 -> {
+                                                            //.collection("Match").add(map_match).addOnCompleteListener(task11 -> {
                                                             if (task11.isSuccessful()) {
                                                                 map_match.put("user_id", mAuth.getCurrentUser().getUid());
                                                                 map_match.put("fullName", current_username);
@@ -401,7 +411,7 @@ public class FinderFragment extends Fragment {
                                                                 //add  map to match collection
                                                                 fireStoreDatabase.collection("Users").document(docId)
                                                                         .collection("Match").document(mAuth.getCurrentUser().getUid()).set(map_match).addOnCompleteListener(task111 -> {
-                                                                        //.collection("Match").add(map_match).addOnCompleteListener(task111 -> {
+                                                                            //.collection("Match").add(map_match).addOnCompleteListener(task111 -> {
                                                                             if (task111.isSuccessful()) {
 //                                                                                        Toast.makeText(getContext(), "Match Added", Toast.LENGTH_SHORT).show();
                                                                             }
@@ -427,7 +437,7 @@ public class FinderFragment extends Fragment {
             pressedCounter = 0;
         }
 
-         profile = mProfileList.get(pressedCounter);
+        profile = mProfileList.get(pressedCounter);
         Double distance = calculateDistance(currentUserProfile.getLatitude(), currentUserProfile.getLongitude(), profile.getLatitude(), profile.getLongitude());
 
         if (distance == 0) {
@@ -466,7 +476,7 @@ public class FinderFragment extends Fragment {
             user_name.setText(profile.getFullName());
         }
 
-      //  user_age_and_age_range.setText(profile.getAge() + " & " + profile.getAgeRangePreference());
+        //  user_age_and_age_range.setText(profile.getAge() + " & " + profile.getAgeRangePreference());
         //user_summary.setText("Summary: " + profile.getSummary());
     }
 
@@ -478,7 +488,7 @@ public class FinderFragment extends Fragment {
         if (pressedCounter >= numberOfUser) {
             pressedCounter = 0;
         }
-         profile = mProfileList.get(pressedCounter);
+        profile = mProfileList.get(pressedCounter);
 
 
         Double distance = 0.0;

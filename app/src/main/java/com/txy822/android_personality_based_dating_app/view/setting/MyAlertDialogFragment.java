@@ -21,6 +21,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
+import com.txy822.android_personality_based_dating_app.R;
 import com.txy822.android_personality_based_dating_app.view.main.Home;
 import com.txy822.android_personality_based_dating_app.view.authentication.login.Login;
 import com.txy822.android_personality_based_dating_app.view.authentication.login.UpdateLoginDetail;
