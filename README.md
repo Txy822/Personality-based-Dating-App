@@ -13,9 +13,9 @@
 
 <div style="display: flex; justify-content: center;">
   <img src="img/get_screen.png" alt="Screenshot 1" style="width: 33%;" />
-  <img src="img/marta.png" alt="Screenshot 2" style="width: 33%;" />
+  <img src="img/chung_finder.png" alt="Screenshot 2" style="width: 33%;" />
   <img src="img/personality.png" alt="Screenshot 3" style="width: 33%;" />
-  <img src="img/sara.png" alt="Screenshot 4" style="width: 33%;" />
+  <img src="img/Daneil_finder.png" alt="Screenshot 4" style="width: 33%;" />
   <img src="img/matchList.png" alt="Screenshot 5" style="width: 33%;" />
   <img src="img/chat.png" alt="Screenshot 6" style="width: 33%;" />
   <img src="img/profile.png" alt="Screenshot 6" style="width: 33%;" />
