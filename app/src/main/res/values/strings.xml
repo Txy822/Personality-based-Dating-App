@@ -6,7 +6,7 @@
     <string name="cancel">CANCEL</string>
     <string name="sign_in">SIGN IN</string>
     <string name="create_account">CREATE ACCOUNT</string>
-    <string name="login">LOGIN</string>
+    <string name="login">SIGN IN</string>
     <string name="user_full_name">Full Name</string>
     <string name="user_user_name">Username</string>
     <string name="user_location">Location</string>
@@ -24,6 +24,8 @@
     <string name="enter_twitter_username">Enter Twitter Username</string>
 
     <string name="hyperlink">If you do not have twitter account\n<a href="https://www.truity.com/test/type-finder-personality-test-new">Check Personality Type here</a></string>
+    <string name="privacy_link">By tapping "Sign in", you agreed to our terms.Learn how we process your data in our <a href="https://docs.google.com/document/d/1fOcDh7r8CXXogqqi6zpPyx-vPYX7sDneT30jy8YKAUo/edit?usp=sharing">privacy policy.</a></string>
+
     <string name="title_activity_settings">SettingsActivity</string>
 
     <!-- Preference Titles -->
@@ -45,5 +47,8 @@
     <string name="profile">Profile</string>
     <string name="type">Type</string>
     <string name="setting">Settings</string>
+    <string name="login_or_create_account">Login or Create account!</string>
+    <string name="personality_based_dating_app">Personality based Dating App</string>
+    <string name="one_love">One Love</string>
 
 </resources>
