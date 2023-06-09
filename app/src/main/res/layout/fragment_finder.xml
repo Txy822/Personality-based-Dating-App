@@ -8,33 +8,36 @@
     android:layout_height="match_parent"
     android:background="@color/green_darkest"
     tools:context=".view.finder.FinderFragment">
-
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:fillViewport="true"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/guidelineBottom2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
             <ImageView
                 android:id="@+id/iv_profile_id"
-                android:layout_width="413dp"
-                android:layout_height="600dp"
-                android:layout_marginBottom="30dp"
-                android:scaleType="fitXY"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginBottom="32dp"
                 android:src="@drawable/place_holder_profile"
+                android:background="@color/green_darkest"
                 android:foreground="@drawable/gradient_bg"
-                app:civ_border_color="#FF000000"
-                app:civ_border_width="2dp"
-                app:layout_constraintBottom_toTopOf="@+id/rejectBtn"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintVertical_bias="0.5"
+                android:adjustViewBounds="true"
+                android:scaleType="fitXY"
+                app:layout_constraintTop_toTopOf="@id/guidelineTop"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintBottom_toTopOf="@+id/rejectBtn"
                 app:layout_constraintStart_toStartOf="parent"
-                tools:ignore="MissingConstraints" />
+                tools:ignore="MissingConstraints"
+                android:contentDescription="@string/profile_image" />
 
             <ImageButton
                 android:id="@+id/rejectBtn"
@@ -43,34 +46,44 @@
                 android:layout_gravity="right|center_horizontal"
                 android:background="@drawable/close_background_round"
                 android:src="@drawable/ic_close"
-                android:layout_marginTop="30dp"
-                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/iv_profile_id"
+                app:layout_constraintBottom_toBottomOf="@id/guidelineBottom"
                 app:layout_constraintEnd_toStartOf="@+id/chat_btn_id"
-                app:layout_constraintStart_toStartOf="parent"
-                tools:ignore="MissingConstraints" />
+                app:layout_constraintStart_toStartOf="@id/guidelineStart"
+                app:layout_constraintVertical_bias="1.0"
+                android:contentDescription="@string/reject_button"
+                tools:ignore="RtlHardcoded" />
+
 
             <ImageButton
                 android:id="@+id/acceptBtn"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
-
+                android:layout_gravity="right|center_horizontal"
                 android:background="@drawable/check_background_round"
                 android:src="@drawable/ic_check"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/chat_btn_id" />
+                app:layout_constraintBottom_toBottomOf="@id/guidelineBottom"
+                app:layout_constraintEnd_toEndOf="@+id/guidelineEnd"
+                app:layout_constraintStart_toEndOf="@+id/chat_btn_id"
+                app:layout_constraintTop_toBottomOf="@+id/iv_profile_id"
+                app:layout_constraintVertical_bias="1.0"
+                android:contentDescription="@string/accept_button"
+                tools:ignore="RtlHardcoded" />
 
             <ImageButton
                 android:id="@+id/chat_btn_id"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
+                android:layout_gravity="right|center_horizontal"
                 android:background="@drawable/chat_background_round"
                 android:src="@drawable/ic_chat"
-                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintBottom_toBottomOf="@id/guidelineBottom"
                 app:layout_constraintEnd_toStartOf="@+id/acceptBtn"
-                app:layout_constraintStart_toEndOf="@id/rejectBtn" />
-
-            .
+                app:layout_constraintStart_toEndOf="@id/rejectBtn"
+                app:layout_constraintTop_toBottomOf="@+id/iv_profile_id"
+                app:layout_constraintVertical_bias="1.0"
+                android:contentDescription="@string/chat_button"
+                tools:ignore="RtlHardcoded" />
 
             <ImageButton
                 android:id="@+id/more"
@@ -79,25 +92,24 @@
                 android:background="@android:color/transparent"
                 android:src="@drawable/ic_more_horizontal"
                 app:layout_constraintBottom_toTopOf="@+id/tv_user_name_id"
-                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/guidelineEnd"
                 app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toEndOf="@+id/tv_personality_type_id"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.0" />
+                app:layout_constraintTop_toTopOf="@id/guidelineTop"
+                app:layout_constraintVertical_bias="0.0"
+                android:contentDescription="@string/more_about_user" />
 
             <ImageView
                 android:id="@+id/iv_location_icon_id"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:layout_marginStart="16dp"
                 android:layout_marginBottom="16dp"
-
                 android:background="@android:color/transparent"
                 android:src="@drawable/ic_location"
-
                 app:layout_constraintBottom_toBottomOf="@id/iv_profile_id"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintVertical_bias="1.0" />
+                app:layout_constraintStart_toStartOf="@id/guidelineStart"
+                app:layout_constraintVertical_bias="0.98"
+                android:contentDescription="@string/location_icon" />
 
             <TextView
                 android:id="@+id/tv_personality_type_id"
@@ -113,9 +125,9 @@
                 android:textColor="@color/white"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.046"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintHorizontal_bias="0"
+                app:layout_constraintStart_toStartOf="@id/guidelineStart"
+                app:layout_constraintTop_toTopOf="@id/guidelineTop"
                 tools:text="Personality" />
 
             <TextView
@@ -123,10 +135,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
-                android:shadowColor="#000000"
-                android:shadowDx="1"
-                android:shadowDy="1"
-                android:shadowRadius="3"
                 android:textColor="@color/colorAccent"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toTopOf="@+id/iv_location_icon_id"
@@ -140,10 +148,6 @@
                 android:layout_width="118dp"
                 android:layout_height="30dp"
 
-                android:shadowColor="#000000"
-                android:shadowDx="1"
-                android:shadowDy="1"
-                android:shadowRadius="3"
                 android:textColor="@color/quantum_yellow"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="@+id/iv_profile_id"
@@ -151,25 +155,21 @@
                 app:layout_constraintHorizontal_bias="0.021"
                 app:layout_constraintStart_toEndOf="@id/iv_location_icon_id"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.977"
+                app:layout_constraintVertical_bias="0.98"
                 tools:text="_ km" />
 
             <TextView
                 android:id="@+id/compatiblity"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:shadowColor="#000000"
-                android:shadowDx="1"
-                android:shadowDy="1"
-                android:shadowRadius="3"
-                android:text="0% Match"
+                android:text="@string/_0_match"
                 android:textColor="@color/Lime"
                 android:textSize="24sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toTopOf="@+id/tv_user_location_id"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.042"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintHorizontal_bias="0"
+                app:layout_constraintStart_toStartOf="@id/guidelineStart"
                 app:layout_constraintTop_toBottomOf="@+id/tv_personality_type_id"
                 app:layout_constraintVertical_bias="0.037" />
 
@@ -177,21 +177,55 @@
                 android:id="@+id/tv_user_name_id"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:shadowColor="#000000"
-                android:shadowDx="1"
-                android:shadowDy="1"
-                android:shadowRadius="3"
-                android:text="name"
+                android:text="@string/name"
                 android:textSize="24sp"
                 android:textColor="@color/white"
                 android:textColorHint="@color/white"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="@+id/iv_profile_id"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.763"
+                app:layout_constraintEnd_toEndOf="@+id/guidelineEnd"
+                app:layout_constraintHorizontal_bias="1"
                 app:layout_constraintStart_toEndOf="@+id/distanceView"
                 app:layout_constraintTop_toTopOf="@+id/iv_profile_id"
-                app:layout_constraintVertical_bias="0.978" />
+                app:layout_constraintVertical_bias="0.98" />
+
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guidelineStart"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_begin="16dp" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guidelineEnd"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_end="16dp" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guidelineTop"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_begin="0dp" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guidelineBottom"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_end="32dp" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
+
     </ScrollView>
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineBottom2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.9" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

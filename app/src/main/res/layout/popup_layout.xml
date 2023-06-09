@@ -60,10 +60,10 @@
 
             <ImageView
                 android:id="@+id/imageView1"
-                android:layout_width="413dp"
-                android:layout_height="500dp"
-                android:src="@drawable/place_holder_profile"
-                android:scaleType="centerCrop" />
+                android:layout_width="match_parent"
+                android:layout_height="486dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/place_holder_profile" />
 
         </androidx.cardview.widget.CardView>
 
@@ -80,10 +80,10 @@
 
             <ImageView
                 android:id="@+id/imageView2"
-                android:layout_width="413dp"
-                android:layout_height="500dp"
-                android:src="@drawable/place_holder_profile"
-                android:scaleType="centerCrop" />
+                android:layout_width="match_parent"
+                android:layout_height="486dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/place_holder_profile" />
 
         </androidx.cardview.widget.CardView>
     <!-- GridView for Images -->

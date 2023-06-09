@@ -50,5 +50,13 @@
     <string name="login_or_create_account">Login or Create Account!</string>
     <string name="personality_based_dating_app">Personality based Dating App</string>
     <string name="one_love">One Love</string>
+    <string name="profile_image">profile image</string>
+    <string name="reject_button">reject button</string>
+    <string name="accept_button">accept button</string>
+    <string name="chat_button">chat button</string>
+    <string name="name">full Name</string>
+    <string name="_0_match">0% Match</string>
+    <string name="more_about_user">more about user</string>
+    <string name="location_icon">location icon</string>
 
 </resources>
