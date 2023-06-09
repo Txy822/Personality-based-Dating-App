@@ -279,12 +279,12 @@ public class FinderFragment extends Fragment {
         TextView tvTitle = popUpView.findViewById(R.id.title);
         TextView tvDescription = popUpView.findViewById(R.id.tvAge);
         ImageView image1 = popUpView.findViewById(R.id.imageView1);
-        ImageView image2 = popUpView.findViewById(R.id.imageView2);
+       // ImageView image2 = popUpView.findViewById(R.id.imageView2);
         GridView gridView = popUpView.findViewById(R.id.gridView);
         // Set the content for the additional TextViews
 
         Glide.with(mContext).load(profile.getImg_url()).placeholder(R.drawable.place_holder_profile).into(image1);
-        Glide.with(mContext).load(profile.getImg_url()).placeholder(R.drawable.place_holder_profile).into(image2);
+       // Glide.with(mContext).load(profile.getImg_url()).placeholder(R.drawable.place_holder_profile).into(image2);
 
         tvSummary.setText(summary);
         tvTitle.setText(profile.getFullName() + " Details");

@@ -9,7 +9,7 @@
 
     <ImageView
         android:id="@+id/start_app_icon"
-        android:layout_width="176dp"
+        android:layout_width="100dp"
         android:layout_height="0dp"
         android:layout_marginBottom="160dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -17,7 +17,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView"
         app:srcCompat="@drawable/startapp_icon"
-        tools:ignore="MissingConstraints" />
+        tools:ignore="MissingConstraints"
+        android:contentDescription="app icon" />
 
     <TextView
         android:id="@+id/textView"
@@ -25,7 +26,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="124dp"
         android:layout_marginTop="49dp"
-        android:text="One Love"
+        android:text="@string/one_love"
         android:textColor="@color/white"
         android:textSize="30sp"
         app:layout_constraintBottom_toTopOf="@+id/start_app_icon"

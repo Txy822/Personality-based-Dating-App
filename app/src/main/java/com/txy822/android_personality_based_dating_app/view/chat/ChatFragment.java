@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import android.widget.Toolbar;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -33,6 +34,8 @@ import java.util.List;
  */
 public class ChatFragment extends Fragment {
     private RecyclerView mMatchRecyclerView;
+    private TextView no_list;
+    private TextView info;
     private List<Match> mMatchList;
 
     private Toolbar toolbar_match_list;
@@ -54,8 +57,10 @@ public class ChatFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view =  inflater.inflate(R.layout.fragment_chat, container, false);
-        mMatchRecyclerView=view.findViewById(R.id.match_recycler);
+        View view = inflater.inflate(R.layout.fragment_chat, container, false);
+        mMatchRecyclerView= view.findViewById(R.id.match_recycler);
+        no_list = view.findViewById(R.id.tv_no_list);
+        info = view.findViewById(R.id.info);
         toolbar_match_list = view.findViewById(R.id.toolbar_match_list);
 
         toolbar_match_list.setTitle("Match List");
@@ -82,12 +87,22 @@ public class ChatFragment extends Fragment {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                 if(task.isSuccessful()){
-                    for(DocumentSnapshot documentSnapshot:task.getResult()){
-                        Match match = documentSnapshot.toObject(Match.class);
-                        if(!mMatchList.contains(match)) {
-                            mMatchList.add(match);
-                            matchRecyclerAdapter.notifyDataSetChanged();
+                    if(!task.getResult().isEmpty()){
+                        mMatchRecyclerView.setVisibility(View.VISIBLE);
+                        no_list.setVisibility(View.GONE);
+                        info.setVisibility(View.GONE);
+                        for(DocumentSnapshot documentSnapshot:task.getResult()){
+                            Match match = documentSnapshot.toObject(Match.class);
+                            if(!mMatchList.contains(match)) {
+                                mMatchList.add(match);
+                                matchRecyclerAdapter.notifyDataSetChanged();
+                            }
                         }
+                    }
+                    else {
+                       mMatchRecyclerView.setVisibility(View.GONE);
+                        no_list.setVisibility(View.VISIBLE);
+                        info.setVisibility(View.VISIBLE);
                     }
                 }
             }

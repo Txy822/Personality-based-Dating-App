@@ -47,7 +47,7 @@
                 android:text="Setting"
                 android:textColor="@color/cardview_light_background"
                 android:textSize="24sp"
-                app:layout_constraintBottom_toTopOf="@+id/SplitLine_hor_setting_about"
+                app:layout_constraintBottom_toTopOf="@+id/horizontal_line_1"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -120,7 +120,7 @@
                 app:layout_constraintBottom_toTopOf="@id/tv_avout"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/SplitLine_hor_setting_about" />
+                app:layout_constraintTop_toBottomOf="@id/horizontal_line_1" />
 
             <TextView
                 android:id="@+id/tv_avout"
@@ -139,7 +139,7 @@
                 app:layout_constraintTop_toBottomOf="@id/about" />
 
             <View
-                android:id="@+id/SplitLine_hor_setting_about"
+                android:id="@+id/horizontal_line_1"
                 android:layout_width="411dp"
                 android:layout_height="1dp"
                 android:layout_marginTop="8dp"

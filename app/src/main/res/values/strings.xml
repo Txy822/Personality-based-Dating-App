@@ -67,5 +67,10 @@
     <string name="check_personality">Check personality</string>
     <string name="finger_print_icon">finger print icon</string>
     <string name="star">star</string>
+    <string name="no_match_found">No Match Found!</string>
+    <string name="match_list_will_be_when_you_got_liked_by_the_person_you_like">No match to chat! Matches are listed if two users like each other! Keep Searching your best! </string>
+    <string name="match_list">Match List</string>
+    <string name="tab">tab</string>
+    <string name="home_view">home view</string>
 
 </resources>

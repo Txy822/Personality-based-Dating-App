@@ -7,6 +7,12 @@
     android:background="@color/green_darkest"
     tools:context=".view.authentication.signup.SignUp">
 
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/sign_up_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
     <EditText
         android:id="@+id/enter_password2"
         android:layout_width="0dp"
@@ -46,7 +52,8 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/welcome_note"
-        app:layout_constraintVertical_bias="0.831" />
+        app:layout_constraintVertical_bias="0.831"
+        android:autofillHints="" />
 
     <EditText
         android:id="@+id/enterEmail"
@@ -66,7 +73,8 @@
         app:layout_constraintBottom_toTopOf="@+id/enter_password"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/welcome_note" />
+        app:layout_constraintTop_toBottomOf="@+id/welcome_note"
+        android:autofillHints="" />
 
     <EditText
         android:id="@+id/enter_password"
@@ -144,5 +152,11 @@
         app:layout_constraintTop_toBottomOf="@+id/sign_up_btn"
         app:layout_constraintVertical_bias="0.0"
         tools:ignore="MissingConstraints,UnknownId" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    <FrameLayout
+        android:id="@+id/fragment_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,15 +1,19 @@
 package com.txy822.android_personality_based_dating_app.view.authentication.signup;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -20,7 +24,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.txy822.android_personality_based_dating_app.R;
 import com.txy822.android_personality_based_dating_app.view.authentication.login.Login;
 import com.txy822.android_personality_based_dating_app.view.main.Main;
-
+import com.txy822.android_personality_based_dating_app.view.profile.UpdateProfileFragment;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -39,29 +43,17 @@ public class SignUp extends AppCompatActivity {
     private EditText password;
     private EditText confirm_password;
     private EditText email;
-    private EditText mDob;
-    private int age = 0;
     private ProgressDialog progressDialog;
 
-    public SignUp(FirebaseFirestore store, FirebaseAuth auth) {
-        this.mStore = store.getInstance();
-        ;
-        this.mAuth = auth.getInstance();
-    }
+    private FrameLayout fragmentContainer;
+    private ConstraintLayout componentsContainer;
 
-    public SignUp() {
-
-    }
-
-    /**
-     * Creates sign up activity
-     *
-     * @param savedInstanceState
-     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
+        componentsContainer = findViewById(R.id.sign_up_container);
+        fragmentContainer = findViewById(R.id.fragment_container);
 
         mAuth = FirebaseAuth.getInstance();
         full_name = findViewById(R.id.enter_full_name);
@@ -121,36 +113,36 @@ public class SignUp extends AppCompatActivity {
 
     public FirebaseUser createAccount(FirebaseAuth mAuth_, FirebaseFirestore mStore_, String fullName_, String email, String password) {
 
-        mAuth_.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-            @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
-                if (task.isSuccessful()) {
-                    //Hash map to track of user detail
-                    Map<String, Object> map = new HashMap<>();
-                    map.put("fullName", fullName_);
-                    //set up User collection with current user UID as document Id to store user detail in the field of document
+        mAuth_.createUserWithEmailAndPassword(email, password).addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+                //Hash map to track of user detail
+                Map<String, Object> map = new HashMap<>();
+                map.put("fullName", fullName_);
+                //set up User collection with current user UID as document Id to store user detail in the field of document
 //                    storeAccount(mAuth_,mStore_,full_name_,map).
-                    mStore_.collection("Users").document(mAuth_.getCurrentUser().getUid()).set(map).addOnCompleteListener(new OnCompleteListener<Void>() {
-                        @Override
-                        public void onComplete(@NonNull Task<Void> task) {
-                            if (task.isSuccessful()) {
-                                progressDialog.dismiss();
-                                //once creation of document is successful it switches to login activity
-                                Toast.makeText(getBaseContext(), "Account Created", Toast.LENGTH_SHORT).show();
-                                Intent intent = new Intent(SignUp.this, Login.class);
-                                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                                startActivity(intent);
-                                finish();
-                            } else {
-                                Toast.makeText(getBaseContext(), "" + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
-                            }
-                        }
-                    });
+                mStore_.collection("Users").document(mAuth_.getCurrentUser().getUid()).set(map).addOnCompleteListener(task1 -> {
+                    if (task1.isSuccessful()) {
+                        progressDialog.dismiss();
+                        //once creation of document is successful it switches to login activity
+                        Toast.makeText(getBaseContext(), "Account Created", Toast.LENGTH_SHORT).show();
 
-                } else {
-                    progressDialog.dismiss();
-                    Toast.makeText(getBaseContext(), "" + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
-                }
+                        // Replace the fragment container with YourFragment
+                        UpdateProfileFragment fragment = new UpdateProfileFragment();
+                        FragmentManager fragmentManager = getSupportFragmentManager();
+                        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                        fragmentTransaction.replace(R.id.fragment_container, fragment);
+                        fragmentTransaction.addToBackStack(null);
+                        fragmentTransaction.commit();
+                        componentsContainer.setVisibility(View.GONE);
+
+                    } else {
+                        Toast.makeText(getBaseContext(), "Failed to Create Account!" + task1.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+            } else {
+                progressDialog.dismiss();
+                Toast.makeText(getBaseContext(), "" + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
         FirebaseUser user = mAuth.getCurrentUser();
