@@ -118,16 +118,6 @@ public class ViewProfileFragment extends Fragment {
 
             }
         });
-        cancel=view.findViewById(R.id.cancel_btn_view_profile);
-        cancel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getContext(), Home.class);
-                startActivity(intent);
-
-            }
-        });
-
         return  view;
     }
 

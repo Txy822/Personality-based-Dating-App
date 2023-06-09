@@ -170,18 +170,16 @@
                 android:layout_gravity="center_horizontal"
                 android:layout_marginStart="16dp"
                 android:layout_marginEnd="10dp"
-                android:layout_marginBottom="70dp"
+                android:paddingTop="32dp"
+                android:layout_marginBottom="40dp"
                 android:background="@drawable/button"
                 android:text="@string/edit"
                 android:textColor="@color/white"
                 app:backgroundTint="@color/black"
-                app:layout_constraintBaseline_toBaselineOf="@+id/cancel_btn_view_profile"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@id/cancel_btn_view_profile"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/SplitLine_hor2"
-                app:layout_marginTopPercent="40%"
-                app:layout_widthPercent="50%"
                 tools:ignore="MissingConstraints" />
 
             <TextView
@@ -192,10 +190,12 @@
                 android:layout_marginEnd="20dp"
                 android:gravity="right"
                 android:hint="Summary"
+                android:maxLines="2"
+                android:ellipsize="end"
                 android:textColor="@color/white"
                 android:textColorHint="@color/white"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintBottom_toTopOf="@id/cancel_btn_view_profile"
+                app:layout_constraintBottom_toTopOf="@id/edit"
                 app:layout_constraintStart_toEndOf="@+id/tv_summary_label"
                 app:layout_constraintTop_toBottomOf="@+id/age_range"
                 tools:ignore="MissingConstraints" />
@@ -205,6 +205,8 @@
                 android:id="@+id/SplitLine_hor2"
                 android:layout_width="0dp"
                 android:layout_height="1dp"
+                android:layout_marginBottom="16dp"
+                android:layout_marginTop="4dp"
                 android:background="@color/black"
                 app:layout_constraintBottom_toTopOf="@id/edit"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -244,23 +246,23 @@
                 app:layout_constraintTop_toBottomOf="@id/profile"
                 app:layout_constraintVertical_bias="0.184" />
 
-            <Button
-                android:id="@+id/cancel_btn_view_profile"
-                android:layout_width="0dp"
-                android:layout_height="50dp"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="60dp"
-                android:layout_marginEnd="16dp"
-                android:layout_marginBottom="70dp"
-                android:background="@drawable/button"
-                android:text="CANCEL"
-                android:textColor="@color/white"
-                app:backgroundTint="@color/black"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.52"
-                app:layout_constraintStart_toEndOf="@+id/edit"
-                app:layout_constraintTop_toBottomOf="@+id/summary" />
+<!--            <Button-->
+<!--                android:id="@+id/cancel_btn_view_profile"-->
+<!--                android:layout_width="0dp"-->
+<!--                android:layout_height="50dp"-->
+<!--                android:layout_marginStart="10dp"-->
+<!--                android:layout_marginTop="60dp"-->
+<!--                android:layout_marginEnd="16dp"-->
+<!--                android:layout_marginBottom="70dp"-->
+<!--                android:background="@drawable/button"-->
+<!--                android:text="CANCEL"-->
+<!--                android:textColor="@color/white"-->
+<!--                app:backgroundTint="@color/black"-->
+<!--                app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:layout_constraintHorizontal_bias="0.52"-->
+<!--                app:layout_constraintStart_toEndOf="@+id/edit"-->
+<!--                app:layout_constraintTop_toBottomOf="@+id/summary" />-->
 
             <TextView
                 android:id="@+id/tv_full_name_label"

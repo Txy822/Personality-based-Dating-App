@@ -42,6 +42,7 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.txy822.android_personality_based_dating_app.BuildConfig;
 import com.txy822.android_personality_based_dating_app.R;
+import com.txy822.android_personality_based_dating_app.view.main.Home;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -231,7 +232,7 @@ public class UpdateProfileFragment extends Fragment {
                         if (type.contains(personality_type.getText().toString())) {
                             map.put("personalityType", personality_type.getText().toString());
                         } else {
-                            Toast.makeText(getContext(), "Personality type must be 16 MBTI", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getContext(), "Must be 16 MBTI eg. ISTJ, ESTP, ENFJ, INTP...", Toast.LENGTH_LONG).show();
                             return;
                         }
                         map.put("location", location.getText().toString());
@@ -277,11 +278,9 @@ public class UpdateProfileFragment extends Fragment {
     }
 
     private void switchFragment() {
-        FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.updateProfileFragmentLayout, new ViewProfileFragment());
-        // fragmentTransaction.addToBackStack(null);
-        fragmentTransaction.commit();
+                Intent intent = new Intent(getContext(), Home.class);
+                startActivity(intent);
+
     }
 
     /**
