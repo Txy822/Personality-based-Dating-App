@@ -36,7 +36,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/view_some_tweets"
-                android:text="Recent 100 tweets can be fetched by entering your twitter user name and press fetch tweet. Then you can simply check personality type" />
+                android:text="@string/recent_100_tweets_can_be_fetched_by_entering_your_twitter_user_name_and_press_fetch_tweet_then_you_can_simply_check_personality_type" />
 
             <TextView
                 android:id="@+id/introOfPage"
@@ -44,7 +44,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginEnd="16dp"
-                android:text="Enter your twitter username and check personality below"
+                android:text="@string/enter_your_twitter_username_and_check_personality_below"
                 android:textColor="@color/colorAccent"
                 android:textSize="20sp"
                 app:layout_constraintBottom_toTopOf="@+id/twitter_screen_name"
@@ -61,7 +61,7 @@
                 android:layout_marginEnd="16dp"
                 android:layout_marginBottom="16dp"
                 android:background="@drawable/button"
-                android:text="Check personality"
+                android:text="@string/check_personality"
                 android:textColor="@color/white"
                 app:backgroundTint="@color/black"
                 app:layout_constraintBottom_toTopOf="@id/taketest"
@@ -86,7 +86,8 @@
                 app:layout_constraintBottom_toTopOf="@+id/view_some_tweets"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/introOfPage" />
+                app:layout_constraintTop_toBottomOf="@+id/introOfPage"
+                android:autofillHints="" />
 
             <Button
                 android:id="@+id/view_some_tweets"
@@ -95,7 +96,7 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginEnd="16dp"
                 android:layout_marginBottom="8dp"
-                android:text="Fetch Tweets"
+                android:text="@string/fetch_tweets"
                 android:textColor="@color/white"
                 app:backgroundTint="@color/black"
                 app:layout_constraintBottom_toTopOf="@+id/fetch_some_tweets_id"
@@ -119,7 +120,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/result_label_text"
-                android:text="Like :  ESTP = 0% ENFJ = 0% ISFJ  = 0% INTJ = 0% INFJ = 0%" />
+                android:text="@string/like_estp_0_enfj_0_isfj_0_intj_0_infj_0" />
 
             <TextView
                 android:id="@+id/taketest"
@@ -135,7 +136,8 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/check_personality" />
+                app:layout_constraintTop_toBottomOf="@+id/check_personality"
+                android:focusable="true" />
 
             <TextView
                 android:id="@+id/result_label_text"
@@ -150,7 +152,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/fetch_some_tweets_id"
-                android:text="Top 6 personality" />
+                android:text="@string/top_6_personality" />
 
             <TextView
                 android:id="@+id/tv_title_personality"
@@ -158,7 +160,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="39dp"
-                android:text="Check Your Personality"
+                android:text="@string/check_your_personality"
                 android:textColor="?android:attr/textColorHighlight"
                 android:textSize="24sp"
                 app:layout_constraintBottom_toTopOf="@+id/introOfPage"
@@ -176,7 +178,8 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.805"
                 app:layout_constraintStart_toEndOf="@+id/imageView4"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                android:contentDescription="@string/finger_print_icon" />
 
             <ImageView
                 android:id="@+id/imageView3"
@@ -185,7 +188,8 @@
                 android:src="@android:drawable/btn_star_big_on"
                 app:layout_constraintEnd_toStartOf="@+id/imageView4"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_title_personality" />
+                app:layout_constraintTop_toBottomOf="@+id/tv_title_personality"
+                android:contentDescription="@string/star" />
 
             <ImageView
                 android:id="@+id/imageView4"
@@ -196,7 +200,8 @@
                 android:src="@android:drawable/star_big_on"
                 app:layout_constraintEnd_toStartOf="@+id/imageView2"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_title_personality" />
+                app:layout_constraintTop_toBottomOf="@+id/tv_title_personality"
+                android:contentDescription="@string/star" />
 
             <ImageView
                 android:id="@+id/imageView5"
@@ -205,7 +210,8 @@
                 android:src="@android:drawable/btn_star_big_on"
                 app:layout_constraintEnd_toStartOf="@+id/imageView2"
                 app:layout_constraintStart_toEndOf="@+id/imageView4"
-                app:layout_constraintTop_toBottomOf="@+id/tv_title_personality" />
+                app:layout_constraintTop_toBottomOf="@+id/tv_title_personality"
+                android:contentDescription="@string/star" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

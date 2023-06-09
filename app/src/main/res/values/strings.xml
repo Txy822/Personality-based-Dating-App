@@ -1,9 +1,9 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">One Love</string>
     <string name="foreground_icon">foreground_icon</string>
     <string name="welcome">Welcome</string>
     <string name="sign_up">SIGN UP</string>
-    <string name="cancel">CANCEL</string>
+    <string name="cancel" tools:ignore="ButtonCase">CANCEL</string>
     <string name="sign_in">SIGN IN</string>
     <string name="create_account">CREATE ACCOUNT</string>
     <string name="login">SIGN IN</string>
@@ -58,5 +58,14 @@
     <string name="_0_match">0% Match</string>
     <string name="more_about_user">more about user</string>
     <string name="location_icon">location icon</string>
+    <string name="recent_100_tweets_can_be_fetched_by_entering_your_twitter_user_name_and_press_fetch_tweet_then_you_can_simply_check_personality_type">Recent 100 tweets can be fetched by entering your twitter user name and press fetch tweet. Then you can simply check personality type</string>
+    <string name="fetch_tweets">Fetch Tweets</string>
+    <string name="like_estp_0_enfj_0_isfj_0_intj_0_infj_0">Like : ESTP = 0% ENFJ = 0% ISFJ = 0% INTJ = 0% INFJ = 0%</string>
+    <string name="top_6_personality">Top 6 personality</string>
+    <string name="check_your_personality">Check Your Personality</string>
+    <string name="enter_your_twitter_username_and_check_personality_below">Enter your twitter username and check personality below</string>
+    <string name="check_personality">Check personality</string>
+    <string name="finger_print_icon">finger print icon</string>
+    <string name="star">star</string>
 
 </resources>
