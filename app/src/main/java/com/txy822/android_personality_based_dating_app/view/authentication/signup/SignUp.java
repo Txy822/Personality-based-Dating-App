@@ -9,19 +9,16 @@ import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.txy822.android_personality_based_dating_app.R;
+import com.txy822.android_personality_based_dating_app.utils.NetworkManager;
 import com.txy822.android_personality_based_dating_app.view.authentication.login.Login;
 import com.txy822.android_personality_based_dating_app.view.main.Main;
 import com.txy822.android_personality_based_dating_app.view.profile.UpdateProfileFragment;
@@ -79,7 +76,11 @@ public class SignUp extends AppCompatActivity {
         String password_ = password.getText().toString();
         String confirm_password_ = confirm_password.getText().toString();
         if (!email_.isEmpty() && !password_.isEmpty() && !full_name_.isEmpty() && password_.equals(confirm_password_)) {
-            createAccount(mAuth, mStore, full_name_, email_, password_);
+            if (NetworkManager.isNetworkAvailable(this)) {
+                createAccount(mAuth, mStore, full_name_, email_, password_);            }
+            else {
+                Toast.makeText(this, "No internet connection available", Toast.LENGTH_SHORT).show();
+            }
         }
         if (full_name_.isEmpty() || email_.isEmpty() || password_.isEmpty()) {
             Toast.makeText(getApplicationContext(), "Your Full Name or Email or Password Field  is empty!", Toast.LENGTH_SHORT).show();

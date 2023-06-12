@@ -17,6 +17,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.txy822.android_personality_based_dating_app.utils.NetworkManager;
 import com.txy822.android_personality_based_dating_app.view.main.Home;
 import com.txy822.android_personality_based_dating_app.view.main.Main;
 import com.txy822.android_personality_based_dating_app.R;
@@ -66,7 +67,12 @@ public class Login extends AppCompatActivity {
         String email= mEmail.getText().toString().trim();
         String password= mPassword.getText().toString();
         if(!email.isEmpty() && !password.isEmpty()){
-            signIn(email, password);
+            if (NetworkManager.isNetworkAvailable(this)) {
+                signIn(email, password);
+            }
+            else {
+                Toast.makeText(this, "No internet connection available", Toast.LENGTH_SHORT).show();
+            }
         }
         if(email.isEmpty() || password.isEmpty()){
             Toast.makeText(getApplicationContext(),"Email or Password empty!",Toast.LENGTH_SHORT).show();
