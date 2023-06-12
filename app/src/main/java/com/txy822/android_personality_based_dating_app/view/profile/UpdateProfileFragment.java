@@ -108,19 +108,6 @@ public class UpdateProfileFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        /*
-        // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_update_profile, container, false);
-        profile_img = (ImageView) view.findViewById(R.id.fragment_show_profile);
-        full_name = view.findViewById(R.id.full_name_id);
-        personality_type = (EditText) view.findViewById(R.id.enter_personality_type);
-        location = (EditText) view.findViewById(R.id.enter_location);
-        cancel = view.findViewById(R.id.cancel_btn_profile_edit);
-        age_range_pref = (EditText) view.findViewById(R.id.enter_age_range);
-        summary = (EditText) view.findViewById(R.id.enter_summary);
-        save_profile = view.findViewById(R.id.save);
-        date_of_birth = (EditText) view.findViewById(R.id.enter_date_of_birth);
-        */
         View view = inflater.inflate(R.layout.fragment_edit_profile, container, false);
         profile_img = (ImageView) view.findViewById(R.id.profileImage);
         full_name = view.findViewById(R.id.fullNameEditText);
@@ -160,8 +147,6 @@ public class UpdateProfileFragment extends Fragment {
                 new DatePickerDialog(getContext(), date, myCalendar.get(Calendar.YEAR), myCalendar.get(Calendar.MONTH), myCalendar.get(Calendar.DAY_OF_MONTH)).show();
             }
         });
-
-
 
         mAuth = FirebaseAuth.getInstance();
         mStore = FirebaseFirestore.getInstance();

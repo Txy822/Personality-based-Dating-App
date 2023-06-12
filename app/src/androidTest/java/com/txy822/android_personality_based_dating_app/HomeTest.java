@@ -84,7 +84,7 @@ public class HomeTest {
 
         onView(withId(R.id.tv_user_location_id)).check(matches(isDisplayed()));
         onView(withId(R.id.tv_user_name_id)).check(matches(isDisplayed()));
-        onView(withId(R.id. summaryX)).check(matches(isDisplayed()));
+        onView(withId(R.id. hobbiesContent)).check(matches(isDisplayed()));
         onView(withId(R.id. chat_btn_id)).check(matches(isDisplayed()));
         onView(withId(R.id. compatiblity)).check(matches(isDisplayed()));
         onView(withId(R.id. distanceView)).check(matches(isDisplayed()));
@@ -99,16 +99,15 @@ public class HomeTest {
         ViewInteraction tabView = onView(Matchers.allOf(childAtPosition(childAtPosition(withId(R.id.tab), 0), 1), isDisplayed()));
         tabView.perform(click());
 
-        onView(withId(R.id. summary)).check(matches(isDisplayed()));
-        onView(withId(R.id. cancel_btn_view_profile)).check(matches(isDisplayed()));
-        onView(withId(R.id. fulName_id)).check(matches(isDisplayed()));
-        onView(withId(R.id. location)).check(matches(isDisplayed()));
-        onView(withId(R.id.personality_type)).check(matches(isDisplayed()));
-        onView(withId(R.id. location)).check(matches(isDisplayed()));
-        onView(withId(R.id. date_of_birth)).check(matches(isDisplayed()));
-        onView(withId(R.id. age_range)).check(matches(isDisplayed()));
-        onView(withId(R.id. edit)).check(matches(isDisplayed()));
-        onView(withId(R.id. edit)).check(matches(isDisplayed()));
+        onView(withId(R.id.tv_user_location_id)).check(matches(isDisplayed()));
+        onView(withId(R.id.tv_user_name_id)).check(matches(isDisplayed()));
+        onView(withId(R.id. hobbiesContent)).check(matches(isDisplayed()));
+        onView(withId(R.id. chat_btn_id)).check(matches(isDisplayed()));
+        onView(withId(R.id. compatiblity)).check(matches(isDisplayed()));
+        onView(withId(R.id. distanceView)).check(matches(isDisplayed()));
+        onView(withId(R.id.rejectBtn)).check(matches(isDisplayed()));
+        onView(withId(R.id.rejectBtn)).check(matches(instanceOf(ImageButton.class)));
+        onView(withId(R.id.acceptBtn)).check(matches(isDisplayed()));
 
     }
     @Test

@@ -181,7 +181,7 @@ public class LoginLogoutEspressoTest {
         }
 
         ViewInteraction materialButton3 = onView(
-                allOf(withId(R.id.edit), withText("EDIT"),
+                allOf(withId(R.id.editButton), withText("EDIT"),
                         childAtPosition(
                                 childAtPosition(
                                         withClassName(is("android.widget.ScrollView")),
@@ -196,7 +196,7 @@ public class LoginLogoutEspressoTest {
         }
 
         ViewInteraction circleImageView = onView(
-                allOf(withId(R.id.profile),
+                allOf(withId(R.id.profileImage),
                         childAtPosition(
                                 childAtPosition(
                                         withClassName(is("android.widget.ScrollView")),
@@ -211,7 +211,7 @@ public class LoginLogoutEspressoTest {
         }
 
         ViewInteraction appCompatEditText3 = onView(
-                allOf(withId(R.id.enter_personality_type), withText("INFP"),
+                allOf(withId(R.id.personalityTypeEditText), withText("INFP"),
                         childAtPosition(
                                 childAtPosition(
                                         withClassName(is("android.widget.ScrollView")),
@@ -226,7 +226,7 @@ public class LoginLogoutEspressoTest {
         }
 
         ViewInteraction appCompatEditText4 = onView(
-                allOf(withId(R.id.enter_personality_type), withText("INTP"),
+                allOf(withId(R.id.personalityTypeEditText), withText("INTP"),
                         childAtPosition(
                                 childAtPosition(
                                         withClassName(is("android.widget.ScrollView")),
@@ -242,7 +242,7 @@ public class LoginLogoutEspressoTest {
         }
 
         ViewInteraction materialButton4 = onView(
-                allOf(withId(R.id.save), withText("Save"),
+                allOf(withId(R.id.saveButton), withText("Save"),
                         childAtPosition(
                                 childAtPosition(
                                         withClassName(is("android.widget.ScrollView")),
@@ -258,7 +258,7 @@ public class LoginLogoutEspressoTest {
         }
 
         ViewInteraction materialButton5 = onView(
-                allOf(withId(R.id.cancel_btn_view_profile), withText("CANCEL"),
+                allOf(withId(R.id.cancelButton), withText("CANCEL"),
                         childAtPosition(
                                 childAtPosition(
                                         withClassName(is("android.widget.ScrollView")),

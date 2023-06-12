@@ -291,7 +291,7 @@ public class CreateAccountDeleteAccountEspressoTest {
         }
 
         ViewInteraction materialButton4 = onView(
-                allOf(withId(R.id.cancel_btn_view_profile), withText("CANCEL"),
+                allOf(withId(R.id.cancelButton), withText("CANCEL"),
                         childAtPosition(
                                 childAtPosition(
                                         withClassName(is("android.widget.ScrollView")),

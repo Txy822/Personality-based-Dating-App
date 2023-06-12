@@ -1,5 +1,6 @@
 package com.txy822.android_personality_based_dating_app.view.finder;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -115,7 +116,7 @@ public class FinderFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_finder, container, false);
         // Inflate the pop-up layout
-        View popUpView = inflater.inflate(R.layout.popup_layout, container, false);
+//        View popUpView = inflater.inflate(R.layout.popup_layout, container, false);
 
         // Get the "X" button
         ImageView btnMore = view.findViewById(R.id.more);
@@ -252,7 +253,16 @@ public class FinderFragment extends Fragment {
                             public void onClick(View v) {
                                 String summary = "No summary";
                                 String imgUrl = "https://fastly.picsum.photos/id/600/200/300.jpg?hmac=Ub3Deb_eQNe0Un7OyE33D79dnextn3M179L0nRkv1eg";
-                                String age = "_";
+                                String age = "?";
+                                String fullName ="";
+                                String agePref ="??";
+
+                                if (profile.getFullName() != null) {
+                                    fullName = profile.getFullName();
+                                }
+                                if (profile.getAgeRangePreference() != null) {
+                                    agePref =profile.getAgeRangePreference();
+                                }
                                 if (profile.getSummary() != null) {
                                     summary = profile.getSummary();
                                 }
@@ -262,7 +272,7 @@ public class FinderFragment extends Fragment {
                                 if (profile.getImg_url() != null) {
                                     imgUrl = profile.getImg_url();
                                 }
-                                showPopupScreen(summary, age, imgUrl);
+                                showPopupScreen(summary,fullName, age, imgUrl,agePref);
                             }
                         });
                         btnMore2.setOnClickListener(new View.OnClickListener() {
@@ -270,7 +280,16 @@ public class FinderFragment extends Fragment {
                             public void onClick(View v) {
                                 String summary = "No summary";
                                 String imgUrl = "https://fastly.picsum.photos/id/600/200/300.jpg?hmac=Ub3Deb_eQNe0Un7OyE33D79dnextn3M179L0nRkv1eg";
-                                String age = "_";
+                                String age = "?";
+                                String fullName ="";
+                                String agePref ="??";
+
+                                if (profile.getFullName() != null) {
+                                    fullName = profile.getFullName();
+                                }
+                                if (profile.getAgeRangePreference() != null) {
+                                    agePref =profile.getAgeRangePreference();
+                                }
                                 if (profile.getSummary() != null) {
                                     summary = profile.getSummary();
                                 }
@@ -280,7 +299,7 @@ public class FinderFragment extends Fragment {
                                 if (profile.getImg_url() != null) {
                                     imgUrl = profile.getImg_url();
                                 }
-                                showPopupScreen(summary, age, imgUrl);
+                                showPopupScreen(summary,fullName, age, imgUrl,agePref);
                             }
                         });
                     }
@@ -292,8 +311,8 @@ public class FinderFragment extends Fragment {
         return view;
     }
 
-    private void showPopupScreen(String summary, String age, String img_url) {
-        View popUpView = getLayoutInflater().inflate(R.layout.popup_layout, null);
+    private void showPopupScreen(String summary,String fullName,String age, String img_url, String user_age_pref) {
+        @SuppressLint("InflateParams") View popUpView = getLayoutInflater().inflate(R.layout.popup_layout, null);
 
         // Get the "Close" button
         ImageView btnClose = popUpView.findViewById(R.id.btnClose);
@@ -301,18 +320,34 @@ public class FinderFragment extends Fragment {
         TextView tvTitle = popUpView.findViewById(R.id.title);
         TextView tvDescription = popUpView.findViewById(R.id.tvAge);
         ImageView image1 = popUpView.findViewById(R.id.imageView1);
-        // ImageView image2 = popUpView.findViewById(R.id.imageView2);
         GridView gridView = popUpView.findViewById(R.id.gridView);
         // Set the content for the additional TextViews
 
-        Glide.with(mContext).load(profile.getImg_url()).placeholder(R.drawable.place_holder_profile).into(image1);
+        Glide.with(mContext).load(img_url).placeholder(R.drawable.place_holder_profile).into(image1);
         // Glide.with(mContext).load(fragment_show_profile.getImg_url()).placeholder(R.drawable.place_holder_profile).into(image2);
 
         tvSummary.setText(summary);
-        tvTitle.setText(profile.getFullName() + " Details");
-        tvDescription.setText(age + " years old and interested in " + profile.getAgeRangePreference());
+        tvTitle.setText(fullName);
+        tvDescription.setText(age + " years old and interested in "+user_age_pref);
 
+/*
+        if(profile.getFullName()!=null){
+            tvTitle.setText(profile.getFullName() + " Details");
+        }
+        else {
+            tvTitle.setText( "No Name Details");
+        }
+        if(profile.getAgeRangePreference()==null && profile.getAge()!=null){
+            tvDescription.setText(age + " years old and interested in ??");
+        }
+        if(profile.getAgeRangePreference()!=null && profile.getAge()==null){
+            tvDescription.setText(" ?? years old and interested in " + profile.getAgeRangePreference());
+        }
+        else if(profile.getAgeRangePreference()==null && profile.getAge()==null){
+            tvDescription.setText( " ?  years old and interested in ??");
+        }
 
+*/
         // Create a PopupWindow
         popupWindow = new PopupWindow(popUpView, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT, true);
 
@@ -481,9 +516,9 @@ public class FinderFragment extends Fragment {
             compatibilityView.setText(compatiblity + "% Match");
         }
         getLiked(docIdMap.get(profile));
-
     }
 
+    //https://play.google.com/store/apps/details?id=com.txy822.android_personality_based_dating_app
     private void setUserDetail(Profile profile) {
         if (profile.getLocation() == null) {
             user_location.setText("No Location");
