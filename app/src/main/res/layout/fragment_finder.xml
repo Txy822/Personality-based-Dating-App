@@ -113,11 +113,12 @@
 
             <ImageView
                 android:id="@+id/iv_location_icon_id"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
+                android:layout_width="40dp"
+                android:layout_height="0dp"
                 android:layout_marginBottom="16dp"
                 android:background="@android:color/transparent"
                 android:src="@drawable/ic_location"
+                app:layout_constraintEnd_toStartOf="@id/distanceView"
                 app:layout_constraintBottom_toBottomOf="@id/iv_profile_id"
                 app:layout_constraintStart_toStartOf="@id/guidelineStart"
                 app:layout_constraintVertical_bias="0.98"
@@ -158,14 +159,15 @@
 
             <TextView
                 android:id="@+id/distanceView"
-                android:layout_width="118dp"
-                android:layout_height="30dp"
-
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
                 android:textColor="@color/quantum_yellow"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="@+id/iv_profile_id"
-                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/tv_user_name_id"
                 app:layout_constraintHorizontal_bias="0.021"
+                android:layout_marginStart="4dp"
                 app:layout_constraintStart_toEndOf="@id/iv_location_icon_id"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.98"
@@ -188,13 +190,14 @@
 
             <TextView
                 android:id="@+id/tv_user_name_id"
-                android:layout_width="wrap_content"
+                android:layout_width="200dp"
                 android:layout_height="wrap_content"
                 android:text="@string/name"
                 android:textSize="24sp"
                 android:textColor="@color/white"
                 android:textColorHint="@color/white"
                 android:textStyle="bold"
+                android:layout_marginStart="4dp"
                 app:layout_constraintBottom_toBottomOf="@+id/iv_profile_id"
                 app:layout_constraintEnd_toEndOf="@+id/guidelineEnd"
                 app:layout_constraintHorizontal_bias="1"

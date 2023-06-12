@@ -130,10 +130,8 @@ public class FinderFragment extends Fragment {
 //        to display the user information
         user_location = view.findViewById(R.id.tv_user_location_id);
         user_personality = view.findViewById(R.id.tv_personality_type_id);
-        // user_summary = view.findViewById(R.id.summaryX);
         distanceView = view.findViewById(R.id.distanceView);
         user_name = view.findViewById(R.id.tv_user_name_id);
-        //  user_age_and_age_range = view.findViewById(R.id.iv_age_id);
 
         //sets compatibility map
         typeCompatibility.setCompatibilityMap(types);
@@ -190,10 +188,15 @@ public class FinderFragment extends Fragment {
                             profile = mProfileList.get(pressedCounter);
                             //calculate  distance from longitude and lattitude
                             Double distance = calculateDistance(currentUserProfile.getLatitude(), currentUserProfile.getLongitude(), profile.getLatitude(), profile.getLongitude());
-                            if (distance == 0) {
+                            if (distance == -1.0) {
                                 //for unknown distance
                                 distanceView.setText("? miles");
-                            } else {
+                            }
+                            else if(distance<=3 ){
+                                distanceView.setText("Same city");
+                            }
+
+                            else {
                                 //set distance view with the value
                                 distanceView.setText(String.format(Locale.UK, "%.2f miles", distance));
                             }
@@ -457,14 +460,18 @@ public class FinderFragment extends Fragment {
 
         profile = mProfileList.get(pressedCounter);
         Double distance = calculateDistance(currentUserProfile.getLatitude(), currentUserProfile.getLongitude(), profile.getLatitude(), profile.getLongitude());
-
-        if (distance == 0) {
+        if (distance == -1.0) {
+            //for unknown distance
             distanceView.setText("? miles");
-        } else {
-            distanceView.setText(String.format(Locale.UK, "%.2f miles", distance));
-//                        distanceView.setText(String.valueOf(distance));
+        }
+        else if(distance<=3 ){
+            distanceView.setText("Same city");
         }
 
+        else {
+            //set distance view with the value
+            distanceView.setText(String.format(Locale.UK, "%.2f miles", distance));
+        }
         Glide.with(mContext).load(profile.getImg_url()).placeholder(R.drawable.place_holder_profile).into(profile_picture);
         setUserDetail(profile);
         compatiblity = typeCompatibility.getCompatibility(currentUserProfile.getPersonalityType(), profile.getPersonalityType());
@@ -512,13 +519,18 @@ public class FinderFragment extends Fragment {
         Double distance = 0.0;
         distance = calculateDistance(currentUserProfile.getLatitude(), currentUserProfile.getLongitude(), profile.getLatitude(), profile.getLongitude());
 
-        if (distance == 0) {
+        if (distance == -1.0) {
+            //for unknown distance
             distanceView.setText("? miles");
-        } else {
-            distanceView.setText(String.format(Locale.UK, "%.2f miles", distance));
-//                        distanceView.setText(String.valueOf(distance));
+        }
+        else if(distance<=3 ){
+            distanceView.setText("Same city");
         }
 
+        else {
+            //set distance view with the value
+            distanceView.setText(String.format(Locale.UK, "%.2f miles", distance));
+        }
         Glide.with(mContext).load(profile.getImg_url()).placeholder(R.drawable.place_holder_profile).into(profile_picture);
         setUserDetail(profile);
         compatiblity = typeCompatibility.getCompatibility(currentUserProfile.getPersonalityType(), profile.getPersonalityType());
@@ -543,7 +555,7 @@ public class FinderFragment extends Fragment {
         double distance = 0;
         //find the difference between longitudes
         if (log1 == 0 || log2 == 0 || lat1 == 0 || lat2 == 0) {
-            return 0.0;
+            return -1.0;
         }
         double longitudeDifference = log1 - log2;
 
