@@ -21,7 +21,7 @@
   <img src="img/profile_view.png" alt="Screenshot 6" style="width: 33%;" />
   <img src="img/Edit_profile.png" alt="Screenshot 6" style="width: 33%;" />
   <img src="img/setting_delete_account.png" alt="Screenshot 6" style="width: 33%;" /> 
-  <img src="img/Structural_design_dating_app.png" alt="Screenshot 6" style="width: 50%; height: 200px;" />
+  <img src="img/Structural_design_dating_app.png" alt="Screenshot 6" style="width: 50%; height: 500px;" />
 
   
 </div>
