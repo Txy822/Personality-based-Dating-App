@@ -18,8 +18,12 @@
   <img src="img/Daneil_finder.png" alt="Screenshot 4" style="width: 33%;" />
   <img src="img/matchList.png" alt="Screenshot 5" style="width: 33%;" />
   <img src="img/chat.png" alt="Screenshot 6" style="width: 33%;" />
-  <img src="img/profile.png" alt="Screenshot 6" style="width: 33%;" />
-  <img src="img/setting_delete_account.png" alt="Screenshot 6" style="width: 33%;" />
+  <img src="img/profile_view.png" alt="Screenshot 6" style="width: 33%;" />
+  <img src="img/Edit_profile.png" alt="Screenshot 6" style="width: 33%;" />
+  <img src="img/setting_delete_account.png" alt="Screenshot 6" style="width: 33%;" /> 
+  <img src="img/Structural_design_dating_app.png" alt="Screenshot 6" style="width: 53%; height: 700px;" />
+
+  
 </div>
 
 # Tech stack
