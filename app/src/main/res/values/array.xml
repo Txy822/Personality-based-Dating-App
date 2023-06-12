@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="age_range_values">
+        <item>18</item>
+        <item>60</item>
+    </array>
+</resources>

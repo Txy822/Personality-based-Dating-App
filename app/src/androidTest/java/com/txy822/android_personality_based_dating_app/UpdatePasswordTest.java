@@ -37,7 +37,7 @@ public class UpdatePasswordTest {
     @Test
     public void testUpdatePasswordViews(){
 
-        // matches displayed test for sign up  activity for each edit text, textview and button
+        // matches displayed test for sign up  activity for each edit2 text, textview and button
         onView(withId(R.id.send_reset_link_btn)).check(matches(isDisplayed()));
         onView(withId(R.id.send_reset_link_btn)).check(matches(instanceOf(Button.class)));
 

@@ -8,12 +8,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.txy822.android_personality_based_dating_app.view.main.Home;
 import com.txy822.android_personality_based_dating_app.R;
 
 //import android.app.FragmentManager;
 //import android.app.FragmentTransaction;
-import android.content.Intent;
 import android.net.Uri;
 
 import androidx.annotation.NonNull;
@@ -37,8 +35,7 @@ import com.google.firebase.storage.StorageReference;
 import java.util.Calendar;
 
 /**
- *  ViewProfileFragment To view full user profile
- *
+ * ViewProfileFragment To view full user fragment_show_profile
  */
 public class ViewProfileFragment extends Fragment {
     /**
@@ -46,65 +43,80 @@ public class ViewProfileFragment extends Fragment {
      */
     private static final int RESULT_LOAD_IMG = 123;
     /**
-     * Image view  for profile picture view
+     * Image view  for fragment_show_profile picture view
      */
     private ImageView profile_img;
     /**
-     * User details to view on profile
+     * User details to view on fragment_show_profile
      */
     private TextView full_name;
-    private TextView  personality_type;
-    private TextView  location;
-    private TextView  date_of_birth;
+    private TextView personality_type;
+    private TextView location;
+    private TextView date_of_birth;
     private TextView age_range_pref;
-    private TextView  summary;
+    private TextView age;
+    private TextView summary;
 
     /**
      * Calander to add dates on user date of birth
      */
-    final Calendar myCalendar= Calendar.getInstance();
+    final Calendar myCalendar = Calendar.getInstance();
     /**
-     * Edit profile button to edit the detail of user
+     * Edit fragment_show_profile button to edit2 the detail of user
      */
     private Button edit_profile_btn;
-    private  Button cancel;
+    private Button cancel;
 
     /**
      * Declare the firebase cloud database and authentication instances
      */
-    private Uri url=null;
+    private Uri url = null;
     private FirebaseAuth mAuth;
     private FirebaseFirestore mStore;
     private StorageReference mStorage;
 
     /**
-     * Creates view of view profile fragment
-     * @param inflater LayoutInflater inflater
-     * @param container ViewGroup container
-     * @param savedInstanceState  Bundle
+     * Creates view of view fragment_show_profile fragment
+     *
+     * @param inflater           LayoutInflater inflater
+     * @param container          ViewGroup container
+     * @param savedInstanceState Bundle
      * @return view
      */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
+        /*
         // Inflate the layout for this fragment
         View view=inflater.inflate(R.layout.fragment_view_profile, container, false);
-        profile_img=(ImageView)view.findViewById(R.id.profile);
+        profile_img=(ImageView)view.findViewById(R.id.fragment_show_profile);
         full_name=view.findViewById(R.id.fulName_id);
         personality_type=(TextView)view.findViewById(R.id.personality_type);
         location=(TextView)view.findViewById(R.id.location);
         date_of_birth=(TextView)view.findViewById(R.id.date_of_birth);
-
         age_range_pref=(TextView)view.findViewById(R.id.age_range);
         summary=(TextView)view.findViewById(R.id.summary);
+        edit_profile_btn=view.findViewById(R.id.edit2);
+        */
+        View view = inflater.inflate(R.layout.fragment_show_profile, container, false);
+        profile_img = (ImageView) view.findViewById(R.id.profileImage);
+        full_name = view.findViewById(R.id.fullName);
+        personality_type = (TextView) view.findViewById(R.id.personalityType);
+        location = (TextView) view.findViewById(R.id.locationText);
+        date_of_birth = (TextView) view.findViewById(R.id.dateOfBirth);
+        age = (TextView) view.findViewById(R.id.ageText);
 
-        mAuth=FirebaseAuth.getInstance();
-        mStore=FirebaseFirestore.getInstance();
-        mStorage=FirebaseStorage.getInstance().getReference();
+        age_range_pref = (TextView) view.findViewById(R.id.ageRangeText);
+        summary = (TextView) view.findViewById(R.id.hobbiesContent);
+        edit_profile_btn = view.findViewById(R.id.editButton);
+
+        mAuth = FirebaseAuth.getInstance();
+        mStore = FirebaseFirestore.getInstance();
+        mStorage = FirebaseStorage.getInstance().getReference();
 
         getProfileData();
-        edit_profile_btn=view.findViewById(R.id.edit);
-        // switch to update profile fragment to edit and update profile
+
+        // switch to update fragment_show_profile fragment to edit2 and update fragment_show_profile
         edit_profile_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -112,22 +124,24 @@ public class ViewProfileFragment extends Fragment {
                 Fragment fragment = new UpdateProfileFragment();
                 FragmentManager fragmentManager = getFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.viewProfileFragmentLayout, fragment);
+                // fragmentTransaction.replace(R.id.viewProfileFragmentLayout, fragment);
+                fragmentTransaction.replace(R.id.profile_frame_layout, fragment);
+
                 fragmentTransaction.addToBackStack(null);
                 fragmentTransaction.commit();
 
             }
         });
-        return  view;
+        return view;
     }
 
     /**
-     * Fetches profile from database and display on the fragment view
+     * Fetches fragment_show_profile from database and display on the fragment view
      */
     private void getProfileData() {
         //get the user detail fro the Users collection
 
-        if(mAuth.getCurrentUser()!=null) {
+        if (mAuth.getCurrentUser() != null) {
             mStore.collection("Users").document(mAuth.getCurrentUser().getUid()).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                 @Override
                 public void onComplete(@NonNull Task<DocumentSnapshot> task) {
@@ -135,6 +149,7 @@ public class ViewProfileFragment extends Fragment {
                         String full_name_set = task.getResult().getString(("fullName"));
                         String personality_type_set = task.getResult().getString("personalityType");
                         String date_of_birth_set = task.getResult().getString("dateOfBirth");
+                        Long age_set = task.getResult().getLong("age");
 
                         String location_set = task.getResult().getString("location");
 
@@ -153,7 +168,7 @@ public class ViewProfileFragment extends Fragment {
                             location.setText(location_set);
                         }
                         if (age_preference_set != null) {
-                            age_range_pref.setText(age_preference_set);
+                            age_range_pref.setText("Range: "+age_preference_set);
                         }
                         if (date_of_birth_set != null) {
                             date_of_birth.setText(date_of_birth_set);
@@ -161,20 +176,22 @@ public class ViewProfileFragment extends Fragment {
                         if (summary_set != null) {
                             summary.setText(summary_set);
                         }
+                        if(age_set!=null) {
+                            age.setText("Age: " + age_set.toString());
+                        }
                         if (img_url_set != null) {
                             Glide.with(requireContext()).load(img_url_set).placeholder(R.drawable.place_holder_profile).into(profile_img);
                             //profile_img.setImageURI(Uri.parse(img_url_set));
                         }
 
                     } else {
-                        Log.i("TAG", "onComplete Error: profile data not fetched");
+                        Log.i("TAG", "onComplete Error: fragment_show_profile data not fetched");
                     }
 
                 }
 
             });
-        }
-        else {
+        } else {
             Log.i("TAG", "User don't sign in");
 
         }

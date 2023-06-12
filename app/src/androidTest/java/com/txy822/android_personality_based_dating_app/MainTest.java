@@ -82,7 +82,7 @@ public class MainTest {
     @Test
     public void testLoginViews(){
 //        ActivityTestRule<Login> activityTestRule = new ActivityTestRule<>(Login.class);
-        // matches displayed test for login activity for each edit text, textview and button
+        // matches displayed test for login activity for each edit2 text, textview and button
         onView(withId(R.id.to_sign_in_btn)).perform(click());
         onView(withId(R.id.welcome_text)).check(matches(isDisplayed()));
         onView(withId(R.id.welcome_text)).check(matches(instanceOf(TextView.class)));
@@ -110,7 +110,7 @@ public class MainTest {
     public void testCreateAccountViews(){
 //        ActivityTestRule<SignUp> activityTestRule = new ActivityTestRule<>(SignUp.class);
         onView(withId(R.id.to_sign_up_btn)).perform(click());
-        // matches displayed test for sign up  activity for each edit text, textview and button
+        // matches displayed test for sign up  activity for each edit2 text, textview and button
         onView(withId(R.id.welcome_note)).check(matches(isDisplayed()));
         onView(withId(R.id.welcome_note)).check(matches(instanceOf(TextView.class)));
 

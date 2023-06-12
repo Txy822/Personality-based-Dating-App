@@ -35,15 +35,13 @@ public class Home extends AppCompatActivity {
         homeView=findViewById(R.id.home_view_page);
         homeTab=findViewById(R.id.tab);
         adapter=new HomeViewAdapter(getSupportFragmentManager());
-
         //adds fragments on the adapter
         adapter.addFragment(new FinderFragment(),"Finder");
         adapter.addFragment(new ViewProfileFragment(),"viewProfile");
         adapter.addFragment(new PersonalityFragment(),"Personality");
-//      adapter.addFragment(new ChatFragment(),"chat");
+//      adapter.addFragment(new MatchesFragment(),"chat");
         adapter.addFragment(new SettingFragment(),"Setting");
 //      adapter.addFragment(new UpdateProfileFragment(),"updateProfile");
-
         homeView.setAdapter(adapter);
         homeTab.setupWithViewPager(homeView);
 //      access fragments for each tap layout
@@ -57,17 +55,12 @@ public class Home extends AppCompatActivity {
         homeTab.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
-
             }
-
             @Override
             public void onTabUnselected(TabLayout.Tab tab) {
-
             }
-
             @Override
             public void onTabReselected(TabLayout.Tab tab) {
-
             }
         });
 

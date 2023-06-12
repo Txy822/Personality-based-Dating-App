@@ -33,6 +33,9 @@
     <color name="green_darkest">#092B2F</color>
     <color name="green_blue">#03353C</color>
     <color name="light_gray">#CFCACA</color>
+    <color name="seekbar_progress_color">#FF4081</color>
+    <color name="seekbar_background_color">#E0E0E0</color>
+    <color name="seekbar_thumb_color">#FF4081</color>
 
 
 

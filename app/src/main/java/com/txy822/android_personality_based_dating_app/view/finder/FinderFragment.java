@@ -32,7 +32,7 @@ import com.google.firebase.firestore.QuerySnapshot;
 import com.txy822.android_personality_based_dating_app.R;
 import com.txy822.android_personality_based_dating_app.model.Profile;
 import com.txy822.android_personality_based_dating_app.utils.TypeCompatibility;
-import com.txy822.android_personality_based_dating_app.view.chat.ChatFragment;
+import com.txy822.android_personality_based_dating_app.view.match.MatchesFragment;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -119,11 +119,12 @@ public class FinderFragment extends Fragment {
 
         // Get the "X" button
         ImageView btnMore = view.findViewById(R.id.more);
+        ImageView btnMore2 = view.findViewById(R.id.more2);
 
 //        View view = inflater.inflate(R.layout.fragment_finder, container, false);
         typeCompatibility = new TypeCompatibility();
 
-//        for profile image
+//        for fragment_show_profile image
         profile_picture = view.findViewById(R.id.iv_profile_id);
         compatibilityView = view.findViewById(R.id.compatiblity);
 //        to display the user information
@@ -165,18 +166,18 @@ public class FinderFragment extends Fragment {
                             String userUID = mAuth.getCurrentUser().getUid();
 //                     //identify current user
                             if (docId.equals(userUID)) {
-                                //fetch current user profile
+                                //fetch current user fragment_show_profile
                                 currentUserProfile = documentSnapshot.toObject(Profile.class).withId(userUID);
                             }
-//                        check if they are not equal and add to profile list and map
+//                        check if they are not equal and add to fragment_show_profile list and map
                             if (!docId.equals(userUID)) {
-                                //creates user profile  from the stored collection and adds to the profile list
+                                //creates user fragment_show_profile  from the stored collection and adds to the fragment_show_profile list
                                 profile = documentSnapshot.toObject(Profile.class).withId(docId);
                                 if (profile != null) {
                                     mProfileList.add(profile);
                                     docIdMap.put(profile, docId);
                                 } else {
-                                    Log.i("TAG", "profile null");
+                                    Log.i("TAG", "fragment_show_profile null");
                                 }
                             } else {
                                 Log.i("TAG", "no  users on list");
@@ -237,13 +238,31 @@ public class FinderFragment extends Fragment {
 //                          switch fragment to chat as some more matches found
                                 FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                                fragmentTransaction.replace(R.id.finderFragmentLayout, new ChatFragment());
+                                fragmentTransaction.replace(R.id.finderFragmentLayout, new MatchesFragment());
                                 fragmentTransaction.addToBackStack(null);
                                 fragmentTransaction.commit();
                                 //do for checking if both are liked each other and other personality requirements
                             }
                         });
                         btnMore.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                String summary = "No summary";
+                                String imgUrl = "https://fastly.picsum.photos/id/600/200/300.jpg?hmac=Ub3Deb_eQNe0Un7OyE33D79dnextn3M179L0nRkv1eg";
+                                String age = "_";
+                                if (profile.getSummary() != null) {
+                                    summary = profile.getSummary();
+                                }
+                                if (profile.getAge() != null) {
+                                    age = profile.getAge().toString();
+                                }
+                                if (profile.getImg_url() != null) {
+                                    imgUrl = profile.getImg_url();
+                                }
+                                showPopupScreen(summary, age, imgUrl);
+                            }
+                        });
+                        btnMore2.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
                                 String summary = "No summary";
@@ -279,12 +298,12 @@ public class FinderFragment extends Fragment {
         TextView tvTitle = popUpView.findViewById(R.id.title);
         TextView tvDescription = popUpView.findViewById(R.id.tvAge);
         ImageView image1 = popUpView.findViewById(R.id.imageView1);
-       // ImageView image2 = popUpView.findViewById(R.id.imageView2);
+        // ImageView image2 = popUpView.findViewById(R.id.imageView2);
         GridView gridView = popUpView.findViewById(R.id.gridView);
         // Set the content for the additional TextViews
 
         Glide.with(mContext).load(profile.getImg_url()).placeholder(R.drawable.place_holder_profile).into(image1);
-       // Glide.with(mContext).load(profile.getImg_url()).placeholder(R.drawable.place_holder_profile).into(image2);
+        // Glide.with(mContext).load(fragment_show_profile.getImg_url()).placeholder(R.drawable.place_holder_profile).into(image2);
 
         tvSummary.setText(summary);
         tvTitle.setText(profile.getFullName() + " Details");
@@ -310,7 +329,6 @@ public class FinderFragment extends Fragment {
         // Show the pop-up window
         popupWindow.showAtLocation(getView(), Gravity.CENTER, 0, 0);
     }
-
 
     /**
      * Stores liked lists to users collection and deleted once both liked each other
@@ -476,8 +494,8 @@ public class FinderFragment extends Fragment {
             user_name.setText(profile.getFullName());
         }
 
-        //  user_age_and_age_range.setText(profile.getAge() + " & " + profile.getAgeRangePreference());
-        //user_summary.setText("Summary: " + profile.getSummary());
+        //  user_age_and_age_range.setText(fragment_show_profile.getAge() + " & " + fragment_show_profile.getAgeRangePreference());
+        //user_summary.setText("Summary: " + fragment_show_profile.getSummary());
     }
 
     /**

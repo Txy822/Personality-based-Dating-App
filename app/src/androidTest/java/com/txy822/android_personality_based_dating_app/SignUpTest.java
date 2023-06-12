@@ -43,7 +43,7 @@ public class SignUpTest {
     @Test
     public void testCreateAccountViews(){
 
-        // matches displayed test for sign up  activity for each edit text, textview and button
+        // matches displayed test for sign up  activity for each edit2 text, textview and button
         onView(withId(R.id.welcome_note)).check(matches(isDisplayed()));
         onView(withId(R.id.welcome_note)).check(matches(instanceOf(TextView.class)));
 

@@ -1,8 +1,9 @@
-package com.txy822.android_personality_based_dating_app.view.chat;
+package com.txy822.android_personality_based_dating_app.view.match;
 
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -29,25 +30,28 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * ChatFragment
+ * MatchesFragment
  * Allows user to chat with mach lists
  */
-public class ChatFragment extends Fragment {
+public class MatchesFragment extends Fragment {
     private RecyclerView mMatchRecyclerView;
-    private TextView no_list;
-    private TextView info;
+//    private TextView no_list;
+//    private TextView info;
     private List<Match> mMatchList;
 
     private Toolbar toolbar_match_list;
     private MatchRecyclerAdapter matchRecyclerAdapter;
     FirebaseAuth mAuth;
     FirebaseFirestore mStore;
-    public ChatFragment() {
+
+    ConstraintLayout layoutMatches;
+    ConstraintLayout layoutNoMatches;
+    public MatchesFragment() {
         // Required empty public constructor
     }
 
     /**
-     * Creates ChatFragment view
+     * Creates MatchesFragment view
      * @param inflater LayoutInflater inflater
      * @param container ViewGroup container
      * @param savedInstanceState Bundle savedInstanceState
@@ -57,10 +61,14 @@ public class ChatFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_chat, container, false);
+        View view = inflater.inflate(R.layout.fragment_matches, container, false);
         mMatchRecyclerView= view.findViewById(R.id.match_recycler);
-        no_list = view.findViewById(R.id.tv_no_list);
-        info = view.findViewById(R.id.info);
+//        no_list = view.findViewById(R.id.tv_no_list);
+//        info = view.findViewById(R.id.info);
+
+        layoutMatches = view.findViewById(R.id.layout_condition_matches);
+        layoutNoMatches= view.findViewById(R.id.layout_condition_no_matches);
+
         toolbar_match_list = view.findViewById(R.id.toolbar_match_list);
 
         toolbar_match_list.setTitle("Match List");
@@ -89,8 +97,11 @@ public class ChatFragment extends Fragment {
                 if(task.isSuccessful()){
                     if(!task.getResult().isEmpty()){
                         mMatchRecyclerView.setVisibility(View.VISIBLE);
-                        no_list.setVisibility(View.GONE);
-                        info.setVisibility(View.GONE);
+//                        no_list.setVisibility(View.GONE);
+//                        info.setVisibility(View.GONE);
+                        layoutNoMatches.setVisibility(View.GONE);
+                        layoutMatches.setVisibility(View.VISIBLE);
+                        toolbar_match_list.setVisibility(View.VISIBLE);
                         for(DocumentSnapshot documentSnapshot:task.getResult()){
                             Match match = documentSnapshot.toObject(Match.class);
                             if(!mMatchList.contains(match)) {
@@ -100,9 +111,9 @@ public class ChatFragment extends Fragment {
                         }
                     }
                     else {
-                       mMatchRecyclerView.setVisibility(View.GONE);
-                        no_list.setVisibility(View.VISIBLE);
-                        info.setVisibility(View.VISIBLE);
+                        toolbar_match_list.setVisibility(View.VISIBLE);
+                        layoutNoMatches.setVisibility(View.VISIBLE);
+                        layoutMatches.setVisibility(View.GONE);
                     }
                 }
             }

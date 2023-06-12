@@ -30,7 +30,8 @@
         android:testOnly="false"
         android:theme="@style/Theme.Android_Personality_based_Dating_App"
         android:usesCleartextTraffic="true"
-        tools:ignore="HardcodedDebugMode" >
+        tools:ignore="HardcodedDebugMode"
+        tools:replace="android:label">
         <activity
             android:name=".view.authentication.login.UpdateLoginDetail"
             android:screenOrientation="fullSensor"

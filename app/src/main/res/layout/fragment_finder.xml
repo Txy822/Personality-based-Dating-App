@@ -86,17 +86,29 @@
                 tools:ignore="RtlHardcoded" />
 
             <ImageButton
+                android:id="@+id/more2"
+                android:layout_width="80dp"
+                android:layout_height="40dp"
+                android:background="@android:color/transparent"
+                android:src="@drawable/ic_arrow_drop_down_24"
+                app:layout_constraintTop_toBottomOf="@id/iv_profile_id"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/chat_btn_id"
+                />
+            <ImageButton
                 android:id="@+id/more"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:background="@android:color/transparent"
-                android:src="@drawable/ic_more_horizontal"
+                android:src="@drawable/ic_read_more_24"
                 app:layout_constraintBottom_toTopOf="@+id/tv_user_name_id"
                 app:layout_constraintEnd_toEndOf="@+id/guidelineEnd"
                 app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintVertical_bias="0.0"
+
                 app:layout_constraintStart_toEndOf="@+id/tv_personality_type_id"
                 app:layout_constraintTop_toTopOf="@id/guidelineTop"
-                app:layout_constraintVertical_bias="0.0"
                 android:contentDescription="@string/more_about_user" />
 
             <ImageView
@@ -117,13 +129,14 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="39dp"
                 android:shadowColor="#000000"
-                android:textSize="24sp"
+
 
                 android:shadowDx="0"
                 android:shadowDy="2"
                 android:shadowRadius="3"
                 android:textColor="@color/white"
                 android:textStyle="bold"
+                android:textSize="24sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0"
                 app:layout_constraintStart_toStartOf="@id/guidelineStart"

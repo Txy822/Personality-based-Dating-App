@@ -1,7 +1,7 @@
 package com.txy822.android_personality_based_dating_app.model;
 
 /**
- * Class type to capture  user profile data
+ * Class type to capture  user fragment_show_profile data
  */
 public class ProfileID {
     String profileId;

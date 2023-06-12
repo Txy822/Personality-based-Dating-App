@@ -2,6 +2,7 @@ package com.txy822.android_personality_based_dating_app.view.profile;
 
 import static android.app.Activity.RESULT_OK;
 
+import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 //import android.app.FragmentManager;
 //import android.app.FragmentTransaction;
@@ -23,6 +24,7 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
@@ -43,6 +45,7 @@ import com.google.firebase.storage.UploadTask;
 import com.txy822.android_personality_based_dating_app.BuildConfig;
 import com.txy822.android_personality_based_dating_app.R;
 import com.txy822.android_personality_based_dating_app.view.main.Home;
+import com.yahoo.mobile.client.android.util.rangeseekbar.RangeSeekBar;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -54,7 +57,7 @@ import java.util.Locale;
 import java.util.Map;
 
 /**
- * UpdateProfileFragment Class updates the user profile
+ * UpdateProfileFragment Class updates the user fragment_show_profile
  */
 public class UpdateProfileFragment extends Fragment {
     private static final int RESULT_LOAD_IMG = 123;
@@ -65,7 +68,9 @@ public class UpdateProfileFragment extends Fragment {
     private EditText personality_type;
     private EditText location;
     private EditText date_of_birth;
-    private EditText age_range_pref;
+    private TextView age_range_pref;
+    private TextView minAgeText;
+    private TextView maxAgeText;
     private EditText summary;
     private int age;
     final Calendar myCalendar = Calendar.getInstance();
@@ -84,32 +89,55 @@ public class UpdateProfileFragment extends Fragment {
     private double currentUserLatitude;
     private double currentUserLongitude;
     private String currentUserPlace;
+    private RangeSeekBar rangeSeekbar;
+    private int minAge =18;
+    private int maxAge =100;
 
 
     List<String> type = new ArrayList<>(Arrays.asList("ESFJ", "ESTJ", "ENFJ", "ENTJ", "ESTP", "ESFP", "ENFP", "ENTP", "ISTP", "ISFP", "ISFP", "INFP", "INTP", "ISTJ", "ISFJ", "INFJ", "INTJ"));
 
     /**
-     * Creates View for  fragment of update profile
+     * Creates View for  fragment of update fragment_show_profile
      *
      * @param inflater           LayoutInflater inflater
      * @param container          ViewGroup container
      * @param savedInstanceState Bundle saved instances state
      * @return View
      */
+    @SuppressLint("CutPasteId")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
+        /*
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_update_profile, container, false);
-        profile_img = (ImageView) view.findViewById(R.id.profile);
+        profile_img = (ImageView) view.findViewById(R.id.fragment_show_profile);
         full_name = view.findViewById(R.id.full_name_id);
         personality_type = (EditText) view.findViewById(R.id.enter_personality_type);
         location = (EditText) view.findViewById(R.id.enter_location);
+        cancel = view.findViewById(R.id.cancel_btn_profile_edit);
+        age_range_pref = (EditText) view.findViewById(R.id.enter_age_range);
+        summary = (EditText) view.findViewById(R.id.enter_summary);
+        save_profile = view.findViewById(R.id.save);
+        date_of_birth = (EditText) view.findViewById(R.id.enter_date_of_birth);
+        */
+        View view = inflater.inflate(R.layout.fragment_edit_profile, container, false);
+        profile_img = (ImageView) view.findViewById(R.id.profileImage);
+        full_name = view.findViewById(R.id.fullNameEditText);
+        personality_type = (EditText) view.findViewById(R.id.personalityTypeEditText);
+        location = (EditText) view.findViewById(R.id.locationEditText);
+        cancel = view.findViewById(R.id.cancelButton);
+        age_range_pref = (TextView) view.findViewById(R.id.ageRangeText);
+        summary = (EditText) view.findViewById(R.id.hobbiesEditText);
+        save_profile = view.findViewById(R.id.saveButton);
+        date_of_birth = (EditText) view.findViewById(R.id.dateOfBirthEditText);
+
+        minAgeText = view.findViewById(R.id.minAgeText);
+        maxAgeText = view.findViewById(R.id.maxAgeText);
 
         //google places api access key
         Places.initialize(getActivity().getApplicationContext(), BuildConfig.PLACE_API_KEY);
 
-        date_of_birth = (EditText) view.findViewById(R.id.enter_date_of_birth);
         DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {
             @Override
             //calendar calculator
@@ -133,8 +161,7 @@ public class UpdateProfileFragment extends Fragment {
             }
         });
 
-        age_range_pref = (EditText) view.findViewById(R.id.enter_age_range);
-        summary = (EditText) view.findViewById(R.id.enter_summary);
+
 
         mAuth = FirebaseAuth.getInstance();
         mStore = FirebaseFirestore.getInstance();
@@ -144,11 +171,11 @@ public class UpdateProfileFragment extends Fragment {
         if (mAuth.getCurrentUser() != null) {
             getProfileData();
         }
-//upload image for profile
+//upload image for fragment_show_profile
         profile_img.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //for uploading profile images
+                //for uploading fragment_show_profile images
                 Intent photoPickerIntent = new Intent(Intent.ACTION_PICK);
                 photoPickerIntent.setType("image/");
                 startActivityForResult(photoPickerIntent, RESULT_LOAD_IMG);
@@ -167,8 +194,6 @@ public class UpdateProfileFragment extends Fragment {
             }
 
         });
-        save_profile = view.findViewById(R.id.save);
-
         if (mAuth.getCurrentUser() != null) {
             save_profile.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -187,7 +212,7 @@ public class UpdateProfileFragment extends Fragment {
                                     public void onSuccess(Uri uri) {
                                         //download image uri
                                         String downloadUrl = uri.toString();
-                                        //create hash map to store user profile
+                                        //create hash map to store user fragment_show_profile
                                         Map<String, Object> map1 = new HashMap<>();
                                         map1.put("fullName", full_name.getText().toString());
                                         if (type.contains(personality_type.getText().toString())) {
@@ -198,14 +223,16 @@ public class UpdateProfileFragment extends Fragment {
                                         }
                                         map1.put("location", location.getText().toString());
                                         map1.put("dateOfBirth", date_of_birth.getText().toString());
-                                        map1.put("ageRangePreference", age_range_pref.getText().toString());
+                                      //  map1.put("ageRangePreference", age_range_pref.getText().toString());
+
+                                        map1.put("ageRangePreference",  minAge +" - "+ maxAge);
                                         map1.put("summary", summary.getText().toString());
                                         map1.put("img_url", downloadUrl);
-                                        map1.put("age", age);
+                                        map1.put("age", age );
                                         map1.put("latitude", currentUserLatitude);
                                         map1.put("longitude", currentUserLongitude);
 
-                                        //update the existing user data or profile under users collection with document id of each user UID
+                                        //update the existing user data or fragment_show_profile under users collection with document id of each user UID
                                         mStore.collection("Users").document(mAuth.getCurrentUser().getUid()).set(map1).addOnCompleteListener(new OnCompleteListener<Void>() {
                                             @Override
                                             public void onComplete(@NonNull Task<Void> task) {
@@ -237,8 +264,8 @@ public class UpdateProfileFragment extends Fragment {
                         }
                         map.put("location", location.getText().toString());
                         map.put("dateOfBirth", date_of_birth.getText().toString());
-                        map.put("ageRangePreference", age_range_pref.getText().toString());
-                        map.put("summary", summary.getText().toString());
+//                        map.put("ageRangePreference", age_range_pref.getText().toString());
+                        map.put("ageRangePreference",  minAge +" - "+ maxAge);                        map.put("summary", summary.getText().toString());
                         map.put("age", age);
                         map.put("latitude", currentUserLatitude);
                         map.put("longitude", currentUserLongitude);
@@ -261,17 +288,35 @@ public class UpdateProfileFragment extends Fragment {
                 }
             });
         }
-        cancel = view.findViewById(R.id.cancel_btn_profile_edit);
+
         cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.updateProfileFragmentLayout, new ViewProfileFragment());
+                fragmentTransaction.replace(R.id.editProfileFragmentLayout, new ViewProfileFragment());
+//                fragmentTransaction.replace(R.id.updateProfileFragmentLayout, new ViewProfileFragment());
                 fragmentTransaction.addToBackStack(null);
                 fragmentTransaction.commit();
 
 
+            }
+        });
+
+        rangeSeekbar = (RangeSeekBar) view.findViewById(R.id.rangeSeekbar);
+        rangeSeekbar.setRangeValues(18, 120);
+        rangeSeekbar.setNotifyWhileDragging(true);
+        rangeSeekbar.setOnRangeSeekBarChangeListener(new RangeSeekBar.OnRangeSeekBarChangeListener() {
+            @Override
+            public void onRangeSeekBarValuesChanged(RangeSeekBar bar, Object minValue, Object maxValue) {
+               // Toast.makeText(getContext(), "Min Value- " + minValue + " & " + "Max Value- " + maxValue, Toast.LENGTH_LONG).show();
+            }
+        });
+        rangeSeekbar.setOnRangeSeekBarChangeListener(new RangeSeekBar.OnRangeSeekBarChangeListener<Integer>() {
+            @Override
+            public void onRangeSeekBarValuesChanged(RangeSeekBar<?> bar, Integer minValue, Integer maxValue) {
+                minAge = (Integer)minValue;
+                maxAge = (Integer)maxValue;
             }
         });
         return view;
@@ -284,7 +329,7 @@ public class UpdateProfileFragment extends Fragment {
     }
 
     /**
-     * Loads profile data to fragment view
+     * Loads fragment_show_profile data to fragment view
      */
     private void getProfileData() {
         mStore.collection("Users").document(mAuth.getCurrentUser().getUid()).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
@@ -302,6 +347,17 @@ public class UpdateProfileFragment extends Fragment {
 
                     String age_preference_set = task.getResult().getString("ageRangePreference");
 
+                    String[] numbers = {"",""};
+                    if(age_preference_set !=null) {
+                        numbers = age_preference_set.split("-");
+
+                        int firstNumber = Integer.parseInt(numbers[0].trim());
+                        int secondNumber = Integer.parseInt(numbers[1].trim());
+
+                        rangeSeekbar.setSelectedMinValue(firstNumber);
+                        rangeSeekbar.setSelectedMaxValue(secondNumber);
+                    }
+
                     String img_url_set = task.getResult().getString("img_url");
 
                     if (full_name_set != null) {
@@ -310,11 +366,8 @@ public class UpdateProfileFragment extends Fragment {
                     if (personality_type_set != null) {
                         personality_type.setText(personality_type_set);
                     }
-                    if (age_preference_set != null) {
+                    if (location_set != null) {
                         location.setText(location_set);
-                    }
-                    if (age_preference_set != null) {
-                        age_range_pref.setText(age_preference_set);
                     }
                     if (date_of_birth_set != null) {
                         date_of_birth.setText(date_of_birth_set);
@@ -327,11 +380,11 @@ public class UpdateProfileFragment extends Fragment {
                         Glide.with(requireContext()).load(img_url_set).placeholder(R.drawable.place_holder_profile).into(profile_img);
                         // profile_img.setImageURI(Uri.parse(img_url_set));
                     } else {
-                        Toast.makeText(requireContext(), "Please upload profile photo", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(requireContext(), "Please upload fragment_show_profile photo", Toast.LENGTH_SHORT).show();
                     }
 
                 } else {
-                    Log.i("TAG", "onComplete Error: profile data not fetched");
+                    Log.i("TAG", "onComplete Error: fragment_show_profile data not fetched");
                 }
 
             }
@@ -371,7 +424,7 @@ public class UpdateProfileFragment extends Fragment {
 
                     }
                     break;
-                //case of uploading profile
+                //case of uploading fragment_show_profile
                 case RESULT_LOAD_IMG:
                     if (resultCode == RESULT_OK) {
                         //get daata
