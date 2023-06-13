@@ -10,8 +10,8 @@ android {
         applicationId "com.txy822.android_personality_based_dating_app"
         minSdkVersion 24
         targetSdkVersion 33
-        versionCode 6
-        versionName "1.6"
+        versionCode 9
+        versionName "1.9"
 
         buildConfigField("String", "fcmServerKey", fcmServerKey)
         buildConfigField("String", "CONSUMER_KEY", CONSUMER_KEY)

@@ -65,10 +65,10 @@ public class FinderFragment extends Fragment {
     private ImageButton reject;
     private ImageButton chat_btn;
     private int pressedCounter = 0;
-    private Map<Profile, String> docIdMap;
+    private Map<Profile, String> docIdMap = new HashMap();
     private int compatiblity = 0;
-    private Profile currentUserProfile = null;
-    private Profile profile = null;
+    private Profile currentUserProfile =  new Profile();
+    private Profile profile_ = new Profile();
 
     //    for compatibility
     private TypeCompatibility typeCompatibility = new TypeCompatibility();
@@ -171,7 +171,7 @@ public class FinderFragment extends Fragment {
 //                        check if they are not equal and add to fragment_show_profile list and map
                             if (!docId.equals(userUID)) {
                                 //creates user fragment_show_profile  from the stored collection and adds to the fragment_show_profile list
-                                profile = documentSnapshot.toObject(Profile.class).withId(docId);
+                                Profile profile  = documentSnapshot.toObject(Profile.class).withId(docId);
                                 if (profile != null) {
                                     mProfileList.add(profile);
                                     docIdMap.put(profile, docId);
@@ -186,7 +186,8 @@ public class FinderFragment extends Fragment {
                         if (mProfileList.size() != 0) {
                             numberOfUser = mProfileList.size();
                             Log.i("Number of Users", Integer.toString(numberOfUser));
-                            profile = mProfileList.get(pressedCounter);
+                            Profile profile  = mProfileList.get(pressedCounter);
+                            profile_ =profile;
                             //calculate  distance from longitude and lattitude
                             Double distance = calculateDistance(currentUserProfile.getLatitude(), currentUserProfile.getLongitude(), profile.getLatitude(), profile.getLongitude());
                             if (distance == -1.0) {
@@ -207,6 +208,7 @@ public class FinderFragment extends Fragment {
                                     .placeholder(R.drawable.place_holder_profile)
                                     .into(profile_picture);
                             setUserDetail(profile);
+                            profile_ =profile;
                             //add comaptibility
                             compatiblity = typeCompatibility.getCompatibility(currentUserProfile.getPersonalityType(), profile.getPersonalityType());
                             //check if comaptibility is known or not
@@ -256,21 +258,22 @@ public class FinderFragment extends Fragment {
                                 String age = "?";
                                 String fullName ="";
                                 String agePref ="??";
-
-                                if (profile.getFullName() != null) {
-                                    fullName = profile.getFullName();
-                                }
-                                if (profile.getAgeRangePreference() != null) {
-                                    agePref =profile.getAgeRangePreference();
-                                }
-                                if (profile.getSummary() != null) {
-                                    summary = profile.getSummary();
-                                }
-                                if (profile.getAge() != null) {
-                                    age = profile.getAge().toString();
-                                }
-                                if (profile.getImg_url() != null) {
-                                    imgUrl = profile.getImg_url();
+                                if(profile_!=null) {
+                                    if (profile_.getFullName() != null) {
+                                        fullName = profile_.getFullName();
+                                    }
+                                    if (profile_.getAgeRangePreference() != null) {
+                                        agePref = profile_.getAgeRangePreference();
+                                    }
+                                    if (profile_.getSummary() != null) {
+                                        summary = profile_.getSummary();
+                                    }
+                                    if (profile_.getAge() != null) {
+                                        age = profile_.getAge().toString();
+                                    }
+                                    if (profile_.getImg_url() != null) {
+                                        imgUrl = profile_.getImg_url();
+                                    }
                                 }
                                 showPopupScreen(summary,fullName, age, imgUrl,agePref);
                             }
@@ -283,25 +286,38 @@ public class FinderFragment extends Fragment {
                                 String age = "?";
                                 String fullName ="";
                                 String agePref ="??";
-
-                                if (profile.getFullName() != null) {
-                                    fullName = profile.getFullName();
-                                }
-                                if (profile.getAgeRangePreference() != null) {
-                                    agePref =profile.getAgeRangePreference();
-                                }
-                                if (profile.getSummary() != null) {
-                                    summary = profile.getSummary();
-                                }
-                                if (profile.getAge() != null) {
-                                    age = profile.getAge().toString();
-                                }
-                                if (profile.getImg_url() != null) {
-                                    imgUrl = profile.getImg_url();
+                                if(profile_!=null) {
+                                    if (profile_.getFullName() != null) {
+                                        fullName = profile_.getFullName();
+                                    }
+                                    if (profile_.getAgeRangePreference() != null) {
+                                        agePref = profile_.getAgeRangePreference();
+                                    }
+                                    if (profile_.getSummary() != null) {
+                                        summary = profile_.getSummary();
+                                    }
+                                    if (profile_.getAge() != null) {
+                                        age = profile_.getAge().toString();
+                                    }
+                                    if (profile_.getImg_url() != null) {
+                                        imgUrl = profile_.getImg_url();
+                                    }
                                 }
                                 showPopupScreen(summary,fullName, age, imgUrl,agePref);
                             }
                         });
+                    }
+                    else {
+                        // Handle failure case
+                        Exception exception = task.getException();
+                        if (exception != null) {
+                            // Log the error or show an error message to the user
+                            Log.e("Firestore with exception", "Error retrieving data", exception);
+                            Toast.makeText(getContext(), "Error retrieving data", Toast.LENGTH_SHORT).show();
+                        }
+                        else {
+                            Log.e("Firestore", "Error retrieving data");
+                        }
                     }
                 }
             });
@@ -330,24 +346,6 @@ public class FinderFragment extends Fragment {
         tvTitle.setText(fullName);
         tvDescription.setText(age + " years old and interested in "+user_age_pref);
 
-/*
-        if(profile.getFullName()!=null){
-            tvTitle.setText(profile.getFullName() + " Details");
-        }
-        else {
-            tvTitle.setText( "No Name Details");
-        }
-        if(profile.getAgeRangePreference()==null && profile.getAge()!=null){
-            tvDescription.setText(age + " years old and interested in ??");
-        }
-        if(profile.getAgeRangePreference()!=null && profile.getAge()==null){
-            tvDescription.setText(" ?? years old and interested in " + profile.getAgeRangePreference());
-        }
-        else if(profile.getAgeRangePreference()==null && profile.getAge()==null){
-            tvDescription.setText( " ?  years old and interested in ??");
-        }
-
-*/
         // Create a PopupWindow
         popupWindow = new PopupWindow(popUpView, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT, true);
 
@@ -493,7 +491,7 @@ public class FinderFragment extends Fragment {
             pressedCounter = 0;
         }
 
-        profile = mProfileList.get(pressedCounter);
+        Profile profile = mProfileList.get(pressedCounter);
         Double distance = calculateDistance(currentUserProfile.getLatitude(), currentUserProfile.getLongitude(), profile.getLatitude(), profile.getLongitude());
         if (distance == -1.0) {
             //for unknown distance
@@ -509,6 +507,7 @@ public class FinderFragment extends Fragment {
         }
         Glide.with(mContext).load(profile.getImg_url()).placeholder(R.drawable.place_holder_profile).into(profile_picture);
         setUserDetail(profile);
+        profile_ =profile;
         compatiblity = typeCompatibility.getCompatibility(currentUserProfile.getPersonalityType(), profile.getPersonalityType());
         if (compatiblity == 0) {
             compatibilityView.setText("?% Match");
@@ -548,7 +547,7 @@ public class FinderFragment extends Fragment {
         if (pressedCounter >= numberOfUser) {
             pressedCounter = 0;
         }
-        profile = mProfileList.get(pressedCounter);
+        Profile profile = mProfileList.get(pressedCounter);
 
 
         Double distance = 0.0;
@@ -568,6 +567,7 @@ public class FinderFragment extends Fragment {
         }
         Glide.with(mContext).load(profile.getImg_url()).placeholder(R.drawable.place_holder_profile).into(profile_picture);
         setUserDetail(profile);
+        profile_ =profile;
         compatiblity = typeCompatibility.getCompatibility(currentUserProfile.getPersonalityType(), profile.getPersonalityType());
         if (compatiblity == 0) {
             compatibilityView.setText("?% Match");
