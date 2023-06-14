@@ -40,6 +40,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Objects;
 
 /**
  * FinderFragment allows user to find matches
@@ -166,12 +167,12 @@ public class FinderFragment extends Fragment {
 //                     //identify current user
                             if (docId.equals(userUID)) {
                                 //fetch current user fragment_show_profile
-                                currentUserProfile = documentSnapshot.toObject(Profile.class).withId(userUID);
+                                currentUserProfile = Objects.requireNonNull(documentSnapshot.toObject(Profile.class)).withId(userUID);
                             }
 //                        check if they are not equal and add to fragment_show_profile list and map
                             if (!docId.equals(userUID)) {
                                 //creates user fragment_show_profile  from the stored collection and adds to the fragment_show_profile list
-                                Profile profile  = documentSnapshot.toObject(Profile.class).withId(docId);
+                                Profile profile  = Objects.requireNonNull(documentSnapshot.toObject(Profile.class)).withId(docId);
                                 if (profile != null) {
                                     mProfileList.add(profile);
                                     docIdMap.put(profile, docId);
@@ -242,7 +243,7 @@ public class FinderFragment extends Fragment {
                             @Override
                             public void onClick(View v) {
 //                          switch fragment to chat as some more matches found
-                                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                                FragmentManager fragmentManager = (requireActivity().getSupportFragmentManager());
                                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                                 fragmentTransaction.replace(R.id.finderFragmentLayout, new MatchesFragment());
                                 fragmentTransaction.addToBackStack(null);

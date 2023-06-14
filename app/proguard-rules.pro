@@ -21,6 +21,7 @@
 #-renamesourcefileattribute SourceFile
 
 -keep class io.grpc.** {*;}
+-keep class com.txy822.android_personality_based_dating_app.** { *; }
 -keepclassmembers enum * {
     public static **[] values();
     public static ** valueOf(java.lang.String);

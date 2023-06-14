@@ -121,7 +121,7 @@ public class ViewProfileFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
-                Fragment fragment = new UpdateProfileFragment();
+                Fragment fragment = new EditProfileFragment();
                 FragmentManager fragmentManager = getFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                 // fragmentTransaction.replace(R.id.viewProfileFragmentLayout, fragment);

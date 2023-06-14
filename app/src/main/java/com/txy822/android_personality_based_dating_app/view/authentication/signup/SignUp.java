@@ -21,7 +21,8 @@ import com.txy822.android_personality_based_dating_app.R;
 import com.txy822.android_personality_based_dating_app.utils.NetworkManager;
 import com.txy822.android_personality_based_dating_app.view.authentication.login.Login;
 import com.txy822.android_personality_based_dating_app.view.main.Main;
-import com.txy822.android_personality_based_dating_app.view.profile.UpdateProfileFragment;
+import com.txy822.android_personality_based_dating_app.view.profile.EditProfileFragment;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -128,7 +129,7 @@ public class SignUp extends AppCompatActivity {
                         Toast.makeText(getBaseContext(), "Account Created", Toast.LENGTH_SHORT).show();
 
                         // Replace the fragment container with YourFragment
-                        UpdateProfileFragment fragment = new UpdateProfileFragment();
+                        EditProfileFragment fragment = new EditProfileFragment();
                         FragmentManager fragmentManager = getSupportFragmentManager();
                         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                         fragmentTransaction.replace(R.id.fragment_container, fragment);

@@ -41,7 +41,7 @@ public class Home extends AppCompatActivity {
         adapter.addFragment(new PersonalityFragment(),"Personality");
 //      adapter.addFragment(new MatchesFragment(),"chat");
         adapter.addFragment(new SettingFragment(),"Setting");
-//      adapter.addFragment(new UpdateProfileFragment(),"updateProfile");
+//      adapter.addFragment(new EditProfileFragment(),"updateProfile");
         homeView.setAdapter(adapter);
         homeTab.setupWithViewPager(homeView);
 //      access fragments for each tap layout
