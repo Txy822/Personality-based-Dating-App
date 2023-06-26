@@ -131,8 +131,10 @@ public class PersonalityFragment extends Fragment {
                             if (!screenName.isEmpty()) {
                                 resList = getUserTimeLine(screenName, numberOfTweets);
                                 String s = "";
-                                for (Status status : resList) {
-                                    s = s + status.getText();
+                                if(resList!=null){
+                                    for (Status status : resList) {
+                                        s = s + status.getText();
+                                    }
                                 }
                                 setText(fetch_some_tweets, s);
                             } else {
@@ -191,6 +193,31 @@ public class PersonalityFragment extends Fragment {
      * @return Response list of status
      * @throws TwitterException
      */
+/*
+    public ResponseList<Status> getUserTimeLine(String screenName, int count) {
+        try {
+            TwitterFactory twitterFactory = new TwitterFactory(getConfiguration().build());
+            Twitter twitter = twitterFactory.getInstance();
+            twitter.getAuthorization();
+
+            Long twitterID = twitter.getId();
+            Paging paging = new Paging(1, count);
+
+            return twitter.getUserTimeline(screenName, paging);
+        } catch (TwitterException e) {
+            // Handle the TwitterException here
+            e.printStackTrace(); // Print the exception stack trace for debugging purposes
+
+            // You can throw a custom exception or return null or an empty list depending on your requirement
+            // For example:
+            // throw new CustomException("An error occurred while fetching user timeline");
+            // return null;
+            // return new ResponseList<Status>(); // Empty list
+
+            return null; // Returning null as an example, modify as per your needs
+        }
+    }
+    */
     public ResponseList<Status> getUserTimeLine(String screenName, int count) throws TwitterException {
 
         TwitterFactory twitterFactory = new TwitterFactory(getConfiguration().build());
@@ -199,9 +226,14 @@ public class PersonalityFragment extends Fragment {
 
         Long twitterID = twitter.getId();
         Paging paging = new Paging(1, count);
-
-        return twitter.getUserTimeline(screenName, paging);
+        ResponseList<Status> list = twitter.getUserTimeline(screenName, paging);
+        if (list.isEmpty()) {
+            return null;
+        } else {
+            return list;
+        }
     }
+
 
     /**
      * Configuration builder setup authentication of twitter4j API

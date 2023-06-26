@@ -57,9 +57,9 @@ import java.util.Locale;
 import java.util.Map;
 
 /**
- * UpdateProfileFragment Class updates the user fragment_show_profile
+ * EditProfileFragment Class updates the user fragment_show_profile
  */
-public class UpdateProfileFragment extends Fragment {
+public class EditProfileFragment extends Fragment {
     private static final int RESULT_LOAD_IMG = 123;
     private static final int RESULT_LOAD_PLACE = 122;
 
@@ -280,7 +280,6 @@ public class UpdateProfileFragment extends Fragment {
                 FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                 fragmentTransaction.replace(R.id.editProfileFragmentLayout, new ViewProfileFragment());
-//                fragmentTransaction.replace(R.id.updateProfileFragmentLayout, new ViewProfileFragment());
                 fragmentTransaction.addToBackStack(null);
                 fragmentTransaction.commit();
 
