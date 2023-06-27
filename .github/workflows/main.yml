@@ -1,5 +1,5 @@
 name: CICD
-on: 
+on:
   push:
     branches: [ main ]
   pull_request:
@@ -11,13 +11,21 @@ jobs:
     steps:
       - name: Checkout the code
         uses: actions/checkout@v2
-        
+
+      - name: Grant execute permissions to gradlew
+        run: chmod +x ./gradlew
+
+      - name: Build and Test
+        run: |
+          ./gradlew clean build
+          ./gradlew lint
+
       - name: Run Lint
         run: ./gradlew lintDebug
-      
+
       - name: Upload html test report
         uses: actions/upload-artifact@v2
-        with: 
+        with:
           name: index.html
           path: app/debug/report/lint-results-debug.html
       
