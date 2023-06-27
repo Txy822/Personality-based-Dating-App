@@ -12,15 +12,26 @@ android {
         applicationId "com.txy822.android_personality_based_dating_app"
         minSdkVersion 24
         targetSdkVersion 33
-        versionCode 14
-        versionName "1.14"
+        versionCode 15
+        versionName "1.15"
 
-        buildConfigField("String", "fcmServerKey", fcmServerKey)
-        buildConfigField("String", "CONSUMER_KEY", CONSUMER_KEY)
-        buildConfigField("String", "CONSUMER_SECRET", CONSUMER_SECRET)
-        buildConfigField("String", "ACCESS_KEY", ACCESS_KEY)
-        buildConfigField("String", "ACCESS_SECRET", ACCESS_SECRET)
-        buildConfigField("String", "PLACE_API_KEY", PLACE_API_KEY)
+//        buildConfigField("String", "fcmServerKey", fcmServerKey)
+//        buildConfigField("String", "CONSUMER_KEY", CONSUMER_KEY)
+//        buildConfigField("String", "CONSUMER_SECRET", CONSUMER_SECRET)
+//        buildConfigField("String", "ACCESS_KEY", ACCESS_KEY)
+//        buildConfigField("String", "ACCESS_SECRET", ACCESS_SECRET)
+//        buildConfigField("String", "PLACE_API_KEY", PLACE_API_KEY)
+
+        Properties properties = new Properties()
+        properties.load(project.rootProject.file("local.properties").newDataInputStream())
+
+        buildConfigField "String", "fcmServerKey", "\"${properties.getProperty("fcmServerKey")}\""
+        buildConfigField "String", "CONSUMER_KEY", "\"${properties.getProperty("CONSUMER_KEY")}\""
+        buildConfigField "String", "CONSUMER_SECRET", "\"${properties.getProperty("CONSUMER_SECRET")}\""
+        buildConfigField "String", "ACCESS_KEY", "\"${properties.getProperty("ACCESS_KEY")}\""
+        buildConfigField "String", "ACCESS_SECRET", "\"${properties.getProperty("ACCESS_SECRET")}\""
+        buildConfigField "String", "PLACE_API_KEY", "\"${properties.getProperty("PLACE_API_KEY")}\""
+
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
