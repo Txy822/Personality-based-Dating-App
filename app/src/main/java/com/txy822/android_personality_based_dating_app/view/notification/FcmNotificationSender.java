@@ -34,7 +34,7 @@ public class FcmNotificationSender  {
     //Select POST . Enter request URL as postUrl
 
     //private final String postUrl = "https://fcm.googleapis.com/fcm/send";
-    private final String postUrl = "https://fcm.googleapis.com/v1/projects/myproject-b5ae1/messages:send";
+    private final String postUrl = "https://fcm.googleapis.com/v1/projects/datingapp-5b017/messages:send";
 
     //Add Headers Authorization: key , key from fcm server key
     private final String fcmServerKey  = BuildConfig.fcmServerKey;

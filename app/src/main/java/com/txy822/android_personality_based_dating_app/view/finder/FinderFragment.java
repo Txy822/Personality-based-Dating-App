@@ -68,7 +68,7 @@ public class FinderFragment extends Fragment {
     private int pressedCounter = 0;
     private Map<Profile, String> docIdMap = new HashMap();
     private int compatiblity = 0;
-    private Profile currentUserProfile =  new Profile();
+    private Profile currentUserProfile = new Profile();
     private Profile profile_ = new Profile();
 
     //    for compatibility
@@ -172,7 +172,7 @@ public class FinderFragment extends Fragment {
 //                        check if they are not equal and add to fragment_show_profile list and map
                             if (!docId.equals(userUID)) {
                                 //creates user fragment_show_profile  from the stored collection and adds to the fragment_show_profile list
-                                Profile profile  = Objects.requireNonNull(documentSnapshot.toObject(Profile.class)).withId(docId);
+                                Profile profile = Objects.requireNonNull(documentSnapshot.toObject(Profile.class)).withId(docId);
                                 if (profile != null) {
                                     mProfileList.add(profile);
                                     docIdMap.put(profile, docId);
@@ -187,19 +187,16 @@ public class FinderFragment extends Fragment {
                         if (mProfileList.size() != 0) {
                             numberOfUser = mProfileList.size();
                             Log.i("Number of Users", Integer.toString(numberOfUser));
-                            Profile profile  = mProfileList.get(pressedCounter);
-                            profile_ =profile;
+                            Profile profile = mProfileList.get(pressedCounter);
+                            profile_ = profile;
                             //calculate  distance from longitude and lattitude
                             Double distance = calculateDistance(currentUserProfile.getLatitude(), currentUserProfile.getLongitude(), profile.getLatitude(), profile.getLongitude());
                             if (distance == -1.0) {
                                 //for unknown distance
                                 distanceView.setText("? miles");
-                            }
-                            else if(distance<=3 ){
+                            } else if (distance <= 3) {
                                 distanceView.setText("Same city");
-                            }
-
-                            else {
+                            } else {
                                 //set distance view with the value
                                 distanceView.setText(String.format(Locale.UK, "%.2f miles", distance));
                             }
@@ -209,7 +206,7 @@ public class FinderFragment extends Fragment {
                                     .placeholder(R.drawable.place_holder_profile)
                                     .into(profile_picture);
                             setUserDetail(profile);
-                            profile_ =profile;
+                            profile_ = profile;
                             //add comaptibility
                             compatiblity = typeCompatibility.getCompatibility(currentUserProfile.getPersonalityType(), profile.getPersonalityType());
                             //check if comaptibility is known or not
@@ -257,9 +254,9 @@ public class FinderFragment extends Fragment {
                                 String summary = "No summary";
                                 String imgUrl = "https://fastly.picsum.photos/id/600/200/300.jpg?hmac=Ub3Deb_eQNe0Un7OyE33D79dnextn3M179L0nRkv1eg";
                                 String age = "?";
-                                String fullName ="";
-                                String agePref ="??";
-                                if(profile_!=null) {
+                                String fullName = "";
+                                String agePref = "??";
+                                if (profile_ != null) {
                                     if (profile_.getFullName() != null) {
                                         fullName = profile_.getFullName();
                                     }
@@ -276,7 +273,7 @@ public class FinderFragment extends Fragment {
                                         imgUrl = profile_.getImg_url();
                                     }
                                 }
-                                showPopupScreen(summary,fullName, age, imgUrl,agePref);
+                                showPopupScreen(summary, fullName, age, imgUrl, agePref);
                             }
                         });
                         btnMore2.setOnClickListener(new View.OnClickListener() {
@@ -285,9 +282,9 @@ public class FinderFragment extends Fragment {
                                 String summary = "No summary";
                                 String imgUrl = "https://fastly.picsum.photos/id/600/200/300.jpg?hmac=Ub3Deb_eQNe0Un7OyE33D79dnextn3M179L0nRkv1eg";
                                 String age = "?";
-                                String fullName ="";
-                                String agePref ="??";
-                                if(profile_!=null) {
+                                String fullName = "";
+                                String agePref = "??";
+                                if (profile_ != null) {
                                     if (profile_.getFullName() != null) {
                                         fullName = profile_.getFullName();
                                     }
@@ -304,19 +301,17 @@ public class FinderFragment extends Fragment {
                                         imgUrl = profile_.getImg_url();
                                     }
                                 }
-                                showPopupScreen(summary,fullName, age, imgUrl,agePref);
+                                showPopupScreen(summary, fullName, age, imgUrl, agePref);
                             }
                         });
-                    }
-                    else {
+                    } else {
                         // Handle failure case
                         Exception exception = task.getException();
                         if (exception != null) {
                             // Log the error or show an error message to the user
                             Log.e("Firestore with exception", "Error retrieving data", exception);
                             Toast.makeText(getContext(), "Error retrieving data", Toast.LENGTH_SHORT).show();
-                        }
-                        else {
+                        } else {
                             Log.e("Firestore", "Error retrieving data");
                         }
                     }
@@ -328,7 +323,7 @@ public class FinderFragment extends Fragment {
         return view;
     }
 
-    private void showPopupScreen(String summary,String fullName,String age, String img_url, String user_age_pref) {
+    private void showPopupScreen(String summary, String fullName, String age, String img_url, String user_age_pref) {
         @SuppressLint("InflateParams") View popUpView = getLayoutInflater().inflate(R.layout.popup_layout, null);
 
         // Get the "Close" button
@@ -345,7 +340,7 @@ public class FinderFragment extends Fragment {
 
         tvSummary.setText(summary);
         tvTitle.setText(fullName);
-        tvDescription.setText(age + " years old and interested in "+user_age_pref);
+        tvDescription.setText(age + " years old and interested in " + user_age_pref);
 
         // Create a PopupWindow
         popupWindow = new PopupWindow(popUpView, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT, true);
@@ -492,30 +487,32 @@ public class FinderFragment extends Fragment {
             pressedCounter = 0;
         }
 
-        Profile profile = mProfileList.get(pressedCounter);
-        Double distance = calculateDistance(currentUserProfile.getLatitude(), currentUserProfile.getLongitude(), profile.getLatitude(), profile.getLongitude());
-        if (distance == -1.0) {
-            //for unknown distance
-            distanceView.setText("? miles");
-        }
-        else if(distance<=3 ){
-            distanceView.setText("Same city");
-        }
-
-        else {
-            //set distance view with the value
-            distanceView.setText(String.format(Locale.UK, "%.2f miles", distance));
-        }
-        Glide.with(mContext).load(profile.getImg_url()).placeholder(R.drawable.place_holder_profile).into(profile_picture);
-        setUserDetail(profile);
-        profile_ =profile;
-        compatiblity = typeCompatibility.getCompatibility(currentUserProfile.getPersonalityType(), profile.getPersonalityType());
-        if (compatiblity == 0) {
-            compatibilityView.setText("?% Match");
+        if (!mProfileList.isEmpty()) {
+            Profile profile = mProfileList.get(pressedCounter);
+            Double distance = calculateDistance(currentUserProfile.getLatitude(), currentUserProfile.getLongitude(), profile.getLatitude(), profile.getLongitude());
+            if (distance == -1.0) {
+                //for unknown distance
+                distanceView.setText("? miles");
+            } else if (distance <= 3) {
+                distanceView.setText("Same city");
+            } else {
+                //set distance view with the value
+                distanceView.setText(String.format(Locale.UK, "%.2f miles", distance));
+            }
+            Glide.with(mContext).load(profile.getImg_url()).placeholder(R.drawable.place_holder_profile).into(profile_picture);
+            setUserDetail(profile);
+            profile_ = profile;
+            compatiblity = typeCompatibility.getCompatibility(currentUserProfile.getPersonalityType(), profile.getPersonalityType());
+            if (compatiblity == 0) {
+                compatibilityView.setText("?% Match");
+            } else {
+                compatibilityView.setText(compatiblity + "% Match");
+            }
+            getLiked(docIdMap.get(profile));
         } else {
-            compatibilityView.setText(compatiblity + "% Match");
+            Toast.makeText(getContext(), "List Not Found", Toast.LENGTH_SHORT).show();
+            Log.i("TAG", "No List");
         }
-        getLiked(docIdMap.get(profile));
     }
 
     //https://play.google.com/store/apps/details?id=com.txy822.android_personality_based_dating_app
@@ -548,33 +545,33 @@ public class FinderFragment extends Fragment {
         if (pressedCounter >= numberOfUser) {
             pressedCounter = 0;
         }
-        Profile profile = mProfileList.get(pressedCounter);
+        if (!mProfileList.isEmpty()) {
+            Profile profile = mProfileList.get(pressedCounter);
+            Double distance = 0.0;
+            distance = calculateDistance(currentUserProfile.getLatitude(), currentUserProfile.getLongitude(), profile.getLatitude(), profile.getLongitude());
 
+            if (distance == -1.0) {
+                //for unknown distance
+                distanceView.setText("? miles");
+            } else if (distance <= 3) {
+                distanceView.setText("Same city");
+            } else {
+                //set distance view with the value
+                distanceView.setText(String.format(Locale.UK, "%.2f miles", distance));
+            }
+            Glide.with(mContext).load(profile.getImg_url()).placeholder(R.drawable.place_holder_profile).into(profile_picture);
+            setUserDetail(profile);
+            profile_ = profile;
+            compatiblity = typeCompatibility.getCompatibility(currentUserProfile.getPersonalityType(), profile.getPersonalityType());
+            if (compatiblity == 0) {
+                compatibilityView.setText("?% Match");
+            } else {
+                compatibilityView.setText(compatiblity + "% Match");
 
-        Double distance = 0.0;
-        distance = calculateDistance(currentUserProfile.getLatitude(), currentUserProfile.getLongitude(), profile.getLatitude(), profile.getLongitude());
-
-        if (distance == -1.0) {
-            //for unknown distance
-            distanceView.setText("? miles");
-        }
-        else if(distance<=3 ){
-            distanceView.setText("Same city");
-        }
-
-        else {
-            //set distance view with the value
-            distanceView.setText(String.format(Locale.UK, "%.2f miles", distance));
-        }
-        Glide.with(mContext).load(profile.getImg_url()).placeholder(R.drawable.place_holder_profile).into(profile_picture);
-        setUserDetail(profile);
-        profile_ =profile;
-        compatiblity = typeCompatibility.getCompatibility(currentUserProfile.getPersonalityType(), profile.getPersonalityType());
-        if (compatiblity == 0) {
-            compatibilityView.setText("?% Match");
+            }
         } else {
-            compatibilityView.setText(compatiblity + "% Match");
-
+            Toast.makeText(getContext(), "List Not Found", Toast.LENGTH_SHORT).show();
+            Log.i("TAG", "No List");
         }
     }
 
