@@ -8,6 +8,12 @@ android {
     compileSdkVersion 33
     buildToolsVersion "30.0.3"
 
+    lintOptions {
+        // Configure lint options here
+        // For example, to enable all lint checks, use:
+        checkAllWarnings = true
+    }
+
     defaultConfig {
         applicationId "com.txy822.android_personality_based_dating_app"
         minSdkVersion 24
